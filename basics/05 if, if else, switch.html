@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - if, if else, switch</title>
+  </head>
+  <body>
+    <script>
+      /* Instrukcje warunkowe IF - dodają logiki do programów, sprawdzają warunek i jeśli jest spełniony (ma wartość true) wykonywany jest odpowiedni kod w nawiasach klamrowych */
+
+      if (5 > 2) {
+        console.log("5 większe od 2");
+      }
+
+      // operatory porównania <= >= == !=
+
+      if (true) {
+        console.log("prawda");
+      }
+      // Bezpośrednie przekazanie do instrukcji if
+      if (-2) console.log("-2 nie jest zerem, więc wyświetli tekst");
+      if (false) console.log("false zatem tekst się nie wyświetli");
+      if (0)
+        console.log(
+          "0 traktowane jest jako false, więc tekst się nie wyświetli"
+        );
+      // False - liczby minusowe i 0
+      // True - każda liczba większa niż 0
+
+      /* IF ELSE - jeśli pierwszy warunek nie jest spełniony, wykona się kolejny */
+      let data = 4;
+
+      if (data <= 5) {
+        console.log("data mniejsze lub równe 5");
+      } else {
+        console.log("data ani mniejsze ani równe 5");
+      }
+
+      let b = 4;
+      if (b == 3) {
+        console.log("b równe 3");
+      } else if (b == 7) {
+        console.log("b równe 7");
+      } else if (b == 8) {
+        console.log("b równe 8");
+      } else {
+        console.log("domyślny tekst gdy inne warunki nie spełnione");
+      }
+
+      // CWICZENIA
+
+      if (10 > 5) {
+        console.log("#1 wykona się");
+        console.log("#1 wykona się");
+      }
+
+      if (8 <= 7) {
+        console.log("#2 wykona się");
+      } else {
+        console.log("#3 wykona się");
+      }
+
+      let data1 = 3; // w zaleznosci od wartości data1 wyświetla się #4 lub #5
+      if (data1 > 5) {
+        console.log("#4 wykona się");
+      } else {
+        console.log("#5 wykona się");
+      }
+
+      // cwiczenie  samodzielne - temperatura
+
+      let temperature = 12;
+
+      if (temperature < 0) {
+        console.log("bierzemy kurtkę");
+      } else if (temperature == 0) {
+        console.log("bierzemy lekką kurtkę");
+      } else if (temperature >= 20) {
+        console.log("bierzemy krótki rękaw");
+      } else {
+        console.log("domyślny tekst gdy inne warunki nie spełnione");
+      }
+    </script>
+  </body>
+</html>
