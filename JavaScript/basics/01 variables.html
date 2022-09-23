@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - variables</title>
+  </head>
+  <body>
+    <script>
+      // zakup komputera
+
+      // deklaracja zmiennej - najlepiej opisowa
+      let computerType = "PC";
+      console.log("computer type", computerType);
+
+      let ramNumber = 32;
+      console.log("ram number", ramNumber, "GB");
+
+      let monitorSize = 24;
+      console.log("monitor:", monitorSize, "inch");
+
+      let emailTitle = "Witaj";
+      console.log(emailTitle);
+
+      let emailContent = "Hello user!";
+      console.log(emailContent);
+
+      let senderEmail = "user@test.pl";
+      console.log(senderEmail);
+
+      let reciverEmail = "test@test.pl";
+      console.log(reciverEmail);
+
+      let emailAttchment1 = "plik1";
+      console.log(emailAttchment1);
+
+      let emailAttchment2 = "plik2";
+      console.log(emailAttchment2);
+
+      // zmienne deklarujemy przed użyciem
+
+      let z1, data, test; //zadeklarowanie nazw zmiennych "rezerwacja"
+      console.log(test); // wyświetli undefined - nie ma wartości przyposanej do zmiennej
+
+      z1 = 5; // przypisujemy wartości do zmiennej
+      data = "tekst"; // do data
+      test = 4 * z1; // i test
+
+      console.log(test); // wyświetli w konsoli 20
+
+      //Podstawowe typy danych
+
+      let dataNumber1 = 5; // liczba całkowita
+      let dataNumber2 = 3.2; // liczba dziesiętna
+
+      let dataString1 = "witaj świecie"; //tekst - w cudzysłowiu lub apostrofach
+      let dataString2 = "witaj świecie"; // wybierz jeden i się go trzymaj
+
+      let dataBoolean1 = true; // Boolean
+      let dataBoolean2 = false;
+
+      // tekst w wielu liniach - używamy backticka
+
+      let text = `tekst
+      w wielu liniach
+      za pomocą backtick`;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - data types</title>
+  </head>
+  <body>
+    <script>
+      //Podstawowe typy danych
+
+      let dataNumber1 = 5; // liczba całkowita
+      let dataNumber2 = 3.2; // liczba dziesiętna
+
+      let dataString1 = "witaj świecie"; //tekst - w cudzysłowiu lub apostrofach
+      let dataString2 = "witaj świecie"; // wybierz jeden i się go trzymaj
+
+      let dataBoolean1 = true; // Boolean
+      let dataBoolean2 = false;
+
+      let messageSentFlag = true;
+      console.log(messageSentFlag);
+
+      if ((messageSentFlag = true)) {
+        console.log("sent");
+      } else {
+        console.log("not sent");
+      }
+
+      // tekst w wielu liniach - używamy backticka
+
+      let text = `tekst
+      w wielu liniach
+      za pomocą backtick`;
+      console.log(text);
+
+      let carBrands = ["dodge", "audi", "merc", "citroen"];
+      console.log(carBrands);
+      console.log(carBrands.length); // ilość pozycji w tabeli
+      console.log(carBrands[2]); // wyswietla element - tu liczymy od 0
+
+      // Cwiczenie
+
+      let temperature = 24;
+      console.log("Temperature now -", temperature, "st C");
+
+      let rainFlag = true;
+
+      if ((rainFlag = true)) {
+        console.log("Its raining!");
+      }
+
+      let classNames = ["Ania", "Iwona", "Ewelina", "Filipek"];
+      console.log(classNames);
+    </script>
+  </body>
+</html>
