@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - funkcje</title>
+</head>
+
+<body>
+    <script>
+
+// Deklaracja funkcji - funkcje tworzymy za pomoca slowa kluczowego FUNCTION
+
+// Deklaracja funkcji przyjmuje dwa parametry, ktore mozemy uzyc tylko wewnatrz funkcji
+// a i b to tzw parametry funkcji
+// wywołanie funkcji z dwoma argumentami
+// UWAGA - przekazywane dane do funkcji to ARGUMENTY
+
+function addition(a, b) {
+    let result = a + b;
+    console.log("Wynik dodawania: ", result);
+}
+addition (1, 2);
+addition (212, 415);
+
+
+function multiply(a, b) {
+    let result = a * b;
+    return result;
+}
+let multiplyResult = multiply(5, 10);
+console.log("Wynik mnożenia: ", multiplyResult)
+
+// ćWICZENIA
+
+function multiply2(a, b, c) {
+    let result = a * b * c;
+    return result
+    // mnożna tez zapisać to samo tak => return a * b * c;
+}
+
+let multiply2Result = multiply2 (2, 3, 10);
+console.log(multiply2Result);
+
+let multiply2Result2 = multiply2(4, 2, 12);
+console.log(multiply2Result2);
+
+// stwórz funkcję substract - odejmowanie, z dwoma parametrami
+
+function substract(a, b) {
+    return a - b;
+}
+let resultSubstract = substract(10, 7);
+console.log(resultSubstract);
+
+function getSomeNumber(){
+    return 79;
+}
+console.log(getSomeNumber()) // 79
+
+
+let money = 1000;
+let interestRate = 0.05;
+
+function calculateInvestmentResult (money, interestRate) {
+    return money + (money * interestRate);
+}
+let investmentResult = calculateInvestmentResult(money, interestRate)
+console.log(investmentResult);
+
+console.log(calculateInvestmentResult(2200, interestRate));
+
+</script>
+
+</body>
+
+</html>

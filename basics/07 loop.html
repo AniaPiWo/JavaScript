@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - loop</title>
+</head>
+
+<body>
+    <script>
+     
+// LOOP - wielokrotne wykonanie kodu, musi być spełniony warunek
+// jak warunek przestanie być spełniany pętla się zakończy
+
+    let i = 0;
+
+    while (i <= 12) { 
+        // wyświetli aktualna wartość i
+        console.log("liczba i:", i);
+        // z każdą kolejna iteracją zwiększamy i o jeden
+        i = i +1;
+
+    } 
+
+    do {
+        //pętla do while (rzadko stosowana) najpierw wykona swoje ciało
+        // czyli wyświetli wartość i
+        console.log("liczba i:", i);
+        // z każdą kolejną iteracją zwiększamy i o jeden
+        i = i +1;
+    } while (i < 5)
+
+
+// Najczęściej będziemy korzystać z pętlo FOR
+// Określamy 3 instrukcje
+// 1 INICJALIZACJA - wykonywana raz na początku, używana do stworzenia zmiennej
+// 2 WARUNEK - musi być spełniony aby wykonac kod w bloku
+// 3 INSTRUKCJA - wykonywana za każdym razem, po wykonaniu bloku
+
+    for (let b = 1; b < 4; b++) {
+        console.log("pętla for oraz b", b);
+    }
+    //inkrementacja => b++ to to samo co b = b + 1
+
+// CWICZENIA
+
+    let c = -1;
+    while (c <= 3) {
+        console.log("while oraz wartość c:", c)
+        c = c + 1;
+    }
+
+    let d = 0;
+    do {
+        console.log("do while oraz wartość d:", d)
+        d++; 
+    } while (d < 4)
+
+    for (let e = 0; e < 5; e++) {
+        console.log("pętla for oraz e", e);
+
+    }
+
+    </script>
+
+</body>
+
+</html>
