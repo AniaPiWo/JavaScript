@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - loop</title>
+</head>
+
+<body>
+    <script>
+
+// Pętla for…in
+// Instrukcja for…in dokonuje iteracji na podstawie właściwości obiektu.Aby to zademonstrować, stworzymy prosty obiekt zubr z kilkoma zmiennymi name: value.
+
+    const zubr = {
+        typ: "strunowce",
+        rodzina: "wolowate",
+        masa: Infinity 
+    } 
+
+//Korzystając z pętli for…in, możemy łatwo uzyskać dostęp do każdej z nazw właściwości.
+
+    //Print property names of object
+    for(attribute in zubr) {
+    console.log(attribute);
+    }
+
+//Możemy również uzyskać dostęp do wartości przypisanej każdej właściwości, używając nazwy właściwości jako wartości indeksowej obiektu.
+
+    //Print property values of object
+    for(attribute in zubr) {
+    console.log(zubr[attribute]);
+    }
+
+//Łącząc je, możemy uzyskać dostęp do wszystkich nazw i wartości obiektu.
+
+    // Print names and values of object properties
+    for(attribute in zubr) {
+    console.log(`${attribute}`.toUpperCase() + `: ${zubr[attribute]}`);
+    }
+ 
+//Użyliśmy metody toUpperCase(), aby zmodyfikować nazwę właściwości, a następnie jej wartość.for…in jest niezwykle użytecznym sposobem na iterację w oparciu o właściwości obiektu.
+
+
+    function filterArray(numbers, value) {
+        // Change code below this line
+        const filteredNumbers = [];
+
+        for (let i = 0; i < numbers.length; i += 1) {
+            const number = numbers[i];
+
+            if (number > value) {
+                filteredNumbers.push(number);
+            }
+        }
+
+        return filteredNumbers;
+        // Change code above this line
+    }
+
+
+//Wykonaj refaktor funkcji filterArray(numbers, value) zamieniając pętlę for na for...of.
+
+    function filterArray(numbers, value) {
+        // Change code below this line
+        const filteredNumbers = [];
+
+        for (let number of numbers) {
+
+
+            if (number > value) {
+                filteredNumbers.push(number);
+            }
+        }
+
+        return filteredNumbers;
+        // Change code above this line
+    }
+
+
+
+    </script>
+
+</body>
+
+</html>
