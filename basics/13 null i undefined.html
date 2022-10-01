@@ -22,6 +22,31 @@ typeof data; // typ jest undefined
 //undefined jest również jako identyfikator częścią globalnego obiektu:
 console.log(window.undefined);
 
+//null 
+// - watość pusta
+// - wcześniej mogła miec przypisaną wartość, ale juz tak nie jest
+// - null jest słowem kluczowym
+
+var data = 10; // przypisana wartośc 10
+data = null; // teraz data nie ma wartości, jest null
+
+// UWAGA - pomimo, że jest to prymityw to typeof zwraca string object
+
+typeof null; // object
+
+// null i undefined to falsy values
+// przy konwersji na boolean stają się wartościa false
+ if (null) { console.log(" nie wykona się ")}
+ if (undefined) { console.log(" nie wykona się ") }
+
+ //porównanie proste,czyli porównujemy tylko wartości, jeśli nie są tego samego typu to będzie konwersja
+ if (null == undefined) { console.log(" true, wykona się ") }
+
+//porównanie ścisłe, typy sie nie zgadzają, więc nie są równe
+ if (null === undefined) { console.log(" false, NIE wykona się ") }
+
+
+
     </script>
 
 </body>

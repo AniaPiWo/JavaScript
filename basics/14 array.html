@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - array</title>
+</head>
+
+<body>
+    <script>
+// Array czyli tablica
+// - kolekcja elementow (liczby, stringi, inne tablice itd)
+// - obiekt!
+// - indexy liczymy od 0
+// - tablicę możemy dowolnie powiększać lub pomniejszac  - dodawać lub odejmować elementy w razie potrzeby
+
+//Tworzenie tablicy - tablica jako literał tablicowy:
+var a = [1, 2, "txt", ["a","b"]];
+
+//Tworzenie tablicy - za pomocą funkcji konstruktora i operatora new
+var b = new Array(10, 4, "txt");
+// jeśli pominiemy new to kostruktor zachowa się jakby tam bylo new i stworzy tablice
+var c = Array(10, 4, "txt");
+
+// UWAGA - jeśli przekażemy jako zawartość tablicy tylko jedna liczbe, to stworzy pusta tablice o długości tej podanej liczby
+var d = Array(5); // [empty x 5]
+
+// Array.of - sposób na utworzenie tablicy z jedną cyfrą
+var e = Array.of(5); //[5], length 1
+
+//dodawanie zawartości do tablicy wg schematy tablica[numer indexu-zaczynamy od zera] =  dodawana wartość
+e[1] = "txt";
+e[2] = 10;
+
+// push - dodawanie wartosci na koniec tablicy
+e.push(99); // do tablicy "e" dodano wartosc 99 -> [5, 'txt', 10, 99]
+
+//możemy zmniejszyć tablicę do oczekiwanej długości przy pomocy length
+var f = [1,2,3,4,5,6,7,8,9];
+console.log(f.length); // 9 elementów
+f.length = 3;
+console.log(f.length); // 3 elementy
+console.log(f); // [1,2,3]
+
+// delete - usuwa element, zostawia puste miejsce
+var g = [1,2,3,4,5,6,7,8,9];
+console.log(g.length); // 9 elementów
+delete g[2];
+
+console.log(g); //[1, 2, empty, 4, 5, 6, 7, 8, 9]
+console.log(g.length); // 9 elementów
+console.log(2 in g); //false, brak indexu - operator "in" sprawdza czy dany index w danej tabeli ma wartośc 
+
+
+// Array(x).fill(y) - tworzy tablicę z konkretna zawartością
+
+var h = Array(10).fill(7);
+console.log(h); //(10) [7, 7, 7, 7, 7, 7, 7, 7, 7, 7]
+
+// INTERACJA TABLICY Z FOR 
+var arr = ["txt", 22, [], 99];
+
+for (let i=0; i<arr.length; i++ ) { // początkowy index = 0;  maksymalna wielkość tablicy, inkrementacja na numerze indexu
+    let el = arr[i];  // wyłuskanie elementu - co umożliwi jego manipulacje
+    console.log(el);
+}
+
+// txt
+// 22
+// []
+// 99
+
+// INTERACJA TABLICY Z FOREACH
+var arr2 = ["jabłko", "gruszka", "kiwi"];
+
+arr2.forEach(function(item, index, array) {
+    console.log(index, item);
+} );
+
+
+//Łączenie tablic 
+// array.concat() - funkcja concat słuzy do łączenia tablic
+// funkcja zwraca now atablice, nie zmienia tablic wyjściowych
+var k = [1,2,3,4];
+var l = [5,6,7];
+var m = k.concat(l);
+console.log(m); // [1,2,3,4,5,6,7]
+
+var n = ["a","b","c"];
+var o = k.concat(l, n);
+console.log(o); // (10) [1, 2, 3, 4, 5, 6, 7, 'a', 'b', 'c']
+
+
+    </script>
+
+</body>
+
+</html>
