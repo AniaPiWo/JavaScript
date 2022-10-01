@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - Number</title>
+</head>
+
+<body>
+    <script>
+
+// Number -> właściwości oraz funkcji
+
+Number.MAX_VALUE; //maksymalna pozytywna wartość
+Number.MIN_VALUE; //namniejsza wartość większa od zera
+
+Number.isNaN(NaN); //czy jest Not a Number
+
+Number.parseFloat("4.678gfgfg"); // zamiana stringa na liczbę dziesiętną: 4.678
+
+Number.parseInt("3456"); // liczba całkowita ze stringa 3456
+
+Number.isInteger(10 / 5); //true; czy liczba całkowita
+Number.isInteger(20 / 3); //false, 
+
+2.23456.toFixed(3); // skraca liczbę do podanej w nawiasie licz po przecinku oraz zaokrągla ją = 2.235
+
+//Zaokrąglanie liczb
+//Operacje arytmetyczne wykonywane sa na typie number, który jest zmiennoprzecinkowy, przez co możemy otrzymywać nieoczekiwane rezultaty
+
+var v = 2.05 * 100; // 204.99999999999997 zamiast 205
+
+// Math.round zaokrągla do liczby całkowitej
+Math.round(2.05 * 100); //205
+Math.round(204.1234); //204
+
+// toFixed zaokrągla do podanej ilości cyfr po przecinku
+v.toFixed(); //205
+1.469.toFixed(2);  // 1, 47
+
+var a = 3.593;
+a.toFixed(); // 4
+a.toFixed(0); // 4
+a.toFixed(1); // 3.6
+a.toFixed(2); // 3.59
+a.toFixed(3); // 3.594
+a.toFixed(4); // 3.593
+a.toFixed(5); // 3.5930
+
+// 4.toFixed(2); //bład syntax
+(4).toFixed(2); // 4.00
+0.4.toFixed(2); // 0.40
+
+// MAX_SAFE_INTEGER
+
+Number.MAX_SAFE_INTEGER // 9007199254740991
+Math.pow(2,53) - 1;     // można też tak - 2 do potęgi 53 minus jeden = 9007199254740991
+
+Number.MIN_SAFE_INTEGER // -9007199254740991
+
+Number.isSafeInteger(); // sprawdzamy, czy liczba miescie sie w zakresie MIN_SAFE_INTEGER i MAX_SAFE_INTEGER
+
+// NaN Not a Number
+parseInt("sdsdsd"); //Nan
+parseInt("786sdsdsd"); //786
+0 / 0 //NaN bo nieprawidłowe działanie matematyczne
+
+// Do sprawdzenia czy coś jest Nan używamy WYŁĄCZNIE funkcji isNan
+//nigdy nie b == NaN lub b === NaN -> bo zwróci nam false
+
+b = 0/0;
+isNan(b) // true
+b == NaN;  // nieprawidłowy false
+b === NaN; // nieprawidłowy false
+
+
+//Infinity
+var c = 1 / 0; // Infinity
+var d = -1 / 0; // -Infinity
+
+Number.isFinite(23); // sprawdza czy liczba jest skończona // true
+Number.isFinite(-1/0); //false
+Number.isFinite(1/0); //false
+ 
+    </script>
+
+</body>
+
+</html>

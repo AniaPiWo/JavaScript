@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - string</title>
+</head>
+
+<body>
+    <script>
+
+// String - literały łańcuchowe
+// sekwensja znaków Unicode UTF-16, dzięki czemu mamy dostęp do wielu znaków, również specyficznych dla danych krajów (np polskie ć ś itd)
+// literały łańcuchowe - kiedy do stworzenia stringa używamy  "". ''  (staramy się używać jednego typu zawsze)
+
+const s = "string w cudzysłowie";
+const t = 'string w apostrofach';
+const o = "\u03A9";  // wyświetli symbol omega
+
+//Operacje na stringach
+
+
+//Literał szablonu
+// - tworzymy przy pomocy backtickow
+// - pozwala na stworzenie szablonu w wielu liniach oraz osadzenie wartości zmiennych lub wyników wyrażeń
+
+const txt = `string
+w wielu
+liniach`;
+
+var b = 25;
+var a = `Tekst i wartość: ${b}`; // "Tekst i wartość:25"
+var c = `Wartość wyrażenia: ${1 + 2 + 3}`; // "Wartość wyrażenia: 6"
+
+//Operacje na stringach
+
+const str = "Witaj" + " świecie !"; // string z połączenia dwóch stringów
+
+let strLength = "tekst".length; // ilość znaków, 5  UWAGA ilosc znakow liczy od 1
+
+"".length; // pusty string, 0 znaków
+
+str[2]; //trzeci znak czyli t (pierwszy to 0 jak w array)
+
+str[str/length - 1]; // ostatni znak stringu czyli !
+
+str.charAt(6); // znak pod numerem 7 (bo liczymy od 0) czyli ś
+
+str.charCodeAt(0); // reprezentacja liczbowa pierwszego znaku w stringu
+
+
+//indexOf oraz lastIndexOf
+// indexOf - wyszukuje pierwsze wystąpienie tekstu w stringu
+// pierwszy argument - tekst do wyszukania
+// drugi argument (opcjonalny) - od którego znaku ma byc szukane, domyślne 0
+
+var text = "Ala ma kota. Dodatkowo Ala ma psa.";
+
+var pos = text.indexOf("ma"); // pos = 4 znaki liczoneod 0
+var pos2 = text.indexOf("ma", 5); //pos2 = 27
+var pos3 = text.indexOf("ma", 28); // pos3 = -1
+
+var str2 = "Dzien jak codzień";
+var str2Pos = str.lastIndexOf("jak", 10); // wyszukanie od końca, str2Pos = 6
+
+if(str.indexOf("ma", 22) >= 0 ) console.log("jest"); // sprawdzamy czy dna fraza występuje w tekscie
+
+
+// search 
+// wyszukuje string jak indexOf, ale przy użyciu wyrażeń regularnych
+// ni epobiera drugiego argumentu (od którego znaku szukac)
+
+//wyrazenie regularne dla dużych liter od A do Z
+let re = /[A-Z]/g;
+let pos = "jakiś Tekst".search(re); //6 
+
+
+// trim
+// kasuje białe znaki z początku oarz końca stringa, np spacje, tabulacje itp
+let g = "   Hello World! \n".trim();
+g = g.trim(); //"Hello World!"
+
+
+//toUpperCase & toLowerCase - zmienia wszystkie litery na duże lub małe
+let upCase = "PewIeN teKSt.".toUpperCase(); // upCase = "PEWIEN TEKST.
+let lowCase = upCase.toLowerCase(); // lowerCase = "pewien tekst."
+
+
+// concat - łączenie tekstow (alternaytywa to +)
+
+let a = "tekst1"; //"tekst1"
+let b = a.concat(" tekst2"); // "tekst1 tekst2"
+var c = b.concat(" tekst3").concat(" tekst4"); //tekst1 tekst2 tekst3 tekst4
+
+
+// slice(start, end) - pobiera fragment stringa
+// start - miejsce rozpoczynające fragment, jeśli wartośc ujemna to liczone od końca stringa -> -2 to str.length - 2
+// end koniec, przed którym będzie koniec fragmentu - znak pod tym indexem NIE BEDZIE uwzględniony, jeśli wartośc ujemna to liczone od końca stringa -> -2 to str.length - 2
+// jeśli brak end - wyświetla znaki do końca stringa
+
+var str5 = "01234567";
+var j = str5.slice(1, 6); // "12345"
+var k = str5.slice(-1, 8); // "7"
+var l = str5.slice(-3);  //"567"
+var m = str5.slice(-3, -1); // "56"
+
+
+// substring(start, end) - pobiera wartosci stringa, ale nie dopuszcza ujemnych wartosci
+var str6 = "012345678";
+var a= str6.substring(3); // "345678"
+var b = str.substring(2, 5); // "234"
+
+//substr(start, length) - pobiera tekst od start, drugi argument to ilość znaków
+var str7 = "Ala ma kota.";
+var n = str7.substr(1, 4); // "la m"
+var m = str7.substr(3); // "ma kota." - brak drugiego argumentu, pobiera do konca stringa
+var r = str7.substr(-3); // ta. - ujemny argument, liczy od końca
+
+
+// split - dzieli string ze względu na podany tekst i zachowuje wynik w postaci tablicy
+var str8 = "A B C D 1 2 3 4";
+var data = str8.split(" ");
+console.log(data.length); // 8
+console.log(data[2]); // c 
+ 
+var str9 = "Skoda|Oktawia|2012";
+var carDetails = str9.split("|"); // podział przez | czyli pipe
+console.log(carDetails[1]); //Octawia
+
+
+//replace - podmiana słowa niezaleznie od wielkości liter
+var txt6 = "Html CSS JavaScript PHP Python Sql";
+// aby zignorowac wielkość znaków nalezy uzyć /i (insensitive)
+var langs = txt6.replace(/sql/i, "MongoDB");
+console.log(langs); // "Html CSS JavaScript PHP Python MongoDB";
+
+// Wyszukanie dowolnych znaków z zakresu dzięki [A-Z] oraz podmiana na literę X
+let txt7 = "Jakiś tekst";
+let ret = str.replace(/[A_Z]/g, "X"); // zamieni wszytskie duże litery na X (modyfikator g sprawia, że wszytskie)
+console.log(ret); //Xakiś Xekst
+
+var txt8 = "Kiwi jabłko cytryna cytryna";
+var q = txt8.replace(/cytryna/, "pomarańcza"); //zmiania tylko pierwsze wystapienie
+console.log(q); // "Kiwi jabłko pomarańcza cytryna";
+
+var txt8 = "Kiwi jabłko cytryna cytryna";
+var q = txt8.replace(/cytryna/g, "pomarańcza"); //zmiania tylko wszytskie wystapienia
+console.log(q); // "Kiwi jabłko pomarańcza pomarańcza";
+
+    </script>
+
+
+</body>
+
+</html>
