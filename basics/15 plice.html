@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - splice</title>
+</head>
+
+<body>
+    <script>
+    
+// array.splice(start, deleteCount, item1, item2...) - zmienia tablice poprzez usuniecie, zamiane, dodanie elementow
+
+var months = ["styczen", "luty", "kwiecień", "maj"];
+
+months.splice(2, 0, "marzec"); // dodanie "marzec" na drugi index tablicy, 0 elementow skasowanych
+console.log(months); //  (5)['styczen', 'luty', 'marzec', 'kwiecień', 'maj']
+
+var deleteElements = months.splice(0, 1, "test"); //skasowanie jednego elementu w indeksie nr 0 oraz dodanie na jego miejsce "test"
+console.log(months); //(5) ['test', 'luty', 'marzec', 'kwiecień', 'maj']
+console.log(deleteElements); //['styczen']
+
+var arr = ["a","b","c","d","e"];
+arr.splice(2, 1, "X", "Y", "Z"); // w drugim indeksie skasuj pozycje, w jeje mijsce wstaw XYZ
+console.log(arr); // ['a', 'b', 'X', 'Y', 'Z', 'd', 'e']
+
+var arr2 = ["a", "b", "c", "d", "e"];
+var removed = arr2.splice(-2, 1) // skasuj index licząc (5 elementow - 2 =) 3 index
+console.log(arr2); // ['a', 'b', 'c', 'e']
+console.log(removed); // ['d']
+    </script>
+
+</body>
+
+</html>
