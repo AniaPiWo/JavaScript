@@ -1,20 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="keywords" content="HTML, CSS, JavaScript" />
     <meta name="author" content="John Doe" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript - operatory</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
+      //Polecenie (statement, instrukcja) - grupa słów, liczb, operatorow majacych na celu wykonanie zadania
+      let b = 10;
+      var a = b * 3;
+      // a i b to zmienne w ktorych mozna przechowywac wartosc
+      // znaki * oraz = to operatory umożliwiajace operacje na zmiennych, liczbach itd
+      // wyrażenia to części kodu, ktorej wynikiem jest jakas wartosc
+      // polecenie składa sie z jednej lub wiekszej ilosci wyrazen
+      // np b - wyrazenie zmiennej, 3 - wyrazenie w postaci literalnej wartosci, b*3 wyrazenie arytmetyczne mnozenia, = to wyrazenie przypisania zmiennej do wyniku wyrazenia b*3
 
-    
+      console.log(a); // wyrazenie wywolania funkcji
+
+      // OPERATORY - umożliwiaja operacje na operandach
+      // Niektore operatory pracuja na 1, inne na 2 oraz nawet 3 operandach
+      // operanda - zmienne, liczby na ktorych wykonywane sa operacje
+      // Wyrazenie w JS majac na celu uzyskanie jakiejs wartosci są stworzone z operatorow działających na operandach;
+
+      let c = 10; // operator przypisania, całośc to wyrazenie przypisujace 10 do a
+      c++; // operator inkrementacji, dodaje jednej do operandu
+      c = 1 + 2; // 1 i 2 to operandy, + i = to operatory, calosc to polecenie
+      // 1 + 2 to wyrazenie arytmetyczne konczace sie nowa wartoscia
+
+      //TYPY OPERATOROW
+      // - przypisania, w tym złożone (compound): = . += , -= etc
+      // - arytmetyczne - _ , - , * , / , ++ etc
+      // - porównania: == , != , === , >= , < etc
+      // - logiczne: && , || , ! etc
+      // - bitowe: &, - etc
+      // - łączenia stringów + +=
+      // - warunkowy tzw ternary: warunek > wyrazenie dla true : dla false
+      // - operator przecinka, używany głownie w petli for
+      // - operator jednoargumentowy tzw unary: delete, typeof
+      // - operatory relacyjne: in , instanceof
+
+      //OPERATOR PRZYPISANIA - ustawia wartość ;ewemu operatorowi na podstawie wartosci operandow z prawej strony
+      let d = 10; // najprostszy operator przypisania
+      d += 5; // operator przypisania oraz arytmetyczny, dodaje do d 5 i przypisuje do d wynik; skrocony zapis d=d+5
+      d -= 3; // odejmuje od a 3 i przypisuje wynik do d
+      d *= 2; // mnozy przez 2 i przypisuje wynik do d
+      d /= 3; // dzieli d przez 3 i przypisuje wynik do d
+      d %= 5; // reszta z dzielenia przez 5 i przypisuje wynik do d
+      d **= 5; // potegowanie 3 do potegi 3 i przypisanie wyniku do d
+
+      //OPERATOR ARYTMETYCZNY - wykonuja operacje matematyczne na zmiennych
+      e = 3 + 5; //8
+      e = 7 - 3; // 4
+      e = 2 * 10; //20
+      e = 22 / 11; //2
+      e++; // inkrementacja - zwiększanie o 1 (inkrementuje zmienna e)
+      e--; // dekrementacja - zmniejszanie o 1 (inkrementuje zmienna e)
+
+      // OPERATORY ARYTMETYCZNE JEDNOARGUMENTOWE - INKREMENTACJA I DEKREMENTACJA
+      // oba zwracaja wartosc, ale sposob zapisu zmienia ich dzialanie
+
+      function printVar(data) {
+        console.log("Wartość w funkcji: " + data);
+      }
+
+      let f = 1;
+      console.log("Przed wywołaniem: " + f); // przed wywolaniem 1
+      printVar(f++); //wywolanie funkcji, wartosc w funkcji: 1
+      console.log("Po wywołaniu: " + f); // po wywołaniu 2
+
+      let g = 1;
+      console.log("Przed wywołaniem: " + g); // przed wywolaniem 1
+      printVar(++g); //wywolanie funkcji, wartosc w funkcji: 2
+      console.log("Po wywołaniu: " + g); // po wywołaniu 2
+
+      // OPERATOR PORÓWNANIA - porównuje lewy operand z prawym, jesli zgodne to true(blok kodu wykona sie), jesli nie to false
+      8 == 3; // równa się , false
+      8 == 8; // równa się , true
+      8 != 3; // nie rowna sie , true
+      8 != 8; // nie rowna sie, false
+      3 < 7; // mniejsze, true
+      3 > 7; //wieksze, false
+      5 <= 5; //mniejsze lub rowne, true
+      6 >= 9; // wieksze lub rowne, false
+
+      // najczesciej uzywamy z instukcja if
+      let h = 10,
+        o = 6;
+      if (h > o) console.log("wykona się, 10 większe od 6");
+      if (h != o) console.log("wykona się, 10 nierowne 6");
+      if (h >= o) console.log("wykona się, 10 większe od 6");
+      if (h < o) console.log("nie wykona się, 10 większe od 6");
+
+      // OPERATORY ŚCISLEGO POROWNANIA - SPRAWDZA DODATKOWO TYP
+      if (5 == "5")
+        console.log(
+          "wykona sie - string zostanie przeksztalcony na number(konwersja)"
+        );
+
+      if (5 === "5") console.log("nie wykona sie - false, rozne typy");
+
+      if (5 === 5) console.log("wykona sie - true, te same typy i wartość");
+
+      //OPERATOR POROWNANIA A OBIEKTY - przy porownaniu liczby i obiektu nastapi proba przeksztalcenia obiektu w liczbe
+      // jesli nie jest to mozliwe przyjmie waryosc NaN
+
+      if (10 === { k: 10 }) console.log("nie wykona sie - false"); // porownanie scisle
+      if (10 == { k: 10 }) console.log("nie wykona sie - false"); // porownanie luzne
+
+      //OPERATOR POROWNANIA A OBIEKTY - przy porownaniu obiektow sprawdzany jest adres pod ktorym jest obiekt, a nie jego zawartosc
+      // jesli adresy sie zgadzaja to wynik jest true i kod wykona sie
+
+      let l = { data: 22 };
+      if (l == l) console.log("wykona sie - true, te same adresy w pamieci");
+
+      let m = { data: 22 };
+      let n = { data: 22 };
+      if (m == n) console.log("nie wykona sie - false, rozne adresy w pamieci");
+
+      //OPERATORY LOGICZNE - pozwalają łączyc kilka porownan
+      //&& daje true jeśli obie strony daja true tzw koniunkcja lub iloczyn logiczny AND
+      if (true && true) console.log("wykona sie - obie strony daja true");
+      if (10 > 7 && 3 <= 3) console.log("wykona sie - obie strony daja true");
+      if (10 > 7 && false)
+        console.log("nie wykona sie - jedna ze  stron daje false");
+
+      //|| daje true jeśli chociaz jedna ze stron lub obie da true tzw suma logiczna OR
+      if (true || true) console.log("wykona sie - obie strony daja true");
+      if (true || false) console.log("wykona sie - jedna ze stron daje true");
+      if (false || false)
+        console.log(" NIE wykona sie - obie strony daja false");
+
+      // ! negacja tzw NOT odwaraca logiczny stan operandu
+      if (10 > 7) console.log("wykona sie - 10 wieksze od 7");
+      if (!(10 > 7))
+        console.log("NIE wykona sie - true zostaje przez ! odwrocone na false");
+
+      //OPERATROR ŁĄCZENIA STRINGOW - teksty mozna laczyc za pomaca operatora konkatenacji, łaczenia stringow +
+      // wynikiem jest NOWY STRING!
+      let result = "Witaj " + " świecie!";
+      result += "!!"; // "Witaj świecie !!!"
+
+      //OPERATOR WARUNKOWY - ustala wartośc wyrazenia, jesli bedzi eprawda to zostanie wykonane pierwsze polecenie, jesli falsz - drugie
+      //  warunek ? wartość1:wartość2
+
+      let age = 10;
+      let ageCheck = age >= 18 ? "dorosły" : "nieletni";
+
+      // to to samo co
+      if (age >= 18) {
+        ageCheck = "dorosły";
+      } else {
+        ageCheck = "nieletni";
+      }
+
+      // OPERATOR PRZECINKA - umozliwia umieszczenie wielu wyrazen, tam gdzie zwykle umieszcza sie jedno
+      // rzadko używany, ale dostepny
+      // najczesciej w petli for
+
+      for (let i = 0, j = 5; i < 5; i++, j--) {
+        console.log("i: " + i + "  j: " + j);
+      }
+
+      //OPERATOR JEDNOARGUMENTOWY TZW "UNARY"
+      let obj = { str: "text" };
+      console.log(obj.str); // "tekst"
+      delete obj.str; // operator delete kasuje właściwosc wewnatrz obiektu
+      console.log(obj.str); //undefined
+
+      typeof 123; // operator typeof zwraca typ wartości
+
+      var p = +"27"; // operator + konwertuje operand na liczbe dodatnia, p = 27
+      var r = -"27"; // operator - konwertuje operand na liczbe ujemna, p = -27
+
+      var s = void 0; // void wywoluje wrazenie i zwraca undefined
+      // UNARY to także inkrementacja i dekrementacja
+
+      // OPERATORY RELACYJNE - porownuja operandy i zwracaja true jesli spelniaja porownanie
+
+      let obj2 = { num: 10 };
+      if ("num" in obj2) console.log("zmienna num w obj2"); //
+
+      let arr = ["one", "two", "three"];
+      if (1 in arr) console.log("indeks 1 jest w tablicy"); // sprawdza numer indeksu liczonego od 0!
+      if ("length" in arr) console.log("właściwosc length jest w tablicy");
+
+      // INSTANCEOF sprawdza czy dany obiekt jest okreslonego typu
+      var data = new Date(2020, 12, 20);
+      if (date instanceof Date) {
+        // date jest obioektem typu date
+      }
     </script>
-
-</body>
-
+  </body>
 </html>
