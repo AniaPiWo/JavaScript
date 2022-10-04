@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - konwersja typow</title>
+  </head>
+
+  <body>
+    <script>
+      // Konwersja typow czyli koercja
+
+      // NIEJAWNA / js sobie sam konwertuje
+      //liczba na string
+      if ("1" + 0 == "10") console.log("true, liczba 0 na string"); // wykona sie
+      if (1 + "0" === "10") console.log("true, liczba 1 na string"); // wykona sie
+      //string na liczbe
+      if (10 - "4" === 6) console / log("wykona się"); // wykona sie
+      let c = "" + 111; // "111"
+      let g = +"24"; // 24
+      let h = -"67"; // 67
+      //string na boolean
+      if ("test") console.log("string na boolean"); // wykona sie, bo string ktory nie jest pusty zawsze jest true
+      if ("false") console.log("string na boolean"); // wykona sie, bo string ktory nie jest pusty zawsze jest true
+      if ("0") console.log("string na boolean"); // wykona sie, bo string ktory nie jest pusty zawsze jest true
+      if ("") console.log("nie wykona sie"); // nie wykona sie
+      if (!"0") console.log("nie wykona sie"); // nie wykona sie
+      if (!"false") console.log("nie string na boolean"); // nie wykona sie
+      //obiekt na string
+      if ({} == "[object Object]") console.log("obiekt string"); // wykona sie, bo obiekt przyrownany do stringa sprawia ze js konwertuje go do stringa
+      // wartości w kontekscie if oraz boolean
+      if (true) console.log("wykona sie"); // wykona sie
+      if ([]) console.log("wykona sie"); // wykona sie
+      if ({}) console.log("wykona sie"); // wykona sie
+      if (35) console.log("wykona sie"); // wykona sie
+      if (0) console.log("wykona sie"); // wykona sie
+      if (new Date()) console.log("wykona sie"); // wykona sie
+      if ("false") console.log("wykona sie"); // wykona sie
+      if (-11) console.log("wykona sie"); // wykona sie
+      if (15n) console.log("wykona sie"); // wykona sie
+      if (4.23) console.log("wykona sie"); // wykona sie
+      if (-4.23) console.log("wykona sie"); // wykona sie
+      if (Infinity) console.log("wykona sie"); // wykona sie
+      if (-Infinity) console.log("wykona sie"); // wykona sie
+
+      // JAWNA / wykonuje uzytkownik
+      // liczba na string
+      let z = String(22); // "22"
+      let n = String(11.3); // "11.3"
+      // string na liczbe
+      let num = Number("10"); // num = 10
+      let b = parseInt("985"); // b = 985
+      let i = parseInt("0", 10); // i = 0
+      let f = parseFloat("3,45"); // f = 3.45
+      // na boolean
+      Boolean("true"); // true
+      Boolean("false"); // true
+      Boolean("1"); // true
+      Boolean("0"); // true
+      Boolean(-1); // true
+      Boolean(1); // true
+      Boolean({}); // true
+      Boolean([]); // true
+      Boolean(0); // false
+      Boolean(""); // false
+      Boolean(null); // false
+      Boolean(undefined); // false
+
+      // => FUNKCJE UMOWZLIWIAJACE KONWERSJE NA ROZNE TYPY
+
+      // KONWERSJA TABLICY NA STRING
+
+      const arrStr = [1, 2, 3, 4].join(","); // "1, 2, 3, 4"
+
+      const arrStr2 = ["a", "b", "c"].reduce(function (
+        acc,
+        currentValue,
+        index
+      ) {
+        return acc + "-" + currentValue;
+      });
+
+      [1, 2, 3, 4].toString(); //"1, 2, 3, 4"
+
+      // Konwersja liczb do wartości całkowitych
+      // zwraca najwieksza liczbe calkowita mniejsza lub rowna podanej liczbie
+      Math.floor(4.8); // 4
+      Math.floor(3.1); // 3
+      Math.floor(-4.8); // -5
+      Math.floor(-3.1); // -4
+      Math.floor(-3.0); // -3
+
+      //Zaokrąglenie liczby do góry do najblizszej liczby calkowitej
+      Math.ceil(0.01); // 1
+      Math.ceil(1.01); // 2
+      Math.ceil(5); // 5
+      Math.ceil(8.0001); // 9
+      Math.ceil(-8.0001); // -8
+
+      //Zaokrąglenie liczby do najblizszej liczby calkowitej
+      Math.round(0.8); // 1
+      Math.round(0.01); // 0
+      Math.round(7.5001); // 8
+      Math.round(5.5); // 6
+      Math.round(-3.3); // -3
+      Math.round(-3.8); // -4
+
+      // obciecie czesc dziesietnej i zwrocenie liczby calkowitej
+      Math.trunc(12.34); //12
+      Math.trunc(7.99); //7
+      Math.trunc(-3.23); //-3
+      Math.trunc(10); //10
+    </script>
+  </body>
+</html>
