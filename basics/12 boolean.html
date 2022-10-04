@@ -1,70 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="keywords" content="HTML, CSS, JavaScript" />
     <meta name="author" content="John Doe" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript - boolean</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <script>
+      // boolean - przyjmuje dwie wartosci true i false
+      //Przykład - instrukcja warunkowa wykona blok kodu jeśli warunek będzie true
+      var flag = true;
+      if (flag == true) {
+        // mozna tez skrotowo zapisac tak -> if ( flag ) {
+        console.log("flag jest true");
+      }
 
-// boolean - przyjmuje dwie wartosci true i false
-//Przykład - instrukcja warunkowa wykona blok kodu jeśli warunek będzie true
-var flag = true;
-if ( flag == true ) { // mozna tez skrotowo zapisac tak -> if ( flag ) { 
-    console.log("flag jest true");
-} 
+      //falsy values - fałszywe wartosci
+      (""); // pusty string
+      0, -0;
+      0n; // 0 jak BigInt
+      NaN;
+      null;
+      undefined;
+      false;
 
-//falsy values - fałszywe wartosci
-"" // pusty string
-0, -0
-0n // 0 jak BigInt
-Nan
-null
-undefined
-false
+      var data = 0;
+      if (data) console.log(" info 0"); //0 konweruje do false wiec kod NIE WYKONA SIE
 
-var data = 0;
-if (data) console.log(" info 0"); //0 konweruje do false wiec kod NIE WYKONA SIE
+      data = 1;
+      if (data) console.log(" info 1"); //1 konweruje do true wiec kod WYKONA SIE
 
-data = 1;
-if (data) console.log(" info 1"); //1 konweruje do true wiec kod WYKONA SIE
+      //if oczekuje spełnionego warunku true aby wykonal sie blok kodu, ale falsy values beda skonwertowane do typu boolean o wartosci false
+      if ("") {
+        console.log(" nie wykona sie ");
+      }
+      if (0) {
+        console.log(" nie wykona sie ");
+      }
+      if (-0) {
+        console.log(" nie wykona sie ");
+      }
+      if (NaN) {
+        console.log(" nie wykona sie ");
+      }
+      if (null) {
+        console.log(" nie wykona sie ");
+      }
+      if (undefined) {
+        console.log(" nie wykona sie ");
+      }
+      if (false) {
+        console.log(" nie wykona sie ");
+      }
+      if (document.all) {
+        console.log(" nie wykona sie - WYJATEK - jedyny taki obiekt! ");
+      }
 
-//if oczekuje spełnionego warunku true aby wykonal sie blok kodu, ale falsy values beda skonwertowane do typu boolean o wartosci false
-if ( "" ) { console.log(" nie wykona sie "); }
-if ( 0 ) { console.log(" nie wykona sie "); } 
-if ( -0 ) { console.log(" nie wykona sie "); }
-if ( NaN ) { console.log(" nie wykona sie "); } 
-if ( null ) { console.log(" nie wykona sie "); } 
-if ( undefined ) { console.log(" nie wykona sie "); } 
-if ( false ) { console.log(" nie wykona sie "); }
-if ( document.all ) { console.log(" nie wykona sie - WYJATEK - jedyny taki obiekt! "); }
+      //truthly values
+      ("tekst");
+      34;
+      true[(2, 3, 4)]; //tablice nawet puste []
+      function test() {} // funkcje
+      obiekty;
 
+      // OBIEKTY FALSZYWE - obiekty przechowujace wartosci fałszywe nadal sa obiekatmi wiec dadza true
+      var b = new Boolean(false);
+      if (b) console.log("wykona sie"); // bo to obiekt!
 
-//truthly values
-"tekst"
-34
-true
-[2, 3, 4] //tablice nawet puste []
-function test() {} // funkcje
-obiekty
+      var n = new Number(0);
+      if (n) console.log("wykona sie"); // bo to obiekt!
 
-// OBIEKTY FALSZYWE - obiekty przechowujace wartosci fałszywe nadal sa obiekatmi wiec dadza true
-var b = new Boolean(false);
-if(b) console.log("wykona sie"); // bo to obiekt!
-
-var n = new Number(0);
-if (n) console.log("wykona sie"); // bo to obiekt!
-
-var s = new String("");
-if (s) console.log("wykona sie"); // bo to obiekt!
-
-</script>
-
-</body>
-
+      var s = new String("");
+      if (s) console.log("wykona sie"); // bo to obiekt!
+    </script>
+  </body>
 </html>
