@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - scope</title>
+  </head>
+
+  <body>
+    <script>
+      //blok kodu - jedna lub kilka instrukcji (polecen), ktore sa zebrane w parze nawiasow klamrowych
+
+      var purchaseAmount = 0;
+      var tax = 0;
+
+      //poniższy blok kodu zawsze sie wykona
+      {
+        tax = purchaseAmount * 0.23;
+        purchaseAmount = purchaseAmount + tax;
+      }
+
+      console.log(purchaseAmount);
+
+      // wykona sie tylko jesli warunek jest true
+      if (purchaseAmount > 0) {
+        tax = purchaseAmount * 0.23;
+        purchaseAmount = purchaseAmount + tax;
+      }
+
+      console.log(purchaseAmount);
+
+      // SCOPE (zakres) - lokalny lub globalny
+      // okresla widocznosc zmiennych dla poszczegolnych czesci programu
+      //
+      // ZAKRES GLOBALNY - isnieje przez cale zycie skryptu, raz zdeklarowana zmienna globalna juz tam pozostanie (chyba ze uzyjemy na niej delete)
+      // moze byc uzywana wewnatrz oraz poza funkcja, w praktyce gdziekolwiek w biezacym dokumencie
+      // przyklad - w przegladarce window jest obiektem globalnym
+      //
+      // ZAKRES LOKALNY - istnieje tylko wewnatrz ciala funkcji w ktorej zostala zdeklarowana, wlaczajac w to argumenty funkcji
+
+      // SCOPE W FUNKCJI - PRZYKŁAD
+
+      var someGlobal = "Ala ";
+
+      function test(param) {
+        // argument jest zmienna lokalna
+        var txt = " kota"; // zmienna lokalna, zakres lokalny
+        console.log(
+          someGlobal + // dostęp do zmiennej globalnej wewnatrz funkcji
+            param +
+            txt
+        );
+      }
+      test("ma"); // Ala ma kota
+      console.log(txt); //undefined (nie ma do niej dostepu bo w ciele funkcji)
+
+      // PRZESLONIECIE ZMIENNYCH GLOBALNYCH W FUNKCJI
+      //takie same nazwy lokalnych zmiennych w funkcji przeslaniaja nazwy zmiennych globalnych
+
+      var someData = 99; // globalna someData
+      function test() {
+        var someData = 1000; // lokalnie zmienna someData
+        console.log("lokalnie someData: " + somedata);
+        console.log("globalnie someData: " + window.someData);
+      }
+
+      test();
+      // lokalnie someData: 99
+      // globalnie someData: 1000
+
+      console.log(someData); // 99
+
+      // SCOPE W FUNKCJI BRAK VAR PRZY DEKLARACJI ZMIENNEJ WEWNATRZ FUNKCJI SPOWODUJE POWSTANIE ZMIENNEJ LOKALNEJ
+      function test2() {
+        var a = 5; // zmienna lokalna
+        b = 10; // zmienna globalna, ale zeby powstala musi byc wywolana funkcji
+      }
+      test2();
+      console.log(b); // 10
+      console.log(window.b); // 10 - ODWOLANIE DO ZMIENNEJ GLOBALNEJ
+
+      // STRICT MODEL OD ES5  - bardziej restrykcyjna wersja JavaScript
+      // pozwala uniknac przypadkowego stworzenia zmiennej globalnej
+      function doSomething() {
+        "use strict"; // strict mode wlaczony na poziomie funkcji
+        var a = 5;
+        b = 10; // proba stworzenia zmiennej globalnej
+      }
+
+      doSomething(); //kończy się błędem VM1539:4 Uncaught ReferenceError: b is not define at doSomething (<anonymous>:4:11) at <anonymous>:1:1
+
+      // SCOPE W FUNKCJI  - wywolana funkcja moze zmienic wartosc zmiennej globalnej
+      var someData2 = 10;
+      function doSth() {
+        someData2 = 50;
+      }
+
+      doSth();
+      console.log(someData2); //50
+
+      //SCOPE - PETLA FOR
+      //zmienna zdeklarowana wewnatrz bloku kodu jest widoczna poza nim
+      for (var i = 0; i < 5; i++) {
+        //jakies dzialania
+      }
+      console.log(i); // dostep do zmiennej poza cialem petli, 5
+
+      //SCOPE - INSTRUKCJA IF
+      //zmienna zdeklarowana wewnatrz bloku kodu jest widoczna poza nim
+      if (1 == 1) {
+        var someData3 = 8;
+      }
+      console.log(someData3); // dostep do zmiennej poza cialem if, 8
+
+      //LET I CONST POSIADAJA ZASIEG BLOKOWY
+      // var jest dostepne w kazdej wersji JS, ale zakres lokalny ma swoje ograniczenia
+      // dlatego w ECMAScript dodano let i const, ktore maja zakres blokowy
+
+      if (1 == 1) {
+        var varData = 8;
+      }
+      console.log(varData); // 8
+
+      if (1 == 1) {
+        let letData = 8;
+      }
+      console.log(letData); //VM2310:5 Uncaught ReferenceError: letData is not defined
+
+      {
+        var x = 7;
+      }
+      console.log(x); // 7
+
+      {
+        const y = 9;
+      }
+      console.log(y); //VM2310:5 Uncaught ReferenceError: y is not defined
+
+      for (let i = 0; i < 5; i++) {
+        //jakies dzialania
+      }
+      //   console.log(i); /VM2310:5 Uncaught ReferenceError: i is not defined
+
+      //LET I CONST NIE POZWALAJA NA PONOWNA DEKLARACJE ZMIENNEJ
+      let letA = 1;
+      //let letA = 10; //Identifier 'letA' has already been declared
+
+      //VAR POZWALA NA PONOWNA DEKLARACJE ZMIENNEJ
+      var varB = 1;
+      var varB = 10; // nie ma bledu
+
+      //PONOWNE UZYCIE LET
+
+      let letB = 5;
+      {
+        let letB = 99;
+        //PRZYPISANIE DO LOKALNEJ ZMIENNEJ
+        letB = 100;
+        console.log(letB); //100
+      }
+      console.log(letB); //5
+
+      let letC = 5;
+      {
+        //PRZYPISANIE DO GLOBALNEJ ZMIENNEJ
+        letC = 100;
+        console.log(letC); //100
+      }
+      console.log(letC); //100
+    </script>
+  </body>
+</html>
