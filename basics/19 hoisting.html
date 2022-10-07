@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - scope</title>
+</head>
+
+<body>
+    <script>
+       
+//HOISTING -przeniesienie wszytskich deklaracji zmiennych oraz funkcji na poczatek funkcji, ale przypisania pozostaja na swoim miejscu
+
+function test() {
+    console.log(data); //undefined
+    var data = 4;
+    console.log(data); //undefined
+}
+
+//undefined
+//4
+
+//to to samo co:
+
+    function test() {
+        var data;
+        console.log(data); //undefined
+        data = 4;
+        console.log(data); //undefined
+    }
+
+//undefined
+//4
+
+//Hoisting deklaracji funkcji - deklaracje funkcji sa przeniesione na poczatek programu
+
+test2(5,4); //20
+
+function test2(a,b) {
+    console.log("Wynik: "+(a*b));
+}
+
+//to to samo co
+
+    function test2(a, b) {
+        console.log("Wynik: " + (a * b));
+    }
+
+    test2(5, 4); //20
+
+// WYJATEK - wyrazenia funkcyjne
+
+exprTest(5,4); // uncaught TypeError: exprTest is not a function
+
+var exprTest = function(a,b) {
+    console.log("Wynik: " + (a * b));
+}
+
+// Hoisting - to wyłącznie przeniesienie deklaracji, przypisanie pozostaje na miejscu
+n in window //true
+var n = 10;
+var m =5;
+console.log(n+m); //15
+
+//ALE ponizszy kod skutkuje NaN
+var a = 10;
+console.log(a+b); //10 + undefined = NaN
+var b = 5;
+
+//poniewaz to to samo co
+var a = 10;
+var b; // undefined
+console.log(a + b); //10 + undefined = NaN
+var b = 5;
+
+// Hoinsting let i const - w przeciwienstwie do var nie maha automatycznie przypisanego undefinied
+// czyli MUSZA miec wartosc zanim zostana uzyte
+console.log(x);
+console.log(y);
+
+var x = 5;
+let y = 10; //VM44:2 Uncaught ReferenceError: y is not defined
+
+//TEMPORAL DEAD ZONE
+//poza blokiem x moze byc uzywane
+//ale gdy wewnatrz istnieje deklaracja let z TA SAMA NAZWA to powstaje przestrzen
+//gdzie x Z POZA BLOKU nie moze byc uzyte czyli tzw TDZ
+
+let d = 5;
+{d = 100
+console.log(d); //100
+}
+console.log(d); //100
+
+//błąd TDZ
+    let e = 5;
+    {
+        e = 100; //VM61:3 Uncaught ReferenceError: Cannot access 'e' before initialization
+        let e = 7;
+        console.log(e); 
+    }
+    console.log(e); // 5
+
+
+    </script>
+</body>
+
+</html>
