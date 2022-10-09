@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - scope</title>
+</head>
+
+<body>
+    <script>
+
+// OBIEKTY - wszytskie wartosci, ktore nie sa prymitywami to obiekty
+// Obiekt to kolekcja właściwosci, kazdy ma nazwe oraz wartosc
+// w przegladarce mamy dostep do wielu obiektow np console, Math, window itd
+
+//Tworzenie literału obiektu
+var o = {}; //pusty obiekt
+typeof o; //"object"
+
+var arr2 = [10,20, "c"]; // literał tablicowy
+typeof arr; //object
+
+var rect = {x:10, y:0, width:100, height:200};
+
+//LITERAŁ OBIEKTU
+// do  obiektow mozna dodac oprocz wlasciwosci inne obiekty oraz funkcji
+// preferowana metoda tworzenia obiektu
+var car = {
+    name: "Chevrolet",
+    model: "Mako Shark",
+    year: 1965,
+    details: {
+        type: "concept car",
+        codeName: "XP-755"
+    },
+    information: function() {
+        console.log(this.name, this.model, this.details.type);
+    }
+}
+
+//Funkcje konstruujace
+//obiekty mozna stworzyc rowniez za pomoca funkcji konstruujacych oraz new 
+
+//obiekt a funkcja konstruujaca
+let plane = new Object(); // funkcja konstruujaca Object()
+plane.name = "Lockhead SR-71";
+plane.codeName = "BlackBird";
+plane.properties = { maxSpeed: "3.2 Mach" };
+plane.printInfo = function () {
+    console.log(this.name, this.codename, this.properties.maxSpeed);
+}
+
+// wiele użytecznych obiektow tworzymy za pomocą funkcji konstruujacych
+var d = new Date(2030,12,29);
+var arr = new Array(10,24,53); //[10,24,53]
+var str = new String(10); // "10"
+var n = new Number("1234")
+var b = new Boolean({}); //true
+
+
+//WŁASNA FUNKCJA KONSTRUUJACA
+function Car2(brand, model) {  // konstr z dużej by odróżnić od innych funkcji
+    this.brand = brand; // this to nowo utworzony obiekt
+    this.model = model;
+    this.printInfor = function() {
+        console.log(this.brand, this.model)
+    }
+}
+
+const car2 = new Car2("fiat", "126p");
+car2.printInfor; // fiat 126p
+
+//Inny sposob na stworzenie obiektu -> Object.create(proto)
+//Tworzy nowy obiekt, używa przekazanego obiektu jako prototypu nowo powstałego obiektu
+
+let person = {name:"andy", age: 30};
+
+var person2 = Object.create(person);
+console.log(person2.name); // andy
+
+let obiekt = Object.create(null); //tworzy nowy obiekt bez prototypu
+
+//DOSTEP DO WLASCIWOSCI OBIEKTY
+var obj3 = {
+    name: "test", size: 10,
+    log: function() {
+        console.log(this.name, this.size)
+    } 
+};
+
+obj.log(); //test 10
+console.log(obj3.name); // test
+console.log(obj3["size"]); // 10
+obj["log"](); // test 10
+
+obj3.codeName = "XP"; //dodanie nowej wlasciwosci
+obj["codeName"] = "GD"; // zmiana wlasciwosci
+delete obj3.name; // skasowanie wlasciwosci
+
+//SPRAWDZANIE ISTNIENIA WLASCIWOSCI
+// dostepny jest operator in oraz funkcja hasOwnProperty()
+
+var samolot = { name: "BlackBird", brand: "Lockhead"};
+
+if ("name" in samolot) console.log(samolot.name); // BlackBird
+if ("model" in samolot) console.log(samolot.model); // nie wykona sie
+
+if (plane.hasOwnProperty("brand")) console.log(samolot.brand); //Lockhead
+
+// obiekty przekazywane sa przez referencje
+var obj4 = { num:5}
+var data4 = obj4;
+obj4.num++
+
+console.log(obj4 === data4); //true
+
+// const - mozna zmienic wlasciwosci wewnatrz obiektu
+const z = { data: 10}
+z.data = 20; 
+console.log(z.data); //20
+z = {info:99} // błąd Assignment to constant variable
+
+
+
+// ITERACJA WLASCIWOSCI OBIEKTU
+var obj6 = {a:10, b:"tekst", print: function(){}}
+
+
+// Iteracja Przy pomocy petli for..in
+for (prop in obj6) {
+    if (obj6.hasOwnProperty(prop)) {
+        console.log("property "+ prop + " wartość: " + obj6[prop]);
+    }
+}
+    /*
+    property a wartość: 10
+    property b wartość: tekst
+    property print wartość: function(){}
+    */
+
+
+// Iteracja właściwosci obiektu - Object.keys();
+//Object.keys() zwraca tablice kluczy danego obiektu (nazwy właściwosci), bez dziedziczonych
+const objKeys = Object.keys(obj6);
+
+for (let i=0; i < objKeys.length; i++) {
+     console.log("property " + objKeys[i] + " wartość: " + obj6[objKeys[i]]);
+}
+    /*
+    property a wartość: 10
+    property b wartość: tekst
+    property print wartość: function(){}
+    */
+
+
+//Object.values() - od ES8, zwraca tablicę wartości danego obiektu, bez dziedziczonych
+const objValues = Object.values(obj6);
+
+for (let i = 0; i < objKeys.length; i++) {
+    console.log("i: " + i + ", wartość: " + objValues[i]);
+}
+    /*
+    i: 0, wartość: 10
+    i: 1, wartość: tekst
+    i: 2, wartość: function(){}
+    */
+
+//Object.entries() - od ES8, zwraca tablicę par włąściwosci i wartości danego obiektu, bez dziedziczonych
+const objEntries = Object.entries(obj6);
+
+for([key, value] of objEntries) {
+    console.log("key: " + key + ", value: " + value)
+}
+    /* key: a, value: 10
+    key: b, value: tekst
+    key: print, value: function(){}
+    */
+
+
+//KOPIOWANIE OBIEKTOW
+//Object.assign() - od ES6, tworzy płytką kopie podanej instancji obiektu do nowej,
+// plytka kopia - kopiuja sie TYLKO prymitywy 
+// jesli obiekt zawiera obiekty, to nie bedzie on skopiowany tylko bedzie przekazana referencja
+const source = {a:1, b:2, c:3};
+let clone = {info: "txt"}
+let result = Object.assign(clone, source);
+
+clone; // {info: 'txt', a: 1, b: 2, c: 3}
+result; // {info: 'txt', a: 1, b: 2, c: 3}
+clone === result // true -> TEN SAM OBIEKT
+
+//PRZYPADEK2    
+const source2 = { a: 1, b: 2, obj: {c:3}};
+let clone2 = { info: "txt" }
+let result2 = Object.assign(clone2, source2);
+
+clone2; // {info: 'txt', a: 1, b: 2, obj: {…}}
+result2; // {info: 'txt', a: 1, b: 2, obj: {…}}
+source2 === clone2; // false
+clone2 === result2; //true 
+result2.obj === source2.obj //true - referencja do obiektu obj: {c:3} wskazuje to samo miejsce 
+
+
+
+//deepCopy JSON.stringify() JSON.parse()
+// aby stworzyc gleboka kopie (ktora stworzy rowniez kopie wewnatrznych obiektow) mozemy uzyc funkcji so serializacji obiektu formatu JSON
+// -> tworząc reprezentacje tekstowa obiektu jako json i z niej nowy obiekt uzyskamy deep copy
+// niestety nie jest to idealna kopia np obiekt Date konwertuje sie z powrotem na string
+
+var source3 = { str:"txt", num:10, date: new Date(2030,12,12), obj:{x:7}}
+var copy = JSON.parse(JSON.stringify(source3));
+
+    source3; //{"str": "txt","num": 10,"date": "2031-01-11T23:00:00.000Z","obj": {"x": 7}}
+    copy; //{str: 'txt', num: 10, date: '2031-01-11T23:00:00.000Z', obj: {…}}
+
+    source3 === copy // false, oddzielny obiekt
+    source3.obj === copy.obj //false, oddzielny obioekt
+    typeof source3.date //"object"
+    typeof copy.date //"string"
+    copy.date //'2031-01-11T23:00:00.000Z' - ISO format
+
+
+// GETTER I SETTER 
+//Setter jest wywolywany automatycznie, gdy ma byc ustawiona zmienna
+//Getter jest wywolywany automatycznie, gdy ma byc pobrana zmienna
+
+// setter i getter dla zapisu usera z duzej litery
+const user = {
+    _userName: null,
+    set name(n) {
+        if (typeof name === "string") {
+            this._userName = n[0].toUpperCase() + n.substr(1, n.length);
+
+        }
+    },
+    get name() {
+        return this_userName;
+    }
+}
+
+user.name = "marek" // z malej litery
+console.log(user.name); // z dużej litery
+
+//defineProperty - pozwala na zdefiniowanie wlasciwosci w obiekcie
+
+var someObj = {a:5}
+
+Object.defineProperty (someObj, "propName", {
+    value: 20,
+    writable: true, // jesli false, to bedzie tylko do odczytu
+    configurable: true, // może być zmieniona pozniej, np skasowana
+    enumerable: true // może być odczytywana w pętli (iterowana)
+    }
+);
+
+console.log(someObj.propName); // 20
+delete someObj.propName;
+console.log(someObj.propName); // undefined (nie istnieje)
+
+
+    </script>
+</body>
+
+</html>
