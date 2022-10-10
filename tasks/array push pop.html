@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - number</title>
+  </head>
+
+  <body>
+    <script>
+      function generateNumArray(arrayLength) {
+        let array = [];
+
+        for (let i = 0; i < arrayLength; i++) {
+          array.push(i);
+        }
+        return array;
+      }
+
+      const numArr = generateNumArray(12);
+      console.log(numArr);
+
+      console.log(numArr.pop());
+      console.log(numArr.pop());
+      console.log(numArr.pop());
+    </script>
+  </body>
+</html>

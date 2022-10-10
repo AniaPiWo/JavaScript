@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - number</title>
+  </head>
+
+  <body>
+    <script>
+      let userNumber = prompt("Podaj liczbę całkowitą");
+      console.log(userNumber);
+      userNumber = parseInt(userNumber);
+      typeof userNumber;
+
+      function calculateSquareArea(height) {
+        return height * height;
+      }
+
+      let area = calculateSquareArea(userNumber);
+      console.log("Powierzchnia: " + area);
+
+      let userNumber2 = prompt("Podaj liczbę dziesiętną (z kropką)");
+      console.log(userNumber2);
+      let area2 = calculateSquareArea(userNumber2);
+      console.log(area2);
+      area2 = area2.parseFloat(2);
+      console.log("Powierzchnia :" + area2);
+    </script>
+  </body>
+</html>

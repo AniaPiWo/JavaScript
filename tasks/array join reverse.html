@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - number</title>
+  </head>
+
+  <body>
+    <script>
+      const names = ["Ania", "Ola", "Kasia", "Basia", "Tosia"];
+
+      function combineNames(array, delimiter) {
+        const revArr = array.reverse();
+        return revArr.join(delimiter);
+      }
+
+      const namesRev = combineNames(names, "|");
+
+      const namesArr = namesRev.split("|");
+    </script>
+  </body>
+</html>

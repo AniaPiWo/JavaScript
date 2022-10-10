@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - number</title>
+  </head>
+
+  <body>
+    <script>
+      function getUserDescription(name, city, country) {
+        let firstSign = name[0];
+        let nameLength = name.length;
+        let lastSign = name[name.length - 1];
+
+        return `Użytkownik o imieniu ${name} mieszka w mieście ${city},
+    w państwie ${country}.
+    Pierwszy znak imienia to: ${firstSign}.
+    Ostatni znak imienia to: ${lastSign}.
+    Imię ma ${nameLength} znaków.`;
+      }
+    </script>
+  </body>
+</html>

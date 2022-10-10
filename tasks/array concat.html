@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - number</title>
+  </head>
+
+  <body>
+    <script>
+      function createSchoolGroup(groupLetter, numGroups) {
+        let classArr = [];
+
+        for (let i = 1; i <= numGroups; i++) {
+          classArr.push(i + groupLetter);
+        }
+        return classArr;
+      }
+
+      const a = createSchoolGroup("a", 3);
+      const b = createSchoolGroup("b", 6);
+      const c = createSchoolGroup("c", 8);
+
+      total = a.concat(...b, ...c);
+      console.log(total);
+    </script>
+  </body>
+</html>
