@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - scope</title>
+  </head>
+
+  <body>
+    <script>
+      // OBIEKTY sa przekazywane funkcjom jako argumenty jako REFERENCJE
+      // czyli ich zmiany wewnatrz funkcji
+      //beda widoczne poza funkcja
+
+      function paaByReference(arr, obj) {
+        arr.push("99");
+        obj.test = 88;
+      }
+
+      let testArr = [1, 2];
+      let testObj = { a: "info", b: 5 };
+
+      console.log(
+        "PRZED WYWOLANIEM testArr:" + testArr + " testObj.test:" + testObj.test
+      ); // przed wywolaniem
+
+      paaByReference(testArr, testObj); // obiekty zmodyfikowane poza funkcja
+
+      console.log(
+        "PO WYWOLANIU testArr:" + testArr + " testObj.test:" + testObj.test
+      ); // po wywolaniu funkcji
+    </script>
+  </body>
+</html>

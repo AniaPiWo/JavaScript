@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - scope</title>
+  </head>
+
+  <body>
+    <script>
+      //PRYMITYWY -
+      var data = 10;
+      var info = data; // przypisanie wartości z data do info KOPIA!
+      console.log(data + ", " + info); // 10, 10
+      data = 25; //zmiana wartości data zmienia tylko wartość data
+      console.log(data + ", " + info); // 25, 10
+
+      //OBJECT
+      var obj = { a: 10 };
+      var data2 = obj; // przypisanie wartości z data do obj REFERENCJA!
+      console.log(obj.a + ", " + data2.a); // 10, 10
+      data.a = 25; //zmiana wartości data zmienia tylko wartość data
+      console.log(obj.a + ", " + data2.a); // 25, 25
+    </script>
+  </body>
+</html>

@@ -10,17 +10,16 @@
 
   <body>
     <script>
-      function makeCar(model, color, topSpeed) {
-        return {
-          model: model,
-          color: color,
-          topSpeed: topSpeed,
-          manufacturer: {
-            name: "Dodge",
-            country: "USA",
-          },
-        };
+      function increaseSalary(money, bonus) {
+        money = money + money * 0.2;
+        return money + bonus;
       }
+
+      let salary = 5000;
+      let newSalary = increaseSalary(salary, 1000);
+
+      console.log(salary);
+      console.log(newSalary);
     </script>
   </body>
 </html>

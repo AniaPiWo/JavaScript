@@ -10,16 +10,18 @@
 
   <body>
     <script>
-      function makeCar(model, color, topSpeed) {
-        return {
-          model: model,
-          color: color,
-          topSpeed: topSpeed,
-          manufacturer: {
-            name: "Dodge",
-            country: "USA",
-          },
-        };
+      function validateEmail(email) {
+        let monkeyIndex = email.indexOf("@");
+        if (monkeyIndex <= 0) return false;
+
+        let dotIndex = email.lastIndexOf(".", monkeyIndex);
+        if (dotIndex == -1) return false;
+
+        if (dotIndex < monkeyIndex) {
+          return false;
+        }
+
+        return true;
       }
     </script>
   </body>

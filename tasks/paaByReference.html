@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - number</title>
+  </head>
+
+  <body>
+    <script>
+      //zad 1
+      let employee = {
+        name: "Ania",
+        email: "email@google.pl",
+        rank: "programmer",
+        salary: 8000,
+      };
+
+      function promoteToManager(user) {
+        if (user.rank == "manager") {
+          console.log("Pracownik jest już managerem");
+          return;
+        } else {
+          user.rank = "manager";
+          user.salary = user.salary + user.salary * 0.5;
+        }
+      }
+
+      //zad 2
+      let company = {
+        name: "Example LTD",
+        street: "ul.Wilcza",
+        city: "Wawa",
+        employees: [],
+      };
+
+      console.log(company);
+
+      function addEmployee(name, email, job) {
+        const employee = {
+          name: name,
+          email: email,
+          job: job,
+        };
+        company.employees.push(employee);
+      }
+
+      addEmployee("ania", "ania@google.pl", "tester");
+      addEmployee("tomek", "tomek@google.pl", "admin");
+      addEmployee("kasia", "tomek@google.pl", "cook");
+
+      console.log(company);
+    </script>
+  </body>
+</html>

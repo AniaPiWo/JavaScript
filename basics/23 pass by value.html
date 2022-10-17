@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - scope</title>
+  </head>
+
+  <body>
+    <script>
+      // PRYMITYWY sa przekazywane funkcjom jako argumenty przez wlasne kopie
+      //czyli sa PRZEKAZYWANE PRZEZ WARTOSC
+      //FUNKCJA tworzy KOPIE tej np wartosci liczbowej, ktora bedzie dostepna wylacznie w tej funkcji
+
+      function paaByValue(num, str) {
+        num = num + 10;
+        str = str + " !!!";
+        console.log("passByValue num:" + num + ", str:" + str);
+      }
+
+      let someNum = 12;
+      let someStr = "Tekst";
+
+      console.log(
+        "Przed wywołaniem someNum:" + someNum + " someStr:" + someStr
+      ); // 22, Tekst
+
+      paaByValue(someNum, someStr); // passByValue num:22, str:Tekst !!!
+
+      console.log("Po wywołaniu someNum:" + someNum + " someStr:" + someStr); // 12, Tekst
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - number</title>
+  </head>
+
+  <body>
+    <script>
+      function getUserInformation(name, surname, job) {
+        name = name.toUpperCase().trim();
+        surname = surname.toUpperCase().trim();
+        job = job.toLowerCase().trim();
+
+        let fullName = `Imię: ${name}, nazwisko: ${surname}`;
+        console.log(fullName);
+
+        let employee = fullName.concat(`, zawód: ${job}`);
+        console.log(employee);
+      }
+    </script>
+  </body>
+</html>
