@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - loop</title>
+  </head>
+
+  <body>
+    <script>
+      var computer = {
+        totalPrice: 0,
+        type: "PC",
+        parts: [
+          {
+            type: "obudowa",
+            name: "QuitsCase",
+            price: 200,
+          },
+          {
+            type: "procesor",
+            name: "AMD",
+            price: 2000,
+          },
+          {
+            type: "płyta głowna",
+            name: "XJ12",
+            price: 2000,
+          },
+        ],
+
+        calculatePrice: function () {
+          let totalPrice = 0;
+
+          for (let i = 0; i < this.parts.length; i++) {
+            const part = this.parts[i];
+            totalPrice += part.price;
+          }
+
+          this.totalPrice = totalPrice;
+        },
+      };
+
+      computer.calculatePrice();
+      console.log("Cena komputera: ", computer.totalPrice);
+    </script>
+  </body>
+</html>

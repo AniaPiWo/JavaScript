@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - loop</title>
+  </head>
+
+  <body>
+    <script>
+      var company = {
+        name: "",
+        adress: {
+          city: "obudowa",
+          street: "QuitsCase",
+        },
+        employees: [],
+
+        addEmploye: function (email, job, salary) {
+          if (
+            typeof email !== "string" ||
+            email.indexOf("@") === -1 ||
+            typeof job !== "string" ||
+            typeof salary !== "number" ||
+            salary < 4000
+          ) {
+            console.log("Nieprawidłowe dane pracownika");
+            return false;
+          }
+
+          const employee = {
+            email: email,
+            job: job,
+            salary: salary,
+            getInfo: function () {
+              return `${this.email} - ${this.job}, pensja: ${this.salary}`;
+            },
+          };
+
+          this.employees.push(employee);
+          return true;
+        },
+
+        showEmployees: function () {
+          console.log(`Pracownicy firmy ${this.name}`);
+
+          for (let i = 0; i < this.employees.length; i++) {
+            const e = this.employees[i];
+            console.log(e.getInfo());
+          }
+        },
+
+        changeSalary: function (percantageChange) {
+          for (let i = 0; i < this.employees.length; i++) {
+            const e = this.employees[i];
+            e.salary += e.salary * (0.01 * percantageChange);
+          }
+        },
+      };
+
+      company.addEmploye("ania@onet.pl", "admin", 10000);
+      company.addEmploye("adam@onet.pl", "electrician", 12500);
+      company.addEmploye("piotr@onet.pl", "cook", 20000);
+      company.addEmploye("kasia@onet.pl", "programmer", 15000);
+
+      company.showEmployees();
+
+      company.changeSalary(15);
+
+      company.showEmployees();
+    </script>
+  </body>
+</html>

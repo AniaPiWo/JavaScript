@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - number</title>
+  </head>
+
+  <body>
+    <script>
+      let article = {
+        date: new Date(2030, 12, 01),
+        title: "Hello World",
+        content: "To mój pierwszy artykuł",
+        tags: ["blog", "lifestyle"],
+        version: 1,
+      };
+
+      function validateArticle(art) {
+        if ("title" in art === false || typeof art.title !== "string") {
+          console.log("Nieprawidłowy title w article");
+          return false;
+        }
+
+        if ("content" in art === false || typeof art.content !== "string") {
+          console.log("Nieprawidłowy content w article");
+          return false;
+        }
+
+        if (!"tags" in art || !Array.isArray(art.tags)) {
+          console.log("Nieprawidłowe tags w article");
+          return false;
+        }
+
+        if (!"version" in art || typeof art.version !== "number") {
+          console.log("Nieprawidłowa version w article");
+          return false;
+        }
+
+        if (art.version <= 0) {
+          console.log("Nieprawidłowa version w article");
+          return false;
+        }
+
+        return true;
+      }
+
+      validateArticle(article);
+    </script>
+  </body>
+</html>
