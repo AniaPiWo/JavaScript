@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+  </head>
+
+  <body>
+    <script>
+      //this - execution contex czyli kontekst w ktorym wywolywany jest kod
+      console.log(this); // wyswietli obiekt window
+      console.log(this === window); // true
+
+      //1. this w funkcji zalezy od tego, jak funkcja zostala wywolana
+      // -> jeśli funkcja nie jest czescia obiektu to wywołana this ma ustawiony obiekt globalny
+
+      function bar() {
+        console.log("bar this: " + this);
+      }
+
+      bar(); // bar this: [object Window]
+
+      //2.this wywolywane w kontekscie obiektu, bedzie wskazywala na obiekt
+      const person = {
+        name: "ania",
+        city: "sosnowiec",
+        info: function () {
+          //this wskazuje na obiekt person
+          console.log(this.name, this.city);
+        },
+      };
+      person.info(); // ania sosnowiec
+
+      //3. prywatna funkcja this wskazuje na window
+      const car = {
+        name: "Dodge Charger",
+        year: 1970,
+        category: "muscle car",
+        printInfo: function () {
+          function showCategory() {
+            console.log("Kategoria: " + this.category); // kategoria: undefined
+            console.log("showCategory this === window: " + (this === window)); // true
+          }
+          console.log(this.name, this.year); // Dodge charger 1970
+          showCategory();
+        },
+      };
+
+      car.printInfo();
+
+      //4. this w kontekscie funkcji z obiektu, call i apply
+
+      const person2 = {
+        name: "ania",
+        city: "sosnowiec",
+        info: function (streetCode) {
+          //this wskazuje na obiekt person
+          console.log(this.name, this.city, streetCode);
+        },
+      };
+      person2.info("41-200"); // ania, sosnowiec, 41-200
+
+      let franek = { name: "franek", city: "szczecin" };
+      person2.info.call(franek, "55-555"); //franek szczecin 55-555 -> czasowo przypisany dany kontekst do danej funkcji
+      person2.info.apply(franek, ["55-555"]); //franek szczecin 55-555 -> czasowo przypisany dany kontekst do danej funkcji
+
+      //5. this w kontekscie funkcji z obiektu, bind
+      let kasia = { name: "Kasia", city: "Będzien" };
+      let kasiaPrintMethod = person2.info.bind(kasia, "01-111"); // na stale przypisany dany kontekst do danej funkcji
+      kasiaPrintMethod(); //Kasia Będzien 01-111
+    </script>
+  </body>
+</html>

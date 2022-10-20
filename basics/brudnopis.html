@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+  </head>
+
+  <body>
+    <script>
+      const historyService = {
+        orders: [
+          { email: "jacob@hotmail.com", dish: "Burrito" },
+          { email: "solomon@topmail.net", dish: "Burger" },
+          { email: "artemis@coldmail.net", dish: "Pizza" },
+          { email: "solomon@topmail.net", dish: "Apple pie" },
+          { email: "jacob@hotmail.com", dish: "Taco" },
+        ],
+        // Change code below this line
+        getOrdersLog() {
+          return this;
+          this.map((order) => `email: ${order.email} dish: ${order.dish}`);
+          this.join(" - ");
+        },
+        getEmails() {
+          const emails = this.map((order) => order.email);
+          const uniqueEmails = new Set(emails);
+          return [...uniqueEmails];
+        },
+        getOrdersByEmail(email) {
+          return this.filter((order) => order.email === email);
+        },
+        // Change code above this line
+      };
+
+      //getOrdersLog();
+
+      //getEmails();
+
+      //getOrdersByEmail(email);
+
+      [
+        {
+          name: "Moore Hensley",
+          email: "moorehensley@indexia.com",
+          eyeColor: "blue",
+          friends: ["Sharron Pace"],
+          isActive: false,
+          balance: 2811,
+          gender: "male",
+        },
+        {
+          name: "Sharlene Bush",
+          email: "sharlenebush@tubesys.com",
+          eyeColor: "blue",
+          friends: ["Briana Decker", "Sharron Pace"],
+          isActive: true,
+          balance: 3821,
+          gender: "female",
+        },
+        {
+          name: "Ross Vazquez",
+          email: "rossvazquez@xinware.com",
+          eyeColor: "green",
+          friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
+          isActive: false,
+          balance: 3793,
+          gender: "male",
+        },
+        {
+          name: "Elma Head",
+          email: "elmahead@omatom.com",
+          eyeColor: "green",
+          friends: ["Goldie Gentry", "Aisha Tran"],
+          isActive: true,
+          balance: 2278,
+          gender: "female",
+        },
+        {
+          name: "Carey Barr",
+          email: "careybarr@nurali.com",
+          eyeColor: "blue",
+          friends: ["Jordan Sampson", "Eddie Strong"],
+          isActive: true,
+          balance: 3951,
+          gender: "male",
+        },
+        {
+          name: "Blackburn Dotson",
+          email: "blackburndotson@furnigeer.com",
+          eyeColor: "brown",
+          friends: ["Jacklyn Lucas", "Linda Chapman"],
+          isActive: false,
+          balance: 1498,
+          gender: "male",
+        },
+        {
+          name: "Sheree Anthony",
+          email: "shereeanthony@kog.com",
+          eyeColor: "brown",
+          friends: ["Goldie Gentry", "Briana Decker"],
+          isActive: true,
+          balance: 2764,
+          gender: "female",
+        },
+      ];
+
+      // Change code below this line
+      const getTotalFriendCount = (users) => {
+        const total = users.reduce((sum, user) => {
+          return user.friends;
+        }, 0);
+        return total;
+      };
+
+      const books = [
+        {
+          title: "The Last Kingdom",
+          author: "Bernard Cornwell",
+          rating: 8.38,
+        },
+        {
+          title: "Beside Still Waters",
+          author: "Robert Sheckley",
+          rating: 8.51,
+        },
+        {
+          title: "The Dream of a Ridiculous Man",
+          author: "Fyodor Dostoevsky",
+          rating: 7.75,
+        },
+        { title: "Redder Than Blood", author: "Tanith Lee", rating: 7.94 },
+        {
+          title: "The Dreams in the Witch House",
+          author: "Howard Lovecraft",
+          rating: 8.67,
+        },
+      ];
+      const MIN_BOOK_RATING = 8;
+      // Change code below this line
+
+      const names = [...books]
+        .sort((a, b) => a.author.localeCompare(b.author))
+        .filter((book) => book.rating >= MIN_BOOK_RATING)
+        .map((book) => book.author);
+
+      console.log(names);
+
+      const users = [
+        {
+          name: "Moore Hensley",
+          email: "moorehensley@indexia.com",
+          eyeColor: "blue",
+          friends: ["Sharron Pace"],
+          isActive: false,
+          balance: 2811,
+          gender: "male",
+        },
+        {
+          name: "Sharlene Bush",
+          email: "sharlenebush@tubesys.com",
+          eyeColor: "blue",
+          friends: ["Briana Decker", "Sharron Pace"],
+          isActive: true,
+          balance: 3821,
+          gender: "female",
+        },
+        {
+          name: "Ross Vazquez",
+          email: "rossvazquez@xinware.com",
+          eyeColor: "green",
+          friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
+          isActive: false,
+          balance: 3793,
+          gender: "male",
+        },
+        {
+          name: "Elma Head",
+          email: "elmahead@omatom.com",
+          eyeColor: "green",
+          friends: ["Goldie Gentry", "Aisha Tran"],
+          isActive: true,
+          balance: 2278,
+          gender: "female",
+        },
+        {
+          name: "Carey Barr",
+          email: "careybarr@nurali.com",
+          eyeColor: "blue",
+          friends: ["Jordan Sampson", "Eddie Strong", "Adrian Cross"],
+          isActive: true,
+          balance: 3951,
+          gender: "male",
+        },
+        {
+          name: "Blackburn Dotson",
+          email: "blackburndotson@furnigeer.com",
+          eyeColor: "brown",
+          friends: [
+            "Jacklyn Lucas",
+            "Linda Chapman",
+            "Adrian Cross",
+            "Solomon Fokes",
+          ],
+          isActive: false,
+          balance: 1498,
+          gender: "male",
+        },
+        {
+          name: "Sheree Anthony",
+          email: "shereeanthony@kog.com",
+          eyeColor: "brown",
+          friends: ["Goldie Gentry", "Briana Decker"],
+          isActive: true,
+          balance: 2764,
+          gender: "female",
+        },
+      ];
+      //Uzupełnij funkcję getSortedFriends(users) tak, aby zwracała tablicę unikalnych imion przyjaciół (własciwość friends) posortowaną w porządku alfabetycznym.
+
+      // Change code below this line
+      const getSortedFriends = (users) => {
+        return users;
+      };
+    </script>
+  </body>
+</html>
