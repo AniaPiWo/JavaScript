@@ -20,7 +20,18 @@ Wykonaj refaktor funkcji tak, aby zamiast pętli for wykorzystywała metodę for
     function filterArray(numbers, value) {
         const filteredNumbers = [];
         // Change code below this line
-
+        
+        // Kod przed zmianą
+        
+        // for (let i = 0; i < numbers.length; i += 1) {
+        //   if (numbers[i] > value) {
+        //     filteredNumbers.push(numbers[i]);
+        //   }
+        // }
+        
+        
+        // Kod po zmianie
+        
         numbers.forEach(function callback(number) {
             if (number > value) {
                 filteredNumbers.push(number);
