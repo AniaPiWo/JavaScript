@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+</head>
+
+<body>
+    <script>
+
+var user = {
+    email: "ania@test.com",
+    membershipCost: 100,
+    numeMembershipYears: 1,
+    numberOfPosts: 40,
+}
+
+function extendMembership(user) {
+    let membershipDiscountFlag = 
+        (user.numeMembershipYears>=2) ? true : false;
+
+    let minPostsFlag = 
+        (user.numberOfPosts >= 30) ? true : false;
+
+    if (membershipDiscountFlag && minPostsFlag) {
+        user.membershipCost *=0.6;
+        console.log(`${user.email} spełnia warunki przyznania rabatu`)
+    } else {
+        console.log(`${user.email} nie spełnia warunków przyznania rabatu`)
+    }
+}
+
+
+    </script>
+</body>
+
+</html>

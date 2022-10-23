@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - number</title>
+</head>
+
+<body>
+    <script>
+  // BANK
+var balance = 1000;
+balance += 7000;
+console.log("Po dodaniu pensji: ", balance);
+balance -= 2000;
+console.log(balance);
+balance *= 3;
+console.log(balance);
+balance -= 4000;
+console.log(balance);
+balance += 4000;
+console.log(balance);
+balance /= 3;
+console.log(balance);
+balance -= 4000;
+console.log(balance);
+
+
+//FABRYKA SAMOCHODOW
+
+var soldCars = 1200;
+var carPrice = 90000;
+
+var revenue = soldCars*carPrice;
+console.log("Przychód ze sprzedaży: " + revenue);
+
+var factoryCost = revenue*0.65;
+console.log("Koszt produkcji: " + factoryCost);
+
+var marketingCost = revenue*0.15;
+console.log("Koszt marketingu: " + marketingCost)
+
+var income = revenue - (factoryCost+marketingCost);
+console.log("Dochód: " + income);
+
+var incomeTax = income*0.19;
+console.log("Podatek od dochodu: " + incomeTax);
+
+var incomeAfterTax = income - incomeTax;
+console.log("Dochód po odjęciu podatku: " + incomeAfterTax);
+
+var perActionProfit = incomeAfterTax/30000; 
+console.log("Zysk na aukcji: " + perActionProfit);
+
+
+    </script>
+</body>
+
+</html>

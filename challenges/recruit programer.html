@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - challenges</title>
+</head>
+
+<body>
+    <script>
+ 
+function recruitProgramer(email, yearsExp, level, languages) {
+    if (level != "mid") {
+        console.log(`${email} nie spełnia kryterium levelu mid, koniec rekrutacji`);
+        return false;
+    }
+
+    let jsExp = false;
+    let tsExp = false;
+        if (languages.indexOf("JavaScript") >= 0) jsExp = true;
+        if (languages.indexOf("TypeScript") >= 0) tsExp = true;
+        
+
+    if (jsExp || tsExp) {
+        if (yearsExp >= 1 && yearsExp <6)
+         console.log(`${email} spełnia kryteria, koniec rekrutacji`);
+        return true;
+    }
+       
+}
+
+    recruitProgramer("ania@onet.pl", 4, "mid", "JavaScript");
+
+    </script>
+</body>
+
+</html>
