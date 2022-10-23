@@ -67,6 +67,11 @@ Serwis gier potrzebuje funkcjonalności podliczania średniego czasu spędzonego
     const playtimes = Object.values(players); // [1270, 468, 710, 244]
     // Change code below this line
 
+    // Kod przed zmianą
+    //         const totalPlayTime = playtimes;
+        
+        
+    // Kod po zmianie
     const totalPlayTime = playtimes.reduce((previousValue, number) => {
         return previousValue + number;
     }, 0);
