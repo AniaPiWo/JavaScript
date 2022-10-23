@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+    DZIEDZICZENIE KLAS
+    Kluczowe słowo extends pozwala realizować dziedziczenie klas, gdy jedna klasa (córka, pochodna) dziedziczy właściwości i
+    metody innej klasy (rodzica).
+    
+    class Child extends Parent {
+    // ...
+    }
+    W wyrażeniu class Child extends Parent klasa córka Child dziedziczy (rozszerza) od klasy rodzica Parent. To oznacza, że
+    możemy deklarować bazową klasę, która przechowuje wspólne charakterystyki i metody dla grupy klas pochodnych, które
+    dziedziczą właściwości i metody rodzica, ale również dodają swoje unikalne.
+    
+    Na przykład, w aplikacji są użytkownicy o różnych rolach – administrator, pisarz artykułów, content menadżer itp. U
+    każdego typu użytkownika jest zbiór wspólnych charakterystyk, na przykład poczta i hasło, ale są także unikanle.
+    
+    Tworząc niezależne klasy dla każdego typu użytkownika, otrzymamy dublowanie wspólnych właściwości i metod i gdy będziemy
+    chcieli zmienić na przykład nazwę właściwości, trzeba będzie przejść przez wszystkie klasy, co jest niewygodne i
+    pracochłonne.
+    
+    Zamiast tego można utworzyć wspólną klasę User, która będzie przechowywać zbiór wspólnych właściwości i metod, po czym
+    utworzyć klasy dla każdego typu użytkownika, które dziedziczą ten zbiór od klasy User. Gdy trzeba będzie zmienić coś
+    wspólnego, wystarczy tylko zmienić kod klasy User.
+    
+    class User {
+    constructor(email) {
+    this.email = email;
+    }
+    
+    get email() {
+    return this.email;
+    }
+    
+    set email(newEmail) {
+    this.email = newEmail;
+    }
+    }
+    
+    class ContentEditor extends User {
+    // Ciało klasy ContentEditor
+    }
+    
+    const editor = new ContentEditor("mango@mail.com");
+    console.log(editor); // { email: "mango@mail.com" }
+    console.log(editor.email); // "mango@mail.com"
+    Klasa ContentEditor dziedziczy od klasy User jego konstruktor, getter i setter email, a także jednoimienną publiczną
+    właściwość. Ważne, aby pamiętać, że prywatne właściwości i metody klasy-rodzica nie są dziedziczone przez klasę-dziecko.
+
+    <script>
+    
+    /*
+    W aplikacji potrzebny jest administrator z możliwością dodawania poczty użytkowników do czarnej listy.
+
+    Zadeklaruj klasę Admin, która dziedziczy od klasy User
+    Dodaj do klasy Admin publiczną właściwość statyczną AccessLevel (poziom dostępu), wartością której jest obiekt { BASIC: "basic", SUPERUSER: "superuser" }
+    */
+
+        class User {
+                constructor(email) {
+                    this.email = email;
+                }
+
+                get email() {
+                    return this.email;
+                }
+
+                set email(newEmail) {
+                    this.email = newEmail;
+                }
+            }
+            // Change code below this line
+            class Admin extends User {
+                static AccessLevel = {
+                    BASIC: "basic",
+                    SUPERUSER: "superuser",
+                }
+            }
+
+
+
+    </script>
+</body>
+
+</html>

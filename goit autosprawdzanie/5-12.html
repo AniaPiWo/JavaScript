@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+    PRYWATNE WŁAŚCIWOŚCI
+    Enkapsulacja – to koncepcja polecająca ukrywać to, jak zbudowana jest klasa. Użytkownik klasy powinien otrzymać dostęp
+    tylko do publicznego interfejsu – zbioru publicznych właściwości i metod klasy. Pozostałe metody i właściwości
+    (niepubliczne) nie powinny być dostępne.
+    
+    W klasach enkapsulacja realizuje się poprzez prywatne właściwości, dostęp do których można uzyskać tylko wewnątrz klasy.
+    
+    Na przykład poczta użytkownika nie powinna być dostępna do bezpośredniego wprowadzania zmian z zewnątrz, to znaczy
+    powinna być prywatna. Dodając do nazwy właściwości symbol #, zmieniamy ją na prywatną. Zadeklarowanie prywatnej
+    właściwości przed inicjalizacją w konstruktorze jest obowiązkowe.
+    
+    class User {
+    // Nieobowiązkowe zadeklarowanie publicznych właściwości
+    name;
+    // Obowiązkowe zadeklarowanie prywatnych właściwości
+    #email;
+    
+    constructor({ name, email }) {
+    this.name = name;
+    this.#email = email;
+    }
+    
+    getEmail() {
+    return this.#email;
+    }
+    
+    changeEmail(newEmail) {
+    this.#email = newEmail;
+    }
+    }
+    
+    const mango = new User({
+    name: "Mango",
+    email: "mango@mail.com",
+    });
+    mango.changeEmail("mango@supermail.com");
+    console.log(mango.getEmail()); // mango@supermail.com
+    console.log(mango.#email); // Będzie błąd, to prywatna właściwość
+    Metody klasy także mogą być prywatne, to znaczy dostępne tylko w ciele klasy. W tym celu przed ich nazwą należy wstawić
+    symbol #.
+
+    <script>
+
+        //Wykonaj refaktor klasy Car tak, aby właściwość brand była prywatna i dodaj dwie metody do publicznego interfejsu, dla czytania i zmieniania tej właściwości.
+        //getBrand() - zwraca wartość prywatnej właściwości brand.
+        //changeBrand(newBrand) - zmienia wartość prywatnej właściwości brand na newBrand.
+        
+    class Car {
+        // Change code below this line
+        #brand
+        constructor({ brand, model, price }) {
+            this.#brand = brand;
+            this.model = model;
+            this.price = price;
+        }
+        getBrand() {
+            return this.#brand;
+        }
+        changeBrand(newBrand) {
+            this.#brand = newBrand;
+        }
+
+        // Change code above this line
+    }
+
+    </script>
+</body>
+
+</html>

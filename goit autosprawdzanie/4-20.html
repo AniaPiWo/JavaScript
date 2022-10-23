@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+FILTROWANIE UNIKALNYCH ELEMENTÓW
+Wykorzystując metodę filter() można wykonać filtrowanie tablicy tak, że zostaną na niej tylko unikalne elementy. To
+podejście działa tylko z tablicą prymitywnych wartości – nie obiektów.
+
+Wróćmy do grupy studentów i tablicy wszystkich przedmiotów, na które uczęszczają, co otrzymaliśmy dzięki metodzie
+flatMap().
+
+const students = [
+{ name: "Mango", courses: ["mathematics", "physics"] },
+{ name: "Poly", courses: ["science", "mathematics"] },
+{ name: "Kiwi", courses: ["physics", "biology"] },
+];
+
+const allCourses = students.flatMap(student => student.courses);
+// ["mathematics", "physics", "science", "mathematics", "physics", "biology"];
+W zmiennej allCourses zapisana jest tablica wszystkich przedmiotów, na które uczeszczają studenci i które mogą się
+powtarzać. Zadanie polega na tym, aby stworzyć nową tablicę, na której będą tylko oryginalne parametry, to znaczy bez
+powtórzeń.
+
+const uniqueCourses = allCourses.filter(
+(course, index, array) => array.indexOf(course) === index
+);
+Wykorzystując array.indexOf(course) wykonujemy wyszukiwanie pierwszej zgodności obecnego elementu course i otrzymujemy
+jego indeks w oryginalnej tablicy wszystkich przedimotów. W parametrze index zapisuje się indeks obecnego elementu
+course przy iteracji tablicy metodą filter.
+
+Jeśli rezultat indexOf() i wartość index są równe – otrzymujemy unikalny element, ponieważ to pierwszy raz, gdy taka
+wartość jest spotykana na tablicy i w obecnej iteracji filtr opracowuje dokładnie ją.
+
+# Tablica wszystkich przedmiotów
+["mathematics", "physics", "science", "mathematics", "physics", "biology"];
+Dla elementu "mathematics" pod indeksem 0:
+
+indexOf() zwróci 0, ponieważ szuka pierwszej zgodności.
+Wartość parametru index wynosi 0.
+Są równe, znaczy, że to unikalny element.
+Dla elementu "mathematics" pod indeksem 3:
+
+indexOf() zwróci 0, ponieważ szuka pierwszej zgodności.
+Wartość parametru index wynosi 3.
+Są równe, co znaczy, że to powtarzający się, nie unikalny element.
+
+    <script>
+
+    //Uzupełnij kod tak, aby w zmiennej allGenres znajdowała się tablica wszystkich gatunków książek (właściwość genres) z tablicy books, a w zmiennej uniqueGenres tablica unikalnych gatunków - bez powtórek.
+    
+    const books = [
+        {
+            title: "The Last Kingdom",
+            author: "Bernard Cornwell",
+            genres: ["adventure", "history"],
+        },
+        {
+            title: "Beside Still Waters",
+            author: "Robert Sheckley",
+            genres: ["fiction", "mysticism"],
+        },
+        {
+            title: "Redder Than Blood",
+            author: "Tanith Lee",
+            genres: ["horror", "mysticism", "adventure"],
+        },
+    ];
+    // Change code below this line
+    const allGenres = books.flatMap(book => book.genres);
+    const uniqueGenres = allGenres.filter(
+        (genre, index, array) => array.indexOf(genre) === index
+    );
+
+
+
+
+    </script>
+</body>
+
+</html>

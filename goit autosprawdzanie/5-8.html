@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+
+    OBIEKT PARAMETRÓW
+    Klasa może przyjmować więcej danych wejściowych dla właściwości przyszłego obiektu. Jeżeli parametrów jest dużo (więcej
+    niż 2), to zazwyczaj przyjmuje wzór "Obiekt parametrów". Idea tego wzoru leży w tym, aby przekazywać w postaci parametru
+    jeden obiekt z logicznie nazwanymi właściwościami. Wartości właściwości takiego obiektu zamienią zbiór argumentów.
+    
+    class User {
+    // Destrukturyzacja obiektu
+    constructor({ name, email }) {
+    this.name = name;
+    this.email = email;
+    }
+    }
+    
+    const mango = new User({
+    name: "Mango",
+    email: "mango@mail.com",
+    });
+    console.log(mango); // { name: "Mango", email: "mango@mail.com" }
+    
+    const poly = new User({
+    name: "Poly",
+    email: "poly@mail.com",
+    });
+    console.log(poly); // { name: "Poly", email: "poly@mail.com" }
+    <script>
+    //Wykonaj refaktor klasy Car tak, aby przyjmował jeden parametr – obiekt z właściwościami brand, model i price. Dokonaj destrukturyzacji obiektu w sygnaturze (podpisie) konstruktora.
+
+    class Car {
+            // Change code below this line
+            constructor({ brand, model, price }) {
+                this.brand = brand;
+                this.model = model;
+                this.price = price;
+            }
+            // Change code above this line
+        }
+
+
+
+    </script>
+</body>
+
+</html>

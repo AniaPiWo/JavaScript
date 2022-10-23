@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+METODA SORT()
+Metoda sort() sortuje elementy tablicy, ale w odróżnieniu od pozostałych iterujacych metod, robi to na oryginalnej
+tablicy.
+
+Sortuje i zmienia oryginalną tablicę.
+Zwraca zmienioną tablicę, to znaczy odnośnik do posortowanej oryginalnej tablicy.
+Domyślnie sortuje w porządku rosnącym.
+Sortowanie odbywa się drogą sprowadzenia wartości do łańcucha i porównania numerów porządkowych w tabeli Unicode.
+Taka tablica liczb zostanie posortowana w porządku rosnącym.
+
+const scores = [61, 19, 74, 35, 92, 56];
+scores.sort();
+console.log(scores); // [19, 35, 56, 61, 74, 92]
+Ponieważ domyślnie wartości sprowadza się do łańcucha, standardowe sortowanie liczb działa niezwyczajnie. Z tego względu
+w następnym zadaniu zobaczymy, jak wprowadzać swój porządek sortowania.
+
+const scores = [27, 2, 41, 4, 7, 3, 75];
+scores.sort();
+console.log(scores); // [2, 27, 3, 4, 41, 7, 75]
+Tablica łańcuchów sortuje się w porządku alfabetycznym.
+
+const students = ["Jacob", "Artemis", "Solomon", "Adrian", "Kai", "Ganymede"];
+students.sort();
+console.log(students); // [ "Adrian", "Artemis", "Ganymede", "Jacob", "Kai", "Solomon" ]
+Przy tym numer porządkowy małych liter jest mniejszy niż wielkich.
+
+const letters = ["b", "B", "a", "A", "c", "C"];
+letters.sort();
+console.log(letters); // ["A", "B", "C", "a", "b", "c"]
+Ponieważ sortuje się oryginalną tablicę, naruszona zostaje zasada czystości funkcji i nie można wygodnie utworzyć kilku
+pochodnych zbiorów na bazie oryginalnego. Na przykład, utworzyć zbioru posortowanego rosnąco, a drugiego malejąco.
+Dlatego przed sortowaniem tworzy się pełną kopię oryginalnej tablicy i ją się sortuje.
+
+const scores = [61, 19, 74, 35, 92, 56];
+const ascendingScores = [...scores].sort();
+
+console.log(scores); // [61, 19, 74, 35, 92, 56]
+console.log(ascendingScores); // [19, 35, 56, 61, 74, 92]
+
+
+    <script>
+/*
+Uzupełnij kod tak, aby w zmiennej ascendingReleaseDates otrzymać posortowaną w porządku rosnącym kopię tablicy releaseDates, a w zmiennej alphabeticalAuthors kopię tablicy imion autorów authors posortowaną w porządku alfabetycznym.
+*/
+
+    const releaseDates = [2016, 1967, 2008, 1984, 1973, 2012, 1997];
+    const authors = [
+        "Tanith Lee",
+        "Bernard Cornwell",
+        "Robert Sheckley",
+        "Fyodor Dostoevsky",
+    ];
+    // Change code below this line
+
+    const ascendingReleaseDates = releaseDates.slice(0).sort();
+
+    const alphabeticalAuthors = authors.slice(0).sort();
+
+
+
+    </script>
+</body>
+
+</html>

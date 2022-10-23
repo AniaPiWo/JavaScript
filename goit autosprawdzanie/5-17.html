@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+    METODY STATYCZNE
+    W klasie można zadeklarować nie tylko metody przyszłego egzemplarza, ale też metody dostępne tylko dla klasy – metody
+    statyczne, które mogą być zarówno publiczne, jak i prywatne. Składnia zadeklarowania jest analogiczna do statycznych
+    właściwości z wyjątkiem tego, że wartością będzie metoda.
+    
+    class User {
+    static #takenEmails = [];
+    
+    static isEmailTaken(email) {
+    return User.#takenEmails.includes(email);
+    }
+    
+    #email;
+    
+    constructor({ email }) {
+    this.#email = email;
+    User.#takenEmails.push(email);
+    }
+    }
+    
+    const mango = new User({ email: "mango@mail.com" });
+    
+    console.log(User.isEmailTaken("poly@mail.com"));
+    console.log(User.isEmailTaken("mango@mail.com"));
+    Charakterystyka metod statycznych polega na tym, że w czasie ich wywołania słowo kluczowe this odnosi się do samej
+    klasy. To znaczy, że metoda statyczna może uzyskać dostęp do statycznych właściwości klasy, ale nie do właściwości
+    egzemplarza. Jest to logiczne, ponieważ metody statyczne wywołuje sama klasa, a nie jej egzemplarze.
+    <script>
+    /*
+    Dodaj do klasy Car publiczną metodę statyczną checkPrice(price), przyjmującą cenę samochodu. Metoda powinna porównać wartości parametru price i prywatnej statycznej właściwości MAX_PRICE.
+
+    Jeżeli cena samochodu przewyższa maksymalną, metoda powinna zwrócić łańcuch "Error! Price exceeds the maximum".
+    W przeciwnym yrazie metoda powinna zwrócić łańuch "Success! Price is within acceptable limits".
+    Pod zadeklarowaniem klasy dodaliśmy inicjalizację egzemplarza i wywołanie metod, aby pokazać, jak wykorzystywana będzie metoda checkPrice(price).
+    */
+
+        class Car {
+                static MAX_PRICE = 50000;
+                // Change code below this line
+                static checkPrice(price) {
+                    //let MAX_PRICE = 50000;
+                    if (price > this.MAX_PRICE) {
+                        return "Error! Price exceeds the maximum";
+                    }
+                    return "Success! Price is within acceptable limits";
+                }
+                #price;
+                // Change code above this line
+                constructor({ price }) {
+                    this.#price = price;
+                }
+            }
+
+            const audi = new Car({ price: 36000 });
+            const bmw = new Car({ price: 64000 });
+
+            console.log(Car.checkPrice(audi.price)); // "Success! Price is within acceptable limits"
+            console.log(Car.checkPrice(bmw.price)); // "Error! Price exceeds the maximum"
+
+
+    </script>
+</body>
+
+</html>

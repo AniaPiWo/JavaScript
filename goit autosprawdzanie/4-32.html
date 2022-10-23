@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+METODA SOME()
+Metoda some(callback) sprawdza, czy choć jeden element tablicy przechodzi test dostarczony przez funkcję callback.
+Zwraca true lub false.
+
+tablica.some((element, index, array) => {
+// Callback function body
+});
+Nie zmienia oryginalnej tablicy.
+Iteruje oryginalną tablicę element po elemencie.
+Zwraca true, jeśli choć jeden element tablicy spełnia warunek.
+Zwraca false, jeśli żaden element tablicy nie spełnia warunku.
+Iteracja tablicy zostaje przerwana, jeśli callback zwraca true.
+// Jest przynajmniej jeden element większy bądź równy zero? – tak
+[1, 2, 3, 4, 5].some(value => value >= 0); // true
+
+// Jest przynajmniej jeden element większy bądź równy zero? – tak
+[-7, -20, 3, -10, -14].some(value => value >= 0); // true
+
+// Jest przynajmniej jeden element mniejszy od zera? – nie
+[1, 2, 3, 4, 5].some(value => value < 0); // false // Jest przynajmniej jeden element mniejszy od zera? – tak [1, 2, 3,
+    -10, 4, 5].some(value=> value < 0); // true
+
+    <script>
+
+/*
+Wykorzystując metodę some() uzupełnij kod tak, aby:
+W zmiennej anyElementInFirstIsEven był rezultat sprawdzenia obecności parzystych elementów na tablicy firstArray.
+W zmiennej anyElementInFirstIsOdd był rezultat sprawdzenia obecności nieparzystych elementów na tablicy firstArray.
+W zmiennej anyElementInSecondIsEven był rezultat sprawdzenia obecności parzystych elementów na tablicy secondArray.
+W zmiennej anyElementInSecondIsOdd był rezultat sprawdzenia obecności nieparzystych elementów na tablicy secondArray.
+W zmiennej anyElementInThirdIsEven był rezultat sprawdzenia obecności parzystych elementów na tablicy thirdArray.
+W zmiennej anyElementInThirdIsOdd był rezultat sprawdzenia obecności nieparzystych elementów na tablicy thirdArray.
+*/
+
+const firstArray = [26, 94, 36, 18];
+const secondArray = [17, 61, 23];
+const thirdArray = [17, 26, 94, 61, 36, 23, 18];
+// Change below this line
+
+const anyElementInFirstIsEven = firstArray.some(number => number%2==0 === true);
+const anyElementInFirstIsOdd = firstArray.some(number => number%2==0 !== true);
+
+const anyElementInSecondIsEven = secondArray.some(number => number%2==0 === true);
+const anyElementInSecondIsOdd = secondArray.some(number => number%2==0 !== true);
+
+const anyElementInThirdIsEven = thirdArray.some(number => number%2==0 === true);
+const anyElementInThirdIsOdd = thirdArray.some(number => number%2==0 !== true);
+
+
+    </script>
+</body>
+
+</html>

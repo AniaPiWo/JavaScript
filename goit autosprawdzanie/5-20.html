@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+
+    METODY KLASY-CÓRKI
+    W klasie-córce można deklarować metody, które będą dostępne tylko ich egzemplarzom.
+    
+    // Wyobraźmy sobie, że wyżej jest deklaracja klasy
+    
+    
+    class ContentEditor extends User {
+    constructor({ email, posts }) {
+    super(email);
+    this.posts = posts;
+    }
+    
+    addPost(post) {
+    this.posts.push(post);
+    }
+    }
+    
+    const editor = new ContentEditor({ email: "mango@mail.com", posts: [] });
+    console.log(editor); // { email: 'mango@mail.com', posts: [] }
+    console.log(editor.email); // 'mango@mail.com'
+    editor.addPost("post-1");
+    console.log(editor.posts); // ['post-1']
+    <script>
+
+        class User {
+                email;
+
+                constructor(email) {
+                    this.email = email;
+                }
+
+                get email() {
+                    return this.email;
+                }
+
+                set email(newEmail) {
+                    this.email = newEmail;
+                }
+            }
+            class Admin extends User {
+                // Change code below this line
+
+                static AccessLevel = {
+                    BASIC: "basic",
+                    SUPERUSER: "superuser",
+                }
+                constructor({ email, accessLevel }) {
+                    super(email);
+                    this.accessLevel = accessLevel;
+                }
+                blacklistedEmails = [];
+
+                blacklist(email) {
+                    this.blacklistedEmails.push(email);
+                }
+                isBlacklisted(email) {
+                    if (this.blacklistedEmails.includes(email)) {
+                        return true;
+                    }
+                    return false;
+                }
+                // Change code above this line
+
+            }
+
+            /*
+            
+            Publiczną metodę isBlacklisted(email) dla sprawdzenia poczty na czarnej liście. Metoda powinna sprawdzać obecność wartości parametru email w tablicy zapisującej się we właściwości blacklistedEmails i zwracać true lub false.
+            */
+
+            const mango = new Admin({
+                email: "mango@mail.com",
+                accessLevel: Admin.AccessLevel.SUPERUSER,
+            });
+
+            console.log(mango.email); // "mango@mail.com"
+            console.log(mango.accessLevel); // "superuser"
+
+            mango.blacklist("poly@mail.com");
+            console.log(mango.blacklistedEmails); // ["poly@mail.com"]
+            console.log(mango.isBlacklisted("mango@mail.com")); // false
+            console.log(mango.isBlacklisted("poly@mail.com")); // true
+
+
+
+    </script>
+</body>
+
+</html>

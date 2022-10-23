@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+    <script>
+/*
+Przed zwolnieniem programista popsuł kod źródłowy zarządzania kontami użytkowników naszego serwisu dostawy jedzenia. Wykonaj refaktor metod obiektu customer, umieszczając brakujące this przy zwracaniu się do właściwości obiektu.
+
+Po zadeklarowaniu obiektu dodaliśmy wywołanie metod w tej kolejności, w jakiej twój kod będą sprawdzać testy. Prosimy niczego tam nie zmieniać.*/
+
+    const customer = {
+        username: "Mango",
+        balance: 24000,
+        discount: 0.1,
+        orders: ["Burger", "Pizza", "Salad"],
+        // Change code below this line
+        getBalance() {
+            return this.balance;
+        },
+        getDiscount() {
+            return this.discount;
+        },
+        setDiscount(value) {
+            this.discount = value;
+        },
+        getOrders() {
+            return this.orders;
+        },
+        addOrder(cost, order) {
+            this.balance -= cost - cost * this.discount;
+            this.orders.push(order);
+        },
+        // Change code above this line
+    };
+
+    customer.setDiscount(0.15);
+    console.log(customer.getDiscount()); // 0.15
+    customer.addOrder(5000, "Steak");
+    console.log(customer.getBalance()); // 19750
+    console.log(customer.getOrders()); // ["Burger", "Pizza", "Salad", "Steak"]
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+
+    KONSTRUKTOR KLASY-CÓRKI
+    Pierwsze, co należy zrobić w konstruktorze klasy-córki, to wywołać specjalną funkcję super(argumenty) - to pseudonim
+    konstruktora klasy-rodzica. W przeciwnym razie, przy próbie zwrócenia się do this w konstruktorze klasy-córki wystąpi
+    błąd. Przy wywołaniu konstruktora klasy-rodzica przekazujemy niezbędne mu argumenty dla inicjalizacji właściwości.
+    
+    class User {
+    constructor(email) {
+    this.email = email;
+    }
+    
+    get email() {
+    return this.email;
+    }
+    
+    set email(newEmail) {
+    this.email = newEmail;
+    }
+    }
+    
+    class ContentEditor extends User {
+    constructor({ email, posts }) {
+    // Wywołanie konstruktora klasy-rodzica User
+    super(email);
+    this.posts = posts;
+    }
+    }
+    
+    const editor = new ContentEditor({ email: "mango@mail.com", posts: [] });
+    console.log(editor); // { email: 'mango@mail.com', posts: [] }
+    console.log(editor.email); // 'mango@mail.com'
+    <script>
+
+        class User {
+                email;
+
+                constructor(email) {
+                    this.email = email;
+                }
+
+                get email() {
+                    return this.email;
+                }
+
+                set email(newEmail) {
+                    this.email = newEmail;
+                }
+            }
+
+            class Admin extends User {
+                // Change code below this line
+                static AccessLevel = {
+                    BASIC: "basic",
+                    SUPERUSER: "superuser",
+                };
+                constructor({ email, accessLevel }) {
+                    super(email);
+                    this.accessLevel = accessLevel;
+                }
+
+                // Change code above this line
+            }
+
+            /*
+            Dodaj klasę Admin metodę constructor, która przyjmuje jeden parametr – obiekt ustawień z dwiema właściwościami email i accessLevel. Dodaj klasę Admin publiczną właściwość accessLevel, wartość której będzie przekazywana przy wywołaniu konstruktora.
+            */
+
+            const mango = new Admin({
+                email: "mango@mail.com",
+                accessLevel: Admin.AccessLevel.SUPERUSER,
+            });
+
+            console.log(mango.email); // "mango@mail.com"
+            console.log(mango.accessLevel); // "superuser"
+
+
+    </script>
+</body>
+
+</html>

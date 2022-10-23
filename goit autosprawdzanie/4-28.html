@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+METODA FIND()
+Jeśli metoda filter(callback) wykorzystywana jest do wyszukiwania wszystkich elementów odpowiadającym warunkowi, to
+metoda filter(callback) pozwala znaleźć i zwrócić pierwszy pasujący element, po czym iteracja tablicy zostaje przerwana.
+Oznacza to, że szuka do pierwszego trafienia.
+
+массив.find((element, index, array) => {
+// Ciało funkcji callback
+});
+Nie zmienia oryginalnej tablicy.
+Iteruje oryginalną tablicę element po elemencie.
+Zwraca pierwszy element odpowiadający warunkowi, to znaczy gdy callback zwraca true.
+Jeżeli żaden element nie pasuje, to znaczy dla wszystkich elementów callback zwrócił false, metoda zwraca undefined.
+Metoda find() jest wykorzystywana dla zadań – wyszukiwania elementu po unikalnej wartości właściwości. Na przykład,
+wyszukiwanie użytkownika po poczcie, samochodu po numerze rejestracyjnym, książki po tytule itp.
+
+const colorPickerOptions = [
+{ label: "red", color: "#F44336" },
+{ label: "green", color: "#4CAF50" },
+{ label: "blue", color: "#2196F3" },
+{ label: "pink", color: "#E91E63" },
+{ label: "indigo", color: "#3F51B5" },
+];
+
+colorPickerOptions.find((option) => option.label === "blue"); // { label: "blue", color: "#2196F3" }
+colorPickerOptions.find((option) => option.label === "pink"); // { label: "pink", color: "#E91E63" }
+colorPickerOptions.find((option) => option.label === "white"); // undefined
+
+    <script>
+
+    /*
+    Wykorzystując metodę find(), uzupełnij kod tak, aby:
+    W zmiennej bookWithTitle otrzymano obiekt książkę, której tytuł (właściwość title) jest zgodny z wartością zmiennej BOOK_TITLE.
+    W zmiennej bookByAuthor otrzymano obiekt książkę, której autor (właściwość author) jest zgodny z wartością zmiennej AUTHOR.*/
+    
+    const books = [
+        {
+            title: 'The Last Kingdom',
+            author: 'Bernard Cornwell',
+            rating: 8.38,
+        },
+        {
+            title: 'Beside Still Waters',
+            author: 'Robert Sheckley',
+            rating: 8.51,
+        },
+        {
+            title: 'The Dream of a Ridiculous Man',
+            author: 'Fyodor Dostoevsky',
+            rating: 7.75,
+        },
+        { title: 'Redder Than Blood', author: 'Tanith Lee', rating: 7.94 },
+    ];
+    const BOOK_TITLE = 'The Dream of a Ridiculous Man';
+    const AUTHOR = 'Robert Sheckley';
+    // Change code below this line
+
+    const bookWithTitle = books.find(book => book.title === BOOK_TITLE);
+    const bookByAuthor = books.find(book => book.author === AUTHOR);
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>

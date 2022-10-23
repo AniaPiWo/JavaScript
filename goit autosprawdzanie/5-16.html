@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+
+    WŁAŚCIWOŚCI STATYCZNE
+    Oprócz właściwości publicznych i prywatnych przyszłego egzemplarza, w klasie można zadeklarować jego własne właściwości,
+    dostępne tylko klasie, ale nie jej egzemplarzom – właściwości statyczne (static). Są użyteczne dla przechowywania
+    informacji odnoszącej się do samej klasy.
+    
+    Dodamy do klasy użytkownika prywatną właściwość role - jego rolę określającą zbiór uprawnień, na przykład administrator,
+    redaktor, zwykły użytkownik itp. Możliwe role użytkowników będziemy zapisywać jako statyczne właściwości Roles - obiekt
+    z właściwościami.
+    
+    Statyczne właściwości deklaruje się w ciele klasy. Przed nazwą właściwości dodaje się kluczowe słowo static.
+    
+    class User {
+    // Zadeklarowanie i inicjalizacja właściwości statycznej
+    static Roles = {
+    ADMIN: "admin",
+    EDITOR: "editor",
+    };
+    
+    #email;
+    #role;
+    
+    constructor({ email, role }) {
+    this.#email = email;
+    this.#role = role;
+    }
+    
+    get role() {
+    return this.#role;
+    }
+    
+    set role(newRole) {
+    this.#role = newRole;
+    }
+    }
+    
+    const mango = new User({
+    email: "mango@mail.com",
+    role: User.Roles.ADMIN,
+    });
+    
+    console.log(mango.Roles); // undefined
+    console.log(User.Roles); // { ADMIN: "admin", EDITOR: "editor" }
+    
+    console.log(mango.role); // "admin"
+    mango.role = User.Roles.EDITOR;
+    console.log(mango.role); // "editor"
+    Statyczne właściwości mogą być również prywatne, to znaczy dostępne tylko wewnątrz klasy. W tym celu nazwa właściwości
+    powinna zaczynać się od symbolu #, tak jak prywatne właściwości. Zwrócenie się do prywatnej statycznej właściwości na
+    zewnątrz ciała klasy wywoła błąd.
+
+    <script>
+    
+    //Wykonaj refaktor klasy Car. Dodaj publiczną statyczną właściwość MAX_PRICE z wartością 50000 - maksymalna możliwa cena samochodu.
+    //Dodaj do settera price sprawdzenie przekazywanej wartości parametru newPrice.Jeśli wynosi więcej niż MAX_PRICE, setter niczego nie zrozbi, a jeśli mniej lub równo, wtedy nadpisuje cenę samochodu.
+
+        class Car {
+                // Change code below this line
+                static MAX_PRICE = 50000;
+                #price;
+
+                constructor({ price }) {
+                    this.#price = price;
+                }
+
+                get price() {
+                    return this.#price;
+                }
+
+                set price(newPrice) {
+                    if (newPrice > Car.MAX_PRICE) {
+                        return;
+                    }
+                    this.#price = newPrice;
+                }
+
+                // Change code above this line
+            }
+
+            const audi = new Car({ price: 35000 });
+            console.log(audi.price); // 35000
+
+            audi.price = 49000;
+            console.log(audi.price); // 49000
+
+            audi.price = 51000;
+            console.log(audi.price); // 49000
+
+
+
+    </script>
+</body>
+
+</html>

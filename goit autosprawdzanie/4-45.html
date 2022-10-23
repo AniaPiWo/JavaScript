@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+ŁAŃCUCHY METOD (CHAINING)
+Jest tablica obiektów z imionami, punktami i przedmiotami każdego studenta.
+
+const students = [
+{ name: "Mango", score: 83, courses: ["mathematics", "physics"] },
+{ name: "Poly", score: 59, courses: ["science", "mathematics"] },
+{ name: "Ajax", score: 37, courses: ["physics", "biology"] },
+{ name: "Kiwi", score: 94, courses: ["literature", "science"] },
+];
+Należy otrzymać tablicę ich imion posortowanych po rośnięciu ilości punktów za test. W tym celu posortujemy kopię
+tablicy metodą sort(), po czym metodą map() zestawimy tablicę wartości właściwości name z sortowanej tablicy.
+
+const sortedByAscendingScore = [...students].sort((a, b) => a.score - b.score);
+const names = sortedByAscendingScore.map(student => student.name);
+
+console.log(names); // ["Ajax", "Poly", "Mango", "Kiwi"]
+Problem w tym, że pojawiają się u nas zmienne pośrednie po każdej operacji oprócz finalnej. Zmienna
+sortedByAscendingScore jest dodatkowa i wymagana tylko dla zapisywania pośredniego rezultatu.
+
+Pozbyć się takich "martwych" zmiennych można, grupując wywołania metod w łańcuchy. Każda następna metoda będzie
+wykonywana na rezultacie pracy poprzedniej.
+
+const names = [...students]
+.sort((a, b) => a.score - b.score)
+.map(student => student.name);
+
+console.log(names); // ["Ajax", "Poly", "Mango", "Kiwi"]
+Robimy kopię oryginalnej tablicy przed sortowaniem.
+Na kopii wywołujemy metodę sort().
+Do rezultatu pracy metody sort() używamy metody map().
+Zmiennej names przypisuje się rezultat pracy metody map().
+Otrzymamy posortowaną w porządku alfabetycznym tablicę unikalnych przedmiotów, na które uczęszczają studenci.
+
+const uniqueSortedCourses = students
+.flatMap(student => student.courses)
+.filter((course, index, array) => array.indexOf(course) === index)
+.sort((a, b) => a.localeCompare(b));
+
+console.log(uniqueSortedCourses); // ["biology", "science", "literature", "mathematics", "physics"]
+Na oryginalnej tablicy wywołujemy flatMap() i tworzymy wygładzoną tablicę wszystkich przedmiotów.
+Do rezultatu metody flatMap() przypisujemy metodę filter() dla filtrowania unikalnych elementów.
+Na rezultacie metody filter() wywołujemy sort().
+Zmiennej uniqueSortedCourses przypisuje się rezultat pracy metody sort().
+Łańcuch metod może być dowolnej długości, ale zwykle nie dłuższy niż 2-3 operacje. Po pierwsze, iterujące metody są
+wykorzystywane dla porównywalnie prostych operacji na zbiorach. Po drugie, wywołanie każdej kolejnej metody to dodatkowa
+iteracja tablicy, co przy dostatecznej ilości może wpłynąć na wydajność.
+
+
+
+    <script>
+
+    //Uzupełnij kod tak, aby w zmiennej names otrzymać tablicę imion autorów w porządku alfabetycznym, rating książek których jest większy niż wartość zmiennej MIN_BOOK_RATING.
+    const books = [
+        {
+            title: "The Last Kingdom",
+            author: "Bernard Cornwell",
+            rating: 8.38,
+        },
+        {
+            title: "Beside Still Waters",
+            author: "Robert Sheckley",
+            rating: 8.51,
+        },
+        {
+            title: "The Dream of a Ridiculous Man",
+            author: "Fyodor Dostoevsky",
+            rating: 7.75,
+        },
+        { title: "Redder Than Blood", author: "Tanith Lee", rating: 7.94 },
+        {
+            title: "The Dreams in the Witch House",
+            author: "Howard Lovecraft",
+            rating: 8.67,
+        },
+    ];
+    const MIN_BOOK_RATING = 8;
+    // Change code below this line
+
+    const names = [...books]
+        .sort((a, b) => a.author.localeCompare(b.author))
+        .filter((book) => book.rating >= MIN_BOOK_RATING)
+        .map((book) => book.author);
+
+    console.log(names);
+
+    </script>
+</body>
+
+</html>

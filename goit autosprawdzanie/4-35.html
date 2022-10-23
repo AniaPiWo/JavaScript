@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+METODA REDUCE() I TABLICA OBIEKTÓW
+Przy pracy z tablicą obiektów wykonuje się redukcja zgodnie z wartością jakiejś właściwości. Na przykład, istnieje
+tablica studentów z punktami za test. Trzeba otrzymać średnią ocenę.
+
+const students = [
+{ name: "Mango", score: 83 },
+{ name: "Poly", score: 59 },
+{ name: "Ajax", score: 37 },
+{ name: "Kiwi", score: 94 },
+{ name: "Houston", score: 64 },
+];
+
+// Nazwa akumulatora może być dowolna, to po prostu parametr funkcji
+const totalScore = students.reduce((total, student) => {
+return total + student.score;
+}, 0);
+
+const averageScore = totalScore / students.length;
+
+
+    <script>
+    
+/*
+Dla naszego serwisu trzeba policzyć średni czas spędzony w jednej grze dla każdego gracza i uzyskać ogólną sumę tych czasów. Policzyć czas dla każdego z graczy można poprzez podzielenie jego czasu (właściwość playtime) przez ilość gier (właściwość gamesPlayed).
+*/
+
+    const players = [
+        { name: "Mango", playtime: 1270, gamesPlayed: 4 },
+        { name: "Poly", playtime: 469, gamesPlayed: 2 },
+        { name: "Ajax", playtime: 690, gamesPlayed: 3 },
+        { name: "Kiwi", playtime: 241, gamesPlayed: 1 },
+    ];
+    // Change code below this line
+
+    const totalAveragePlaytimePerGame = players.reduce((sum, player) => {
+        return sum + (player.playtime / player.gamesPlayed)
+    }, 0)
+
+    </script>
+</body>
+
+</html>

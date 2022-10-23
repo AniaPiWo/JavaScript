@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+METODA FILTER() I TABLICA OBIEKTÓW
+W trakcie pracy z tablicą obiektów wykonuje się filtracja zgodnie z wartością jakiejś właściwości. W rezultacie
+otrzymujemy nową tablicę pofiltrowanych obiektów.
+
+Na przykład istnieje tablica studentów z punktami za test. Należy wyfiltrować lepszych (więcej niż 80 punktów), gorszych
+(poniżej 50 punktów) i przeciętnych studentów (punkty od 50 do 80).
+
+const LOW_SCORE = 50;
+const HIGH_SCORE = 80;
+const students = [
+{ name: "Mango", score: 83 },
+{ name: "Poly", score: 59 },
+{ name: "Ajax", score: 37 },
+{ name: "Kiwi", score: 94 },
+{ name: "Houston", score: 64 },
+];
+
+const best = students.filter(student => student.score >= HIGH_SCORE);
+console.log(best); // Tablica obiektów z imionami Mango i Kiwi
+
+const worst = students.filter(student => student.score < LOW_SCORE); console.log(worst); // Tablica z jednym obiektem
+    Ajax // W funkcji callback wygodnie jest destrukturyzować właściwości obiektu const average=students.filter( ({
+    score })=> score >= LOW_SCORE && score < HIGH_SCORE ); console.log(average); // Tablica obiektów z imionami Poly i
+        Houston
+
+
+    <script>
+    
+    //Wykorzystując metodę filter() uzupełnij kod tak, aby:
+    
+    //W zmiennej topRatedBooks otrzymywało się tablicę z książkami, których rating (właściwość rating) jest większy lub równy
+    //wartości zmiennej MIN_RATING.
+    //W zmiennej booksByAuthor otrzymywało się tablicę z książkami napisanymi przez autora o imieniu (właściwość author),
+    //które pasują do wartości w zmiennej AUTHOR.
+
+
+    const books = [
+        {
+            title: "The Last Kingdom",
+            author: "Bernard Cornwell",
+            rating: 8.38,
+        },
+        {
+            title: "Beside Still Waters",
+            author: "Robert Sheckley",
+            rating: 8.51,
+        },
+        {
+            title: "The Dream of a Ridiculous Man",
+            author: "Fyodor Dostoevsky",
+            rating: 7.75,
+        },
+        { title: "Redder Than Blood", author: "Tanith Lee", rating: 7.94 },
+        { title: "Enemy of God", author: "Bernard Cornwell", rating: 8.67 },
+    ];
+
+    const MIN_RATING = 8;
+    const AUTHOR = "Bernard Cornwell";
+    // Change code below this line
+
+    const topRatedBooks = books.filter(book => book.rating > 8);
+    const booksByAuthor = books.filter(book => book.author === "Bernard Cornwell");
+
+
+
+
+    </script>
+</body>
+
+</html>

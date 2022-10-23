@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+
+WŁASNY PORZĄDEK SORTOWANIA ŁAŃCUCHÓW
+Do sortowania łańcuchów w porządku alfabetycznym, rosnąco lub malejąco, wykorzystuje się metodę łańcuchów
+localeCompare().
+
+firstString.localeCompare(secondString)
+Jest wywoływana na łańcuchu, który trzeba porównać (firstString) z tym, co zostało do niego przekazane jako argument
+(secondString).
+
+"a".localeCompare("b"); // -1
+"b".localeCompare("a"); // 1
+"a".localeCompare("a"); // 0
+"b".localeCompare("b"); // 0
+Zwraca wartość negatywną jeśli firstString powinien być przed secondString.
+Zwraca pozytywną wartość większą niż zero, jeśli firstString powinien być po secondString.
+Jeśli łańcuchy są jednakowe, zwraca zero.
+Wygodnie jest stosować to podejście przy sortowaniu łańcuchów, ponieważ metoda sort() wymaga takich wartości od funkcji
+callback.
+
+const students = ["Jacob", "Artemis", "Solomon", "Adrian", "Kai", "Ganymede"];
+
+const inAlphabetOrder = [...students].sort((a, b) => a.localeCompare(b));
+console.log(inAlphabetOrder); // [ "Adrian", "Artemis", "Ganymede", "Jacob", "Kai", "Solomon" ]
+
+const inReversedOrder = [...students].sort((a, b) => b.localeCompare(a));
+console.log(inReversedOrder); // [ "Solomon", "Kai", "Jacob", "Ganymede", "Artemis"
+
+    <script>
+
+    /*
+    Biblioteka online potrzebuje wystawić książki posortowane po autorach, w porządku alfabetycznym i w porządku odwrotnym do alfabetycznego. Uzupełnij kod tak, by w zmiennej authorsInAlphabetOrder otrzymać posortowaną w porządku alfabetycznym kopię tablicy authors, a w zmiennej authorsInReversedOrder kopię posortowaną w porządku odwrotnym do alfabetycznego.
+    */    
+
+    const authors = [
+        "Tanith Lee",
+        "Bernard Cornwell",
+        "Robert Sheckley",
+        "Fyodor Dostoevsky",
+        "Howard Lovecraft",
+    ];
+    // Change code below this line
+
+    const authorsInAlphabetOrder = [...authors].sort((a, b) => a.localeCompare(b));
+
+    const authorsInReversedOrder = [...authors].sort((a, b) => b.localeCompare(a));
+
+
+    </script>
+</body>
+
+</html>

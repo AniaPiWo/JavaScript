@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+
+    KONSTRUKTOR KLASY
+    Dla inicjalizacji egzemplarza w klasie jest metoda constructor. Jeśli nie został zadeklarowany, tworzy się konstruktor
+    domyślny – pusta funkcja, która nie zmienia egzemplarza.
+    
+    class User {
+    // Składnia zadeklarowania metody klasy
+    constructor(name, email) {
+    // Inicjalizacja właściwości egzemplarza
+    this.name = name;
+    this.email = email;
+    }
+    }
+    
+    const mango = new User("Mango", "mango@mail.com");
+    console.log(mango); // { name: 'Mango', email: 'mango@mail.com' }
+    
+    const poly = new User("Poly", "poly@mail.com");
+    console.log(poly); // { name: 'Poly', email: 'poly@mail.com' }
+    Wywołanie klasy z operatorem new prowadzi do stworzenia nowego obiektu i wywołania konstruktora w kontekście tego
+    obiektu. To znaczy this wewnątrz konstruktora będzie odwoływać się do nowo utworzonego obiektu. To pozwala dodać do
+    każdego obiektu właściwości z jednakowymi nazwami, ale różnymi wartościami.
+    
+    Właściwości name i email to właściwości publiczne, ponieważ będą własnymi właściwościami obiektu-egzmplarza i będzie
+    można uzyskać do nich dostęp, zwracając się po kropce.
+    <script>
+    /*
+    Dodaj klasie Car metodę constructor która przyjmuje trzy parametry:
+
+        brand - marka samochodu.
+        model - model samochodu.
+        price - cena samochodu.
+
+    Klasa Car powinna tworzyć obiekt z jednoimiennymi właściwościami brand, model i price, wartościami których powinny być argumementy podane w czasie jego wywołania z operatorem new.
+        */
+
+        class Car {
+                // Change code below this line
+                constructor(brand, model, price) {
+                    this.brand = brand;
+                    this.model = model;
+                    this.price = price;
+                }
+
+
+                // Change code above this line
+            }
+
+
+
+    </script>
+</body>
+
+</html>

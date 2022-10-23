@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+
+    ZADANIE: MAGAZYN 2.0
+    Wykonaj refaktor klasy Storage, czyniąc argument items prywatnym.
+    
+    Pod komentarzem dodaliśmy inicjalizację egzemplarza i wywołanie metod w tej kolejności, w której twój kod będzie
+    testowany. Prosimy niczego tam nie zmieniać.
+    <script>
+
+        class Storage {
+                // Change code below this line
+                #items
+                constructor(items) {
+                    this.#items = items;
+                }
+
+                getItems() {
+                    return this.#items;
+                }
+
+                addItem(newItem) {
+                    this.#items.push(newItem);
+                }
+
+                removeItem(itemToRemove) {
+                    this.#items = this.#items.filter(item => item !== itemToRemove);
+                }
+            }
+
+            // Change code above this line
+            const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
+            console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
+            storage.addItem("Droid");
+            console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
+            storage.removeItem("Prolonger");
+            console.log(storage.getItems()); // ["Нанитоиды", "Антигравитатор", "Droid"]
+
+
+
+    </script>
+</body>
+
+</html>

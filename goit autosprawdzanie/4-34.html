@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+METODA REDUCE()
+Metoda reduce(callback, initialValue) wykorzystywana jest do przetwarzania sekwencyjnego każdego elementu tablicy z
+zapisywaniem pośredniego rezultatu, jak akumulator. Trochę bardziej skomplikowana w przyswojeniu od innych, ale rezultat
+jest tego wart.
+
+tablica.reduce((previousValue, element, index, array) => {
+// Ciało funkcji callback
+}, initialValue);
+Nie zmienia oryginalnej tablicy.
+Iteruje oryginalną tablicę element po elemencie.
+Zwraca cokolwiek.
+Robi cokolwiek.
+Najłatwiej wyobrazić sobie jego pracę na przykładzie obliczenia sumy elementów tablicy.
+
+const total = [2, 7, 3, 14, 6].reduce((previousValue, number) => {
+return previousValue + number;
+}, 0);
+
+console.log(total); // 32
+Pierwszy parametr funkcji callback (previousValue) to akumulator, to znaczy pośredni rezultat. Wartość, którą zwróci
+funkcja callback przy obecnej iteracji będzie wartością tego parametru przy następnej.
+
+Jako drugi argument dla reduce() można przekazać nieobowiązkową wartość początkową akumulatora – parametr initialValue.
+
+# Na początku metoda reduce() tworzy wewnętrzną zmienną-akumulator i
+# przypisuje jej wartość parametru initialValue lub pierwszego elementu
+# iterowanej tablicy, jeśli initialValue nie jest podana.
+previousValue = 0
+
+# Dalej funkcję callback wywołuje się dla każdego elementu tablicy. Obecna wartość
+# parametru previousValue jest tym, co zwróciła funkcja callback w czasie poprzedniej iteracji.
+Iteracja 1 -> previousValue = 0 -> number = 2 -> return 0 + 2 -> return 2
+Iteracja 2 -> previousValue = 2 -> number = 7 -> return 2 + 7 -> return 9
+Iteracja 3 -> previousValue = 9 -> number = 3 -> return 9 + 3 -> return 12
+Iteracja 4 -> previousValue = 12 -> number = 14 -> return 12 + 14 -> return 26
+Iteracja 5 -> previousValue = 26 -> number = 6 -> return 26 + 6 -> return 32
+
+# Po tym, jak cała tablica została ziterowana, metoda reduce() zwraca wartość akumulatora.
+Rezultat - 32
+To znaczy metoda reduce() jest wykorzystywana, gdy potrzeba jest wziąć "wiele" i sprowadzić to do "jednego". W
+powszednich zadaniach jej użycie sprowadza się do pracy z liczbami.
+
+    <script>
+
+/*
+Serwis gier potrzebuje funkcjonalności podliczania średniego czasu spędzonego w grach. Uzupełnij kod tak, aby w zmiennej totalPlayTime uzyskać ogólny czas gry z tablicy playtimes.
+*/
+
+    const players = {
+        mango: 1270,
+        poly: 468,
+        ajax: 710,
+        kiwi: 244
+    };
+    const playtimes = Object.values(players); // [1270, 468, 710, 244]
+    // Change code below this line
+
+    const totalPlayTime = playtimes.reduce((previousValue, number) => {
+        return previousValue + number;
+    }, 0);
+
+    // Change code above this line
+    const averagePlayTime = totalPlayTime / playtimes.length;
+
+
+
+
+    </script>
+</body>
+
+</html>

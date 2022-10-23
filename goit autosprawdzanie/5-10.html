@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+    ZADANIE: MAGAZYN
+    Napisz klasę Storage, która będzie tworzyć obiekty dla zarządzania magazynem towarów. Klasa oczekuje tylko jednego
+    argumentu – początkowej tablicy towarów, który zapisuje się na tworzonym obiekcie we właściwości items.
+    
+    Zadeklaruj następujące metody klasy:
+    
+    getItems() - zwraca tablicę aktualnych towarów we właściwości items obiektu, który wywołuje tę metodę.
+    addItem(newItem) - przyjmuje nowy towar newItem i dodaje go do tablicy towarów we właściwości items obiektu, który
+    wywołuje tę metodę.
+    removeItem(itemToRemove) - przyjmuje towar itemToRemove i usuwa go z tablicy towarów we właściwości items obiektu, który
+    wywołuje tę metodę.
+    Pod komentarzem dodaliśmy inicjalizację egzemplarza i wywołanie metod w tej kolejności, w której twój kod będą sprawdzać
+    testy. Prosimy nieczego tam nie zmieniać.
+    <script>
+    class Storage {
+        constructor(items) {
+            this.items = items;
+        }
+        getItems() {
+            return this.items;
+        }
+        addItem(newItem) {
+            this.items.push(newItem);
+        }
+        removeItem(itemToRemove) {
+            this.items.splice(this.items.indexOf(itemToRemove), 1);
+        }
+    }
+
+
+    // Change code above this line
+    const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
+    console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
+    storage.addItem("Droid");
+    console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
+    storage.removeItem("Prolonger");
+    console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
+
+
+
+    </script>
+</body>
+
+</html>

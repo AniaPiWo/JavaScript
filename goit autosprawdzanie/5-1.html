@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+
+    KONTEKST WYWOŁANIA FUNKCJI
+    Wewnątrz funkcji można korzystać z zarezerwowanego kluczowego słowa this. W czasie wykonania funkcji, w this
+    zapisuje
+    się odnośnik do obiektu, w kontekście którego została wywołana. W ten spoób w ciele funkcji możemy uzyskać dostęp do
+    właściwości i metod tego obiektu.
+
+    const bookShelf = {
+    authors: ["Bernard Cornwell", "Robert Sheckley"],
+    getAuthors() {
+    return this.authors;
+    },
+    addAuthor(authorName) {
+    this.authors.push(authorName);
+    },
+    };
+
+    console.log(bookShelf.getAuthors()); // ["Bernard Cornwell", "Robert Sheckley"]
+    bookShelf.addAuthor("Tanith Lee");
+    console.log(bookShelf.getAuthors()); // ["Bernard Cornwell", "Robert Sheckley", "Tanith Lee"]
+    Metody getAuthors i addAuthor to funkcje (metody obiektu), które są wywoływane w kontekście obiektu bookShelf. W
+    czasie
+    ich wykonania w this zapisuje się odniesienie do obiektu bookShelf i możemy zwrócić się do jego właściwości i metod.
+    <script>
+
+        //Wykonaj refaktor metod obiektu pizzaPalace, wstawiając brakujące this w miejscach zwracania się do właściwości i metod obiektu.
+
+
+        const pizzaPalace = {
+            pizzas: ["Supercheese", "Smoked", "Four meats"],
+            // Change code below this line
+            checkPizza(pizzaName) {
+                return this.pizzas.includes(pizzaName);
+            },
+            order(pizzaName) {
+                const isPizzaAvailable = this.checkPizza(pizzaName);
+
+                if (!isPizzaAvailable) {
+                    return `Sorry, there is no pizza named «${pizzaName}»`;
+                }
+
+                return `Order accepted, preparing «${pizzaName}» pizza`;
+            },
+            // Change code above this line
+        };
+
+
+    </script>
+</body>
+
+</html>

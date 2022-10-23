@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+    METODY KLASY
+    Dla pracy z właściwościami przyszłego egzemplarza wykorzystywane są metody klasy. Metody to po prostu funkcje, z jednym
+    wyjątkiem – dostępne są egzemplarzowi klasy.
+    
+    class User {
+    constructor({ name, email }) {
+    this.name = name;
+    this.email = email;
+    }
+    
+    // Метод getEmail
+    getEmail() {
+    return this.email;
+    }
+    
+    // Метод changeEmail
+    changeEmail(newEmail) {
+    this.email = newEmail;
+    }
+    }
+    <script>
+
+    //Dodaj klasie Car dwie metody.
+    //getPrice() - zwraca wartość właściwości price z obiektu, który będzie go wywoływać.
+    //changePrice(newPrice) - odnawia wartość właściwości price w obiekcie, który będzie go wywoływał na newPrice.
+    
+    class Car {
+        constructor({ brand, model, price }) {
+            this.brand = brand;
+            this.model = model;
+            this.price = price;
+        }
+        // Change code below this line
+        changePrice(newPrice) {
+            this.price = newPrice
+        }
+        getPrice() {
+            return this.price
+        }
+
+
+        // Change code above this line
+    }
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+METODA EVERY()
+Metoda every(callback) sprawdza, czy wszystkie elementy tablicy przechodzą test dostarczany przez funkcję callback.
+Zwraca true lub false.
+
+tablica.every((element, index, array) => {
+// Ciało funkcji callback
+});
+Nie zmienia oryginalnej tablicy.
+Iteruje oryginalną tablicę element po elemencie.
+Zwraca true jeśli wszystkie elementy tablicy spełniają warunek.
+Zwraca false jeśli choć jeden element tablicy nie spełnia warunku.
+Iteracja tablicy zostaje przerwana, jeśli callback zwraca false.
+// Wszystkie elementy większe bądź równe zero? - tak
+[1, 2, 3, 4, 5].every((value) => value >= 0); // true
+
+// Wszystkie elementy większe bądź równe zero? - nie
+[1, 2, 3, -10, 4, 5].every((value) => value >= 0); // false
+Przy pracy z tablicą obiektów sprawdzana jest wartość jakiejś ich właściwości.
+
+    <script>
+
+    /*
+    Wykorzystując metodę every() uzupełnij kod tak, aby:
+    W zmiennej eachElementInFirstIsEven był rezultat sprawdzenia wszystkich elementów tablicy firstArray pod względem parzystości.
+    W zmiennej eachElementInFirstIsOdd był rezultat sprawdzenia wszystkich elementów tablicy firstArray pod względem nieparzystości.
+    W zmiennej eachElementInSecondIsEven był rezultat sprawdzenia wszystkich elementów tablicy secondArray pod względem parzystości.
+    W zmiennej eachElementInSecondIsOdd był rezultat sprawdzenia wszystkich elementów tablicy secondArray pod względem nieparzystości.
+    W zmiennej eachElementInThirdIsEven był rezultat sprawdzenia wszystkich elementów tablicy thirdArray pod względem parzystości.
+    W zmiennej eachElementInThirdIsOdd był rezultat sprawdzenia wszystkich elementów tablicy thirdArray pod względem nieparzystości.*/
+    
+    const firstArray = [26, 94, 36, 18];
+    const secondArray = [17, 61, 23];
+    const thirdArray = [17, 26, 94, 61, 36, 23, 18];
+    // Change code below this line
+
+    const eachElementInFirstIsEven = firstArray.every(value => value % 2 == 0 === true);
+    const eachElementInFirstIsOdd = firstArray.every(value => value % 2 == 0 !== true);
+
+    const eachElementInSecondIsEven = secondArray.every(value => value % 2 == 0 === true);
+    const eachElementInSecondIsOdd = secondArray.every(value => value % 2 == 0 !== true);
+
+    const eachElementInThirdIsEven = thirdArray.every(value => value % 2 == 0 === true);
+    const eachElementInThirdIsOdd = thirdArray.every(value => value % 2 == 0 !== true);
+
+
+
+    </script>
+</body>
+
+</html>

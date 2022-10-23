@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+
+    GETTERY I SETTERY
+    Gettery i settery – to krótsza składnia zadeklarowania metod dla interakcji z właściwościami. Getter i setter imitują
+    zwykłą publiczną właściwość klasy, ale pozwalają zmieniać inne właściwości w wygodniejszy sposób. Getter wykonuje się
+    przy próbie otrzymania wartości właściwości, a setter – przy próbie jej zmiany.
+    
+    Getterów i setterów dobrze jest używać dla prostych operacji czytania i zmieniania wartości właściwości, szczególnie
+    prywatnych, jak ich publiczny interfejs. Dla pracy z właściwością, która przechowuje tablicę lub obiekt nie są one
+    odpowiednie.
+    
+    class User {
+    #email;
+    
+    constructor({ name, email }) {
+    this.name = name;
+    this.#email = email;
+    }
+    
+    // Getter email
+    get email() {
+    return this.#email;
+    }
+    
+    // Setter email
+    set email(newEmail) {
+    this.#email = newEmail;
+    }
+    }
+    Zadeklarowaliśmy getter i setter email, stawiając przed nazwą właściwości kluczowe słowa get i set. Wewnątrz tych metod
+    albo zwracamy wartość prywatnej właściwości #email, albo zmieniamy jej wartość. Getter i setter idą w parze i powinny
+    nazywać się jednakowo.
+    
+    const mango = new User({ name: "Mango", email: "mango@mail.com" });
+    console.log(mango.email); // mango@mail.com
+    mango.email = "mango@supermail.com";
+    console.log(mango.email); // mango@supermail.com
+    Przy zwróceniu się do mango.email wywołuje się getter get email() {...} i wykonuje się jego kod. Przy próbie zapisu
+    mango.email = "mango@supermail.com" wywołuje się setter set email(newEmail) {...} i łańcuch "mango@supermail.com" będzie
+    wartością parametru newEmail.
+    
+    Plus w tym, że to metody, co znaczy, że przy zapisie można wykonać uzupełniający kod, na przykład z jakimiś działaniami
+    sprawdzającymi, w odróżnieniu od wykonywania tej operacji bezpośrednio z właściwością.
+    
+    set email(newEmail) {
+    if(newEmail === "") {
+    console.error("Błąd! Poczta nie może być pustym łańcuchem!");
+    return;
+    }
+    
+    this.#email = newEmail;
+    }
+    <script>
+
+    //Wykonaj refaktor klasy Car. Uczyń właściwości model i price prywatnymi, tak samo jak #brand. Standaryzuj publiczny interfejs klasy, zamieniając już zadeklarowane metody na gettery i settery brand, model i price dla interakcji z prywatnymi właściwościami.
+    
+    
+    class Car {
+        // Change code below this line
+        #brand;
+        #model;
+        #price;
+        constructor({ brand, model, price }) {
+            this.#brand = brand;
+            this.#model = model;
+            this.#price = price;
+        }
+
+        get brand() {
+            return this.#brand;
+        }
+
+        set brand(newBrand) {
+            this.#brand = newBrand;
+        }
+
+        get model() {
+            return this.#model;
+        }
+
+        set model(newModel) {
+            this.#model = newModel;
+        }
+
+        get price() {
+            return this.#price;
+        }
+
+        set price(newPrice) {
+            this.#price = newPrice;
+        }
+        // Change code above this line
+    }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+    WŁASNY PORZĄDEK SORTOWANIA LICZB
+    Dla wyznaczenia własnego porządku sortowania, do metody sort(compareFunction) trzeba przekazać funkcję callback z dwoma
+    parametrami. To funkcja porównania (compare function), porządek sortowania zależy od jej rezultatu. Metoda sort() będzie
+    wywoływać ją dla dwóch dowolnych elementów.
+    
+    tablica.sort((a, b) => {
+    // Callback function body
+    });
+    a - pierwszy element do porównania.
+    b - drugi element do porównania.
+    Jeśli wywołanie compareFunction(a, b) zwraca dowolną negatywną wartość, to znaczy a jest mniejsze niż b, sortowanie
+    umieści a przed b. To sortowanie w porządku rosnącym.
+    
+    const scores = [61, 19, 74, 35, 92, 56];
+    const ascendingScores = [...scores].sort((a, b) => a - b);
+    console.log(ascendingScores); // [19, 35, 56, 61, 74, 92]
+    Jeśli wywołanie compareFunction(a, b) zwraca dowolną pozytywną wartość większą od zera, to znaczy b jest większe niż a,
+    sortowanie umieści b przed a. To sortowanie w porządku malejącym.
+    
+    const scores = [61, 19, 74, 35, 92, 56];
+    const descendingScores = [...scores].sort((a, b) => b - a);
+    console.log(descendingScores); // [92, 74, 61, 56, 35, 19]
+    Jeśli wywołanie compareFunction(a, b) zwróci 0, sortowanie zostawi a i b w niezmienionym porządku w stosunku do siebie,
+    ale posortuje je w odniesieniu do wszystkich innych elementów. Ogólnie nie ważne, co jest zwracane, jeśli wzajemny
+    porządek nie ma znaczenia.
+
+
+    <script>
+        /*
+        Biblioteka online potrzebuje wystawić książki posortowane po dacie wydania, w porządku rosnącym lub malejącym. Uzupełnij kod tak, aby w zmiennej ascendingReleaseDates otrzymać posortowaną rosnąco kopię tablicy releaseDates, a w zmiennej descendingReleaseDates kopię posortowaną malejąco.
+        */
+
+    const releaseDates = [2016, 1967, 2008, 1984, 1973, 2012, 1997];
+    // Change code below this line
+
+    const ascendingReleaseDates = [...releaseDates].sort();
+
+    const descendingReleaseDates = [...releaseDates].sort((a, b) => b - a);
+
+
+    </script>
+</body>
+
+</html>

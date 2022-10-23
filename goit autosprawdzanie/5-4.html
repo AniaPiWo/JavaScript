@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+    PROTOTYP OBIEKTU
+    Obiekty można organizować w łańcuchy tak, aby właściwość nieznaleziona w jednym obiekcie była automatycznie szukana w
+    innym. Ogniwem łączącym jest specjalna ukryta właściwość [[Prototype]], która w konsoli przeglądarki wygląda następująco
+    – __proto__.
+    
+    const animal = {
+    legs: 4,
+    };
+    const dog = Object.create(animal);
+    dog.name = "Mango";
+    
+    console.log(dog); // { name: 'Mango', __proto__: animal }
+    console.log(animal.isPrototypeOf(dog)); // true
+    Metoda Object.create(obj) tworzy i zwraca nowy obiekt, wiążąc go z obiektem obj. Obiekt, na który wskazuje odnośnik w
+    __proto__, nazywany jest prototypem. W naszym przykładzie obiekt animal to prototyp dla obiektu dog. Metoda
+    isPrototypeOf() sprawdza czy obiekt animal jest prototypem dla dog i zwraca true lub false.
+    
+    console.log(dog.hasOwnProperty("name")); // true
+    console.log(dog.name); // 'Mango'
+    
+    console.log(dog.hasOwnProperty("legs")); // false
+    console.log(dog.legs); // 4
+    Zwrot dog.name działa w widoczny sposób – zwraca właściwość name obiektu dog. Przy zwróceniu się do dog.legs interpreter
+    szuka właściwości legs w obiekcie dog, nie znajduje jej i kontunuuje poszukiwania w obiekcie zgodnie z odnośnikiem
+    dog.__proto__, to znaczy, w danym przypadku, w obiekcie animal – jego prototypie.
+    
+    Prototyp – to rezerwowe miejsce przechowywania właściwości i metod obiektu, które jest automatycznie wykorzystywane przy
+    ich poszukiwaniu. U obiektu, który występuje jako prototyp, może być również swój prototyp, u niego swój i tak dalej.
+    
+    Poszukiwanie właściwości wykonuje się do pierwszej zgodności. Interpreter szuka właściwości po nazwie w obiekcie, jeśli
+    jej nie znajdzie, to zwraca się do właściwości __proto__, to znaczy przechodzi po odnośniku do obiektu-prototypu, a
+    następnie do prototypu prototypu. Jeśli interpreter dotrze do końca łańcuszka i nie znajdzie właściwości o takiej
+    nazwie, to zwróci undefined.
+    <script>
+
+    //Zmień kod tak, aby obiekt parent został prototypem dla obiektu w zmiennej сhild.
+
+    const parent = {
+            name: "Stacey",
+            surname: "Moore",
+            age: 54,
+            heritage: "Irish",
+        };
+        // Change code below this line
+
+        const child = Object.create(parent);
+
+        // Change code above this line
+        child.name = "Jason";
+        child.age = 27;
+
+
+
+    </script>
+</body>
+
+</html>

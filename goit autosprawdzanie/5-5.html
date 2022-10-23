@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+    <script>
+//Zmień kod, budując łańcuch prototypów tak, aby obiekt ancestor był prototypem dla parent, a ten w swojej kolejności był prototypem dla child.
+
+    const ancestor = {
+        name: "Paul",
+        age: 83,
+        surname: "Dawson",
+        heritage: "Irish",
+    };
+    // Change code below this line
+
+    const parent = Object.create(ancestor);
+    parent.name = "Stacey";
+    parent.surname = "Moore";
+    parent.age = 54;
+
+    const child = Object.create(parent);;
+    child.name = "Jason";
+    child.age = 27;
+
+    </script>
+</body>
+
+</html>

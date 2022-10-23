@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+METODY FILTER I FIND
+Metoda filter(callback) wykorzystywana jest dla jednej operacji – filtrowania tablicy, to znaczy gdy trzeba wybrać
+więcej niż jeden element z kolekcji zgodnie z jakimś kryterium.
+
+tablica.filter((element, index, array) => {
+// Ciało funkcji callback
+});
+Nie zmienia oryginalnej tablicy.
+Iteruje oryginalną tablicę element po elemencie.
+Zwraca nową tablicę.
+Dodaje do zwracanej tablicy elementy, które spełniają warunki funkcji callback.
+Jeśli callback zwrócił true, element dodawany jest do zwracanej tablicy.
+Jeśli callabck zwrócił false, element nie jest dodawany do zwracanej tablicy.
+Jeśli żaden element nie spełnił warunku, zwraca pustą tablicę.
+const values = [51, -3, 27, 21, -68, 42, -37];
+
+const positiveValues = values.filter(value => value >= 0);
+console.log(positiveValues); // [51, 27, 21, 42]
+
+const negativeValues = values.filter(value => value < 0); console.log(negativeValues); // [-3, -68, -37] const
+    bigValues=values.filter(value=> value > 1000);
+    console.log(bigValues); // []
+
+    // Oryginalna tablica nie zmienia się
+    console.log(values); // [51, -3, 27, 21, -68, 42, -37]
+    To znaczy metoda filter wywołuje funkcję callback dla każdego elementu oryginalnej tablicy i jeśli rezultat jej
+    wywołania to true, obecny element dodaje do nowej tablicy.
+
+
+    <script>
+    
+    //Uzupełnij kod tak, aby w zmiennej evenNumbers otrzymać tablicę liczb parzystych z tablicy numbers, a w zmiennej oddNumbers tablicę liczb nieparzystych. Obowiązkowo wykorzystaj metodę filter().
+    
+    const numbers = [17, 24, 82, 61, 36, 18, 47, 52, 73];
+    // Change code below this line
+
+    const evenNumbers = numbers.filter(number => (number % 2 == 0));
+    const oddNumbers = numbers.filter(number => !(number % 2 == 0));
+
+
+
+    </script>
+</body>
+
+</html>
