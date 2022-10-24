@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
+    <title>Random User</title>
+</head>
+
+<body>
+
+<h2>Random User</h2>
+<div class="user">
+    <div class="user__box">
+        <div class="user__picture">
+            <img id="avatar-img" src="" alt="">
+        </div>
+        <div class="user__desc">
+            <div id="fullname">fullname</div>
+            <div id ="username">username</div>
+            <div id ="user-details">
+                <div id ="email">email</div>
+                <div id="country">country</div>
+            </div>
+        </div>
+    </div>
+</div>
+<button class="refresh-btn" onClick="window.location.reload();">Generate!</button>
+    <script>
+window.onload = function() {
+    fetch("https://randomuser.me/api")
+    .then(response => response.json())
+    .then(data => dataReady(data))
+}
+
+function dataReady(data) {
+    console.log(data);
+    const result = data.results[0];
+    const fullname = result.name.title + " " + result.name.first + " " + result.name.last;
+    document.getElementById("fullname").innerHTML = fullname;
+
+    const img = result.picture.large;
+    document.getElementById("avatar-img").src = img;
+
+    const username = result.login.username;
+    document.getElementById("username").innerHTML = "@" + username;
+
+    const email = result.email;
+    document.getElementById("email").innerHTML = email;
+    
+    const country = result.location.timezone.description;
+    document.getElementById("country").innerHTML = country;
+}
+    </script>
+</body>
+
+</html>
