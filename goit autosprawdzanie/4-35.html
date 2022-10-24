@@ -44,6 +44,10 @@ Dla naszego serwisu trzeba policzyć średni czas spędzony w jednej grze dla ka
     ];
     // Change code below this line
 
+    // Kod przed zmianą
+    //    const totalAveragePlaytimePerGame = players;
+     
+    // Kod po zmianie
     const totalAveragePlaytimePerGame = players.reduce((sum, player) => {
         return sum + (player.playtime / player.gamesPlayed)
     }, 0)
