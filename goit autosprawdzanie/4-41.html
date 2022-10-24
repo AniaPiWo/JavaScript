@@ -65,7 +65,18 @@ W zmiennej sortedByDescentingRating otrzymać tablicę książek posortowanych w
         { title: "Enemy of God", author: "Bernard Cornwell", rating: 8.67 },
     ];
     // Change code below this line
+    
+    // Kod przed zmianą
+    //     const sortedByAuthorName = books;
 
+    //     const sortedByReversedAuthorName = books;
+
+    //     const sortedByAscendingRating = books;
+
+    //     const sortedByDescentingRating = books;
+        
+        
+    // Kod po zmianie    
     const sortedByAuthorName = [...books].sort((a, b) => a.author.localeCompare(b.author));
 
     const sortedByReversedAuthorName = [...books].sort((a, b) => b.author.localeCompare(a.author));
