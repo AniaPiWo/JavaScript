@@ -88,6 +88,12 @@ iteracja tablicy, co przy dostatecznej ilości może wpłynąć na wydajność.
     const MIN_BOOK_RATING = 8;
     // Change code below this line
 
+    // Kod przed zmianą
+        
+    //   const names = books;
+        
+        
+    // Kod po zmianie
     const names = [...books]
         .sort((a, b) => a.author.localeCompare(b.author))
         .filter((book) => book.rating >= MIN_BOOK_RATING)
