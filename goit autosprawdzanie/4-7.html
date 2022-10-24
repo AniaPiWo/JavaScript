@@ -22,7 +22,18 @@ Wykonaj refaktor funkcji tak, aby zamiast cyklu for wykorzystywała metodę forE
     function getCommonElements(firstArray, secondArray) {
         const commonElements = [];
         // Change code below this line
+        
+        
+        // Kod przed zmianą
+        
+        // for (let i = 0; i < firstArray.length; i += 1) {
+        //   if (secondArray.includes(firstArray[i])) {
+        //     commonElements.push(firstArray[i]);
+        //   }
+        // }
 
+        // Kod po zmianie
+        
         firstArray.forEach(function callback(firstArray) {
             if (secondArray.includes(firstArray)) {
                 commonElements.push(firstArray);
