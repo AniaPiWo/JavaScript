@@ -74,6 +74,13 @@ Są równe, co znaczy, że to powtarzający się, nie unikalny element.
         },
     ];
     // Change code below this line
+        
+    //Kod przed zmianą
+        
+    //     const allGenres = books;
+    //     const uniqueGenres = allGenres;
+        
+    //Kod po zmianie
     const allGenres = books.flatMap(book => book.genres);
     const uniqueGenres = allGenres.filter(
         (genre, index, array) => array.indexOf(genre) === index
