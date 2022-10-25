@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - funkcje</title>
+</head>
+
+<body>
+    <script>
+    //TRY i CATCH - jesli w try bedzie blad to sprobuje catch
+    
+        function parseData(jsonStr, onComplete, onError) {
+            try {
+                let result = JSON.parse(jsonStr);
+                onComplete(result)
+            } catch (e) {
+                onError()
+            }
+        }
+
+        function done(result) { console.log("ok " + result) }
+        function fail(result) { console.log("Fail :(") }
+
+        parseData('{"data":99}', done, fail)
+
+        parseData('hkhkjhkjh', done, fail)
+    </script>
+
+</body>
+
+</html>

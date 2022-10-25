@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - funkcje</title>
+</head>
+
+<body>
+    <script>
+// rest operator -> ...przed nazwa tablicy z argumentami
+
+function sumAll(...args) {
+    console.log("Parametry funkcji: " + args)
+    return args.reduce(function(acc, value) {
+        return acc + value;
+    })
+}
+
+console.log(sumAll(1,2,3,17));
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - funkcje</title>
+</head>
+
+<body>
+    <script>
+//odczytujemy args funkcji
+function test(a,b) {
+    for (let i=0; i<arguments.length; i++) console.log(i+": " + arguments[i]);
+}
+test(56, 100, 40, "test")
+
+//odczytujemy args funkcji przy uzyciu rest
+function test2(...args) {
+    for (let i = 0; i < args.length; i++) console.log(i + ": " + args[i]);
+}
+test2(56, 100, 40, "test")
+
+//args jako obiekt
+function test3(args) {
+    if(args.hasOwnProperty("data")) console.log(args.data);
+    var localStr = args.hasOwnProperty("str") ? args.str : "domyślne str";
+    var localNum = args.num || "domyślny num";
+
+    console.log(localStr, localNum);
+};
+
+test3({data:10, str:"str", num: 99});
+
+//domyslne wartosci args funkcji
+
+function test4(arg1 = 10, arg2 = "str") {
+    console.log(arg1, arg2)
+};
+console.log(test4());
+console.log(test4("arg1"));
+console.log(test4("arg1", 100));
+
+//funkcja jako arg MUSI byc poza funkcja ktorej jest arg
+function test5(arg1 = 10, arg2 = "str", arg3 = bar()) { 
+    console.log(arg1, arg2, arg3)
+};
+
+function bar() {
+    return 33
+};
+
+ test5()  //10, 20, 33
+
+//TRY i CATCH - jesli w try bedzie blad to sprobuje catch
+function parseData(jsonStr, onComplete, onError) {
+    try {                                       
+        let result = JSON.parse(jsonStr);
+        onComplete(result)
+    } catch(e) {
+        onError()
+    }
+}
+
+function done(result) {console.log("ok "+ result)}
+function fail(result) {console.log("Fail :(") }
+
+parseData('{"data":99}', done, fail)
+
+parseData('hkhkjhkjh', done, fail)
+    </script>
+
+</body>
+
+</html>

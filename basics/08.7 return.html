@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - funkcje</title>
+</head>
+
+<body>
+    <script>
+//RETURN - zwraca wartosc i przerywa funkcje
+
+function foo() {};  //zwraca domyslne undefined
+function foo2() {return;}; //undefined
+function foo3() {return 1;}; // 1
+function foo4() {return {a:10}}; //{a:10}
+
+void foo4(); //undefined
+
+function foo5(x) {
+    if (x>10) return "something";
+    if (x<=10) return "anything";
+};
+console.log(foo5(22));
+
+function foo6(x) {
+    return;
+
+    if(1==1) console.log(x); // nie wykona sie, bo pod return
+};
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - funkcje</title>
+</head>
+
+<body>
+    <script>
+
+//W JS mamy dostep do domyslnych wartosci arg
+//Domysle wartosci zapisujemy podczas definicji nazwy argumento za pomoca operatora przypisania =
+
+function makeConnection(host = "www.duckduckgo.com", port = 80, method = "HTTP") {
+    console.log("host: " + host + ", port: " + port + ", method: " + method);
+}
+
+makeConnection();//host: www.duckduckgo.com, port: 80, method: HTTP
+makeConnection(undefined);//host: www.duckduckgo.com, port: 80, method: HTTP
+
+makeConnection("www.google.com")//host: www.google.com, port: 80, method: HTTP
+makeConnection("www.google.com", 443)//host: www.google.com, port: 443, method: HTTP
+makeConnection(443)//host: 443, port: 80, method: HTTP
+
+//wartoscia domyslna moze byc wynik wywolania funkcji
+// wyjatek - nie dziala dla zagniezdzonej funkcji
+
+function test(arg = increment()) {
+    console.log(arg)
+}
+
+let a = 0;
+function increment() {
+    return ++a;
+}
+
+test(); //1
+test(); //2
+test(); //3
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - funkcje</title>
+</head>
+
+<body>
+    <script>
+
+//ARGUMENTY FUNKCJI JAKO OBIEKT 
+// jeśli mamy duzo arg to lepiej przekazac obiekt do funkcji
+// właściwosci obiektu = args
+//musimy spr czy przekazany obj posiada wszytskie wlasciwosci ktore potrzebujemy do wykonania tej funkcji
+// za pomoca np hasOwnProperty
+// lub np operator trojelementowy z hasOwnProperty 
+// lub operator logiczny OR ||
+
+
+function foo(data, info, str, num1, obj1, addr1, addr2) {}
+foo(10, "sth", 99, {}, "41-200 sosnowiec", "00-000 bedzin" );
+
+function bar(params) {
+    if(params.hasOwnProperty("data")) console.log(params.data);
+    var info = params.hasOwnProperty("info") ? params.info: "domyślne info"; //oprator trojelementowy -> jesli true to params.info zostanmie przypisane do zmiennej info, jesli false to params.info zostanie przypisane "domyślne info"
+    var str = params.str || "domyślne str";
+    console.log(info, str)
+}
+
+console.log(bar({data:22, info: "text", addr1: "Kraków"}))
+
+    </script>
+
+</body>
+
+</html>

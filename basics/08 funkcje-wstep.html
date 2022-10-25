@@ -14,6 +14,63 @@
 
 // Deklaracja funkcji - funkcje tworzymy za pomoca slowa kluczowego FUNCTION
 
+//Tworzenie funkcji - nazwa + argumenty + ciało funkcji
+
+//sposób 1
+function nazwa(arg,arg2) {
+        //ciało funkcji
+};
+
+//sposób 2
+var nazwa = function (arg, arg2) {
+    //ciało funkcji
+}
+
+//Opcjonalnie można zwrócić wartość/obiekt z funkcji za pomocą return, domyslnie jest undefined
+
+//funkcja to obiekt, raz zdefiniowana moze byc wywolywana wiele razy
+//posiada właściwosci i metody
+
+//Funkcje wyznaczaja zakres lokalny scope - cokolwiek jest zdefiniowane (var, let, const) w jej środku nie jest dostąpne poza nią
+function testScope(arg) {
+    var localVar = 10;
+    console.log(arg, localVar);
+}
+
+    console.log(testScope(5))  //5,10
+
+    //console.log(localVar); //Uncaught ReferenceError: localVar is not defined
+    //console.log(arg); //Uncaught ReferenceError: localVar is not defined
+
+//ZAGNIEZDZONE FUNKCJI I SCOPE
+
+var someGlobal = "tekst"
+
+function foo(arg) {
+    var local = 5;
+    function nested() {
+        var k =10;
+        console.log(someGlobal); //tekst
+        console.log(arg); //99
+        console.log(local); //5
+        console.log(k); //10
+    }
+    nested();
+}
+
+foo(99);
+
+//HOISTING FUNKCJI - przeniesienie deklaracji na poczatek zakresu
+
+function testHoisting() {
+    bar(); //funkcji wywołane PRZED deklaracja 
+    fox()
+    function bar() {console.log("fox")} //fox
+    function fox() {console.log("bar")} //bar
+}
+
+    testHoisting()
+
 // Deklaracja funkcji przyjmuje dwa parametry, ktore mozemy uzyc tylko wewnatrz funkcji
 // a i b to tzw parametry funkcji
 // wywołanie funkcji z dwoma argumentami

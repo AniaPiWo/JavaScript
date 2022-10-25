@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+</head>
+
+<body>
+
+
+    <script>
+// DEEP COPY 
+
+    let source = {
+        num: 10,
+        str: "text",
+        flag: true,
+        arr: [1,2,3, {data:99}],
+        date: new Date(2030, 10, 20),
+        obj: {
+            a: 9,
+            b: "txt",
+            c: [1,2,3,{data2:"str2"}]
+        }
+    } 
+
+//ZADANIE - wykonaj deep copy obiektu source za pomoca funkcji, zwroc wynik w result
+
+var result = deepCopy(source);
+
+function deepCopy(obj) {
+    var copy;
+
+    if (obj === null || typeof obj !== "object") return obj; //sprawdzamy czy wartosc nie jest obiektem, ten zapis sprawdza wszytskie prymitywy łacznie z null, który typeof daje object!
+
+    if (obj instanceof Date) { 
+        copy = new Date();
+        copy.setTime(obj.getTime());
+        return copy;
+        //sprawdzamy czy wartosc jest data, jesli jest to wrzuci do niej wlasciwa date jako time stamp
+        //i zwroci wartosc nowego obiektu date w reprezentacji tekstowej
+    }
+
+    if (obj instanceof Array) {
+        copy = [];
+    for (let i=0; i<obj.length; i++) {
+            copy[i] = deepCopy(obj[i]);
+        }
+        return copy;
+        //sprawdzamy czy wartosc jest tablica, jesli tak to tworzymy kopie jako tablice i zwracamy do copy
+    }
+
+    if (obj instanceof Object) {
+        copy ={};
+        for(key in obj) {
+            //console.log(key + " " + obj[key])
+            copy[key] = deepCopy(obj[key]);  //rekurencja - ponowne przywolanie funkcji wewnatrz funkcji
+        }
+
+        return copy;
+    }
+}
+
+console.log(result);
+
+    </script>
+</body>
+
+</html>

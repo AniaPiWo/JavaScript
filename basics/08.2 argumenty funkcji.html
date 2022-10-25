@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - funkcje</title>
+</head>
+
+<body>
+    <script>
+// PRZEKAZANIE ARGUMENTOW DO FUNKCJI
+// -> przez wartość
+// ->przez referencje
+
+function foo(num, o, u) {
+    num = 10; // prymitywy przekazywane przez wartosc
+    o.data = 20 //obiekt przekazywany przez referencje, zmieni sie bo zmieniamy wewnetrzne wartosci
+    u = {name: "ania"} //obiekt przekazywany przez referencje, NIE zmieni sie bo nie mozemy zmienic referencji!
+}
+
+//W prtzypadku obiektu mozemy zmieniac ich wewnetrzne wartosci, ale NIE MOZEMY ZMIENIC REFERENCJI
+
+var primitive = 35;
+var obj = {data: "txt"}
+var user = {name: "ola"}
+
+foo(primitive, obj, user);
+console.log("primitive: " + primitive); //35
+console.log("obj.data: " + obj.data); // 20 obiekt zmieniony
+console.log("user.name: " + user.name); //Ania, referencja bez zmian
+
+    </script>
+
+</body>
+
+</html>
