@@ -69,7 +69,13 @@ const worst = students.filter(student => student.score < LOW_SCORE); console.log
     const MIN_RATING = 8;
     const AUTHOR = "Bernard Cornwell";
     // Change code below this line
-
+    
+    //Kod przed zmianą
+    // const topRatedBooks = books;
+    // const booksByAuthor = books;
+    
+    
+    // Kod po zmianie
     const topRatedBooks = books.filter(book => book.rating > 8);
     const booksByAuthor = books.filter(book => book.author === "Bernard Cornwell");
 

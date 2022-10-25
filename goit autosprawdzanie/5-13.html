@@ -17,7 +17,38 @@
     Pod komentarzem dodaliśmy inicjalizację egzemplarza i wywołanie metod w tej kolejności, w której twój kod będzie
     testowany. Prosimy niczego tam nie zmieniać.
     <script>
+        // Kod przed zmianą
+        //  class Storage {
+        //   // Change code below this line
 
+        //   constructor(items) {
+        //     this.items = items;
+        //   }
+
+        //   getItems() {
+        //     return this.items;
+        //   }
+
+        //   addItem(newItem) {
+        //     this.items.push(newItem);
+        //   }
+
+        //   removeItem(itemToRemove) {
+        //     this.items = this.items.filter(item => item !== itemToRemove);
+        //   }
+        // }
+
+        // // Change code above this line
+        // const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
+        // console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
+        // storage.addItem("Droid");
+        // console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
+        // storage.removeItem("Prolonger");
+        // console.log(storage.getItems()); // ["Нанитоиды", "Антигравитатор", "Droid"]
+        
+        
+        
+        // Kod po zmianie
         class Storage {
                 // Change code below this line
                 #items
