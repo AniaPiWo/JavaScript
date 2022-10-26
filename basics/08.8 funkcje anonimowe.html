@@ -12,7 +12,51 @@
 <body>
     <script>
 
+//FUNKCJE ANONIMOWE
+//kiedy tworzymy funkcje zwykle nadajemy jej nazwe
+// dzieki nazwie mozna wywolac funkcje
 
+//funkcja nazwana
+function foo() {};
+
+//funkcja anonimowa przypisana do zmiennej tzw wyrazenie funkcyjne
+var test = function() {};
+
+//typowy przykład uzycia funkcji jako parametr innej funkcji
+//zazwyczaj uzywane, jesli beda uzyte tylko raz
+var result = [1,2,3,4,5].reduce(function(accumulator, currentValue) {
+    return accumulator +currentValue;
+});
+
+console.log(result); //15
+
+
+//Funkcje anonimowe moga byc rowniez zwracane
+function foo2() {
+    return function(value) {
+        return value*2
+    };
+}
+
+//przypisujemy funkcje do zmiennej
+var bar = foo2();
+bar(4)//8
+
+
+//OBIEKT WINDOW A WYRAZENIA FUNKCYJNE
+//deklaracja funkcji zapisywana jest w obiekcie window
+//ALE  wyrazenie funkcyjne przypisane do let i const nie bedzie dostepne
+function barr() {}
+typeof window.bar; //function
+
+var fun = function() { }
+typeof window.fun; //function
+
+let test2 = function () { }
+typeof window.test2; //undefined
+
+const check = function () { }
+typeof window.check; //undefined
     </script>
 
 </body>

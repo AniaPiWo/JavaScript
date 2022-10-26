@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - number</title>
+</head>
+
+<body>
+    <script>
+//refraktor z wyrazenia funkcyjnego na f strzalkowa
+const exprTest = function (a,b) {
+    console.log(a.b);
+}
+const arrowText = (a,b) => console.log(a,b);
+
+//return
+let multiply = (a,b) => {return a*b}; //ok
+let multiply2 = (a, b) => ( a * b ); //ok
+let multiply3 = (a, b) => a * b; //ok
+console.log(multiply3(5,10));
+
+//dzielenie str
+let splitStr = str => str.split(",");
+let result = splitStr("jeden, dwa, trzy")
+console.log(result);
+
+//zwracanei obiektow
+let getObj =(a,b) => {return {
+    data:a,
+    str:b,
+}};
+getObj(10, "ania"); //{data: 10, stra: 'ania'}
+
+    //zwracanei obiektow - druga metoda zapisu
+    let getObj2 = (a, b) => ({
+            data: a,
+            str: b,
+        });
+    getObj2(10, "ania"); //{data: 10, stra: 'ania'}
+
+//jesli brak argumentow to wstawiamy puste nawiasy okragle
+let noArgs = () => 10*10;
+
+
+// strzalki dla tablic
+[10, 32, 56].forEach(function(a,b){console.log(a,b)});
+[10, 32, 56].forEach((a, b) => console.log(a, b));
+
+
+    </script>
+</body>
+
+</html>

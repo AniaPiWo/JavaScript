@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - funkcje</title>
+</head>
+
+<body>
+    <script>
+
+//ECMAsCRIPT2015
+
+// inny sposob zapisania wyrazenia funkcyjnego
+
+// wyrazenie funkcyjne
+
+const exprFoo = function (a, b) {
+    console.log(a,b);
+}
+
+//zapis skrocony dzieki arrow func
+const arrowBar = (a,b) => console.log(a,b);
+
+//przy jednym parametrze oraz jednej instrukcji mozna pominac () i {}
+const bar = a => console.log(a);
+
+//arrow jak zwykla funkcja zwraca undefine
+let test = (a,b) => {return a*b}
+//return mozna pominac wraz z nawiasami
+let multiply = (a,b) => a*b;
+
+
+const splitStr = str => str.split(" ");
+var result = splitStr("jeden dwa trzy") // ["jeden", "dwa", "trzy"]
+
+
+//zwrocenie obiektu
+let makeObj = () => {return {a:5, b:10};};
+let arrowObj = () => ({ a: 5, b: 10 }) //pomijamy return nawiazem ()
+
+//zwracanie wartosci
+[2,4,8].forEach(function(a) {
+    console.log(a);
+});
+
+    [2, 4, 8].forEach(a => console.log(a));
+
+    [2, 4, 8].forEach((accumulator, currentValue) => accumulator + currentValue); //14
+
+const arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,10];
+var dividedBy3 = arr.filter (
+    v => v%3 === 0 //jesli true to bedzie zwracane w tablicy
+)
+console.log(dividedBy3);
+
+//Obiekt arguments nie jest dostepny wewnatrz funkcji strzalkowej
+const arguments = [100, 99];
+const print = a => console.log(arguments[0]); //100
+print(arguments)
+
+//można jednak uzyc parametr rest
+const show = (...params) => console.log(params)
+show(10,20, 30)
+
+const addUp = (...params) => params.reduce((acc, v) => acc + v);
+addUp(10, 20, 30);
+
+//f strzalkowej  NIE MOZNA UZYWAC JAKO KONSTRUKTORA
+function crObj(){}
+const obj1 = new crObj() // działa, nowy obiekt
+
+//let Dur = () => {}
+//const dur =  new Dur(); //Uncaught TypeError: Dur is not a constructor
+    
+// funkcja strzalkowa rozwiazuje pewne problemy z this
+window.data = 99; //wartosc globalna
+function Sar() {  //uzywano that do rozwiazania probleu z this
+    this.data = "test";
+    this.printInfo = function () {
+        let that = this;
+        setTimeout(function() { //this straci kontekst obiektu, bedzie window
+            console.log("this.data: " + this.data); //pokaze 99 z window
+            console.log("that.data: " + that.data); //pokaze test z Sar
+        }, 1000)
+    }
+}
+const sar = new Sar();
+sar.printInfo(); //this.data:99 that.data:test
+//wersja z funkcja strzalkowa
+function Sar2() {
+    this.data = "test";
+    this.printInfo = function() { //this ma kontekst otoczenia
+        setTimeout(() => {
+            console.log("this.data: " + this.data); //pokaze test z Sar2
+        })
+    }
+}
+const sar2 = new Sar2();
+sar2.printInfo(); //this.data:99 that.data:test
+
+
+    </script>
+
+</body>
+
+</html>
