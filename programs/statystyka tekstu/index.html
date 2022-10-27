@@ -1,21 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="keywords" content="HTML, CSS, JavaScript" />
     <meta name="author" content="John Doe" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <title>Statystyki tekstu</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <textarea name="" id=""></textarea>
+    <div>
+      <div>Ilość znaków: <span id="num-characters"></span></div>
+      <div>Ilość słów: <span id="num-words"></span></div>
+      <div>Ilość zdań: <span id="num-sentences"></span></div>
+    </div>
 
-  
     <script>
+      let textArea = document.getElementsByTagName("textarea")[0];
 
+      textArea.addEventListener("input", onChange);
+
+      function onChange(e) {
+        const data = textArea.value;
+
+        const numCharacters = data.length;
+        document.getElementById("num-characters").innerHTML = numCharacters;
+
+        const numWords = data.replace(/[\r\n]/g, " ").split(" ").length;
+        document.getElementById("num-words").innerHTML = numWords;
+
+        const numSentences = data.split(".").length;
+        document.getElementById("num-sentences").innerHTML = numSentences;
+      }
     </script>
-</body>
-
+  </body>
 </html>
