@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Goit</title>
+</head>
+
+<body>
+    
+    <!--Obiektowy model dokumentu (Document Object Model) to niezależny od języka interfejs do pracy z dokumentami HTML. Zawiera
+    zestaw właściwości i metod, które umożliwiają wyszukiwanie, tworzenie i usuwanie elementów, reagowanie na działania
+    użytkownika i wiele więcej. Oznacza to, że łączy stronę z językiem programowania.
+
+    Zgodnie z modelem DOM każdy tag tworzy osobny element (węzeł), każdy fragment tekstu - element tekstowy. Dokument HTML
+    to drzewo hierarchiczne, w którym każdy element (z wyjątkiem korzeniowego) ma tylko jednego rodzica, czyli element, w
+    którym się znajduje. To drzewo składa się z zagnieżdżonej struktury tagów i elementów tekstowych.
+
+    Węzły elementów (element node) są tworzone przez znaczniki, oczywiście niektóre elementy są zagnieżdżane w innych. Tylko
+    one tworzą strukturę drzewiastą.
+
+    Węzły tekstowe (text node) - utworzone przez tekst wewnątrz elementów. Węzeł tekstowy zawiera tylko tekst i nie może
+    mieć dzieci, to znaczy zawsze znajduje się na najniższym poziomie hierarchii. Spacje i podziały wierszy to także węzły
+    tekstowe.
+
+    =>  PORUSZANIE SIE PO DOM
+    elem.parentNode - wybierze rodzica elem.
+    elem.childNodes - pseudotablica, przechowująca wszystkie elementy potomne, w tym tekstowe.
+    elem.children - pseudotablica, przechowuje tylko węzły potomne, czyli odpowiadające znacznikom.
+    elem.firstChild - wybierze pierwszy element potomny wewnątrz elem, w tym węzły tekstowe.
+    elem.firstElementChild - wybierze pierwszy węzeł potomny wewnątrz elem.
+    elem.lastChild - wybierze ostatni element potomny wewnątrz elem, w tym węzły tekstowe.
+    elem.lastElementChild - wybierze ostatni węzeł potomny wewnątrz elem.
+    elem.previousElementSibling - wybierze element "po lewej stronie" od elem (jego poprzedniego sąsiada).
+    elem.nextElementSibling - wybierze węzeł "po prawej stronie" od elem (jego następnego sąsiada).-->
+
+
+    <ul>
+        <li>First item</li>
+        <li>Second item</li>
+        <li>Third item</li>
+        <li>Fourth item</li>
+        <li>Fifth item</li>
+    </ul>
+  <script>
+    console.log(document);
+
+    const body = document.body;
+    console.log(body);
+
+    const list = body.firstElementChild;
+    console.log(list);
+
+    const firstListItem = list.firstElementChild;
+    console.log(firstListItem);
+
+    const listItems = list.children;
+    console.log(listItems);
+    </script>
+
+    <!--
+    =>  WYSZUKANIE ELEMENTOW
+
+    1) element.querySelector(selector);
+        - Stosuje się, gdy trzeba znaleźć tylko jeden, najczęściej unikalny element.
+        - Zwraca pierwszy element znaleziony w element, który pasuje do selektora CSS selector.
+        - Jeśli nic nie zostanie znalezione, zwróci null.
+
+    2) element.querySelectorAll(selector);
+    
+        - Jest używany, gdy konieczne jest znalezienie kolekcji elementów, czyli uzyskanie tablicy odwołań do elementów z tym
+            samym selektorem. Na przykład wszystkie elementy na liście z klasą menu-item.
+        - Zwraca pseudotablicę wszystkich elementów wewnątrz element, które spełniają wymagania selektora CSS selector.
+        - Jeśli nic nie zostanie znalezione, zwróci pustą tablicę.
+
+
+    -->
+    <ul id="menu" class="menu">
+        <li class="menu-item">home</li>
+        <li class="menu-item">about</li>
+        <li class="menu-item">gallery</li>
+        <li>blog</li>
+    </ul>
+    <script>
+        const listWithId = document.querySelector('#menu');
+            listWithId.style.textTransform = 'uppercase';
+            listWithId.style.fontSize = '24px';
+            console.log(listWithId);
+
+            const listWithClass = document.querySelector('.menu');
+            console.log(listWithClass);
+
+            const menuItemsByTagName = document.querySelectorAll("li");
+            console.log(menuItemsByTagName);
+
+            const menuItemsByClass = document.querySelectorAll(".menu-item");
+            console.log(menuItemsByClass);
+
+            const firstMenuItem = document.querySelector(".menu-item");
+            firstMenuItem.style.color = 'tomato';
+            console.log(firstMenuItem);
+    </script>
+
+    <!--
+            WŁAŚCIWOŚCI
+
+        value - zawiera aktualną zawartość tekstową elementów formularza.
+        checked - przechowuje stan pola wyboru lub przycisku radiowego.
+        name - przechowuje wartość określoną w atrybucie HTML name.
+        src - ścieżka do obrazu znacznika <img>.
+
+        -->
+        <textarea id="message" class="materialize-textarea" rows="5">Default textarea message</textarea>
+        <div>
+            <a href="/home" class="btn">home</a>
+            <a href="/about" class="btn active">about</a>
+            <a href="/gallery" class="btn">gallery</a>
+        </div>
+        
+        <br>
+        <img class="image" src="https://placeimg.com/640/480/animals" alt="" width="320" />
+ <script>
+    //===================================================
+        const message = document.querySelector("#message");
+        console.log(message.value); // Default textarea message
+
+        //===================================================
+        const activeLink = document.querySelector(".btn.active");
+        console.log(activeLink.href); // https://s.codepen.io/about
+
+        //===================================================
+        const image = document.querySelector(".image");
+        console.log(image.src); // https://placeimg.com/640/480/animals
+        image.src = 'https://placeimg.com/640/480/tech';
+ </script>
+
+    <!--
+        WŁAŚCIWOŚCI CD
+    
+       Właściwość classList
+        Właściwość classList przechowuje obiekt z metodami pracy z klasami elementu.
+
+        elem.classList.contains(cls) - zwraca true lub false w zależności od tego, czy element ma klasę cls.
+        elem.classList.add(cls) - dodaje klasę cls do listy klas elementów.
+        elem.classList.remove(cls) - usuwa klasę cls z listy klas elementów.
+        elem.classList.toggle(cls) - jeśli nie ma klasy cls to dodaje ją, jeśli jest przeciwnie usuwa ją.
+        elem.classList.replace(oldClass, newClass) - zastępuje istniejącą klasę oldClass określoną newClass.
+            -->
+    <article class="article">
+        <h2 class="article-title">Welcome to Hawaii!</h2>
+        <p class="article-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident quaerat nemo veritatis
+        quasi eius eum aliquid, nobis dolore nisi, magnam eaque iusto, necessitatibus atque laborum quam tempora ducimus
+        dicta ipsam.</p>
+    </article>
+
+    <script>
+    const text = document.querySelector(".article-text");
+    console.log(text.textContent); // text inside p.article-text
+
+    const title = document.querySelector(".article-title");
+    title.textContent = 'Welcome to Bahamas!';
+    </script>
+
+        <!--
+            WŁAŚCIWOŚCI CD
+            
+            elem.textContent zwraca zawartość tekstową wewnątrz elementu. Dostępne do czytania i pisania. Bez względu na to, co zostanie przekazane do textContent, dane będą zawsze zapisywane jako tekst.
+                    -->
+    <p id="paragraph" class="text2 red big">Proin magna. Sed mollis, eros et ultrices tempus, mauris ipsum aliquam libero,
+        non adipiscing dolor urna a orci. Etiam rhoncus. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi.
+    </p>
+        
+        <script>
+          const text2 = document.querySelector("#paragraph");
+
+            console.log(text2.classList); // ["text", "red", "big", value: "text red big"]
+
+            console.log(text2.classList.contains("red")); // true
+
+            text2.classList.remove("big");
+            console.log(text2.classList); // ["text", "red", value: "text red"]
+
+            text2.classList.add("new-class");
+            console.log(text2.classList); // ["text", "red", "new-class", value: "text red new-class"]
+
+            // Can add multiple classes
+            text2.classList.add("a", "b", "c");
+            console.log(text2.classList);
+
+            text2.classList.toggle("is-hidden"); // will add is-hidden class
+            text2.classList.toggle("is-hidden"); // will remove is-hidden class
+
+            // classList has a forEach method
+            text2.classList.forEach(cls => {
+                console.log(cls); // text, red, new-class
+            });
+        </script>
+
+    <!--Właściwość style
+Służy do czytania i zmiany stylów wbudowanych. Zwraca obiekt CSSStyleDeclaration, który zawiera listę wszystkich właściwości określonych tylko w stylach wbudowanych elementu, a nie cały CSS. Przy wpisie właściwości są zapisywane w camelCase, to znaczy background-color staje się element.style.backgroundColor itd.
+
+const button = document.querySelector(".btn");
+
+button.style.backgroundColor = "teal";
+button.style.fontSize = "24px";
+button.style.textAlign = "center";
+
+console.log(button.style); // inline styles object
+
+CIEKAWE
+W praktyce stylizowanie elementów odbywa się poprzez dodawanie klas CSS. Właściwość style służy do dodawania pewnego rodzaju stylów dynamicznych, na przykład podczas animacji.
+    -->
+
+<!--
+Atrybuty
+Elementom DOM odpowiadają tagi HTML, które mają atrybuty tekstowe. Dostęp do atrybutów uzyskuje się przy użyciu standardowych metod. Te metody działają z wartością, która jest w HTML.
+
+elem.hasAttribute(name) - sprawdza obecność atrybutu, zwraca true lub false.
+elem.getAttribute(name) - pobiera wartość atrybutu i zwraca ją.
+elem.setAttribute(name, value) - ustawia atrybut.
+elem.removeAttribute(name) - usuwa atrybut.
+elem.attributes - właściwość, zwraca obiekt wszystkich atrybutów elementu.
+
+-->
+</body>
+
+</html>
