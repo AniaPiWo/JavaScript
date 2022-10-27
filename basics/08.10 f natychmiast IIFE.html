@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - typeof</title>
+  </head>
+
+  <body>
+    <script>
+      // funkcja natychmiastowa
+      // IIFE Immediatly Invoken Function Expression
+      // anonimowa funkcja wywolana natychmiast po jej odczytaniu
+      // IIFE ograniczaja zakres uzytych zmiennych/funkcji do funkcji natychmiastowej
+      //chroni to skrypt przed kolizjami nazw
+
+      (function () {
+        var data = 10;
+        function bar() {}
+      })();
+
+      (function () {
+        var data = 10;
+        function bar() {}
+      })();
+
+      //console.log(data); //VM40:12 Uncaught ReferenceError: data is not defined
+      //console.log(bar); //VM44:1 Uncaught ReferenceError: bar is not defined
+
+      //funkcja natychmiastowa zwracajaca wartosc
+      //tzw modul, pattern
+      var result = (function () {
+        var innerData = "inner value";
+        function innerFunc() {
+          console.log(innerData);
+        }
+
+        return {
+          data: 10,
+          str: "text",
+          ber: innerFunc,
+        };
+      })();
+
+      console.log(result); //{data: 10, str: 'text', ber: ƒ}
+      console.log(result.ber()); //inner value
+    </script>
+  </body>
+</html>

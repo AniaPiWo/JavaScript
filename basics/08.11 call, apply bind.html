@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript - string</title>
+  </head>
+
+  <body>
+    <script>
+      // Call - wywoluje funkcje z podanym this i args
+      // this okresla obiekt jako kontekst gdzie jest uzyty kod
+      //jak nie ma this to odwoluje sie do globalnego elementu
+
+      let obj = {
+        name: "Ola",
+        print: function (surname, city) {
+          console.log(this.name, surname);
+        },
+      };
+      obj.print(); //Ola
+
+      //call pozwala na zmiane kontekstu w jakim wywolywana jest funkcja
+      let user = { name: "Rafał" };
+      obj.print.call(user, "Kot"); //Rafał kot
+
+      //Apply - dziala tak jak call ale przyj,uje tablice do funkcji
+      obj.print.apply(user, ["Kot", "Kraków"]); //Rafał Kot Kraków]
+
+      //bind - wiaze na stale przypisany this
+      var rInfo = obj.print.bind(user, "Musk", "Gdansk");
+      // to polecenie stworzy nowa zmienna dlatego musi byc przypisana do rInfo
+      //nowym this bedzie pierwsza pozycja - czyli user
+    </script>
+  </body>
+</html>
