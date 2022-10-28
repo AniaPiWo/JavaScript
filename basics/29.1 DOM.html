@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JD DOM</title>
+  </head>
+
+  <body>
+<!--
+      //DOM Document Object Model
+
+      //Ozdwierciedla strukture dokumentu html zawierajacych metody i wlasciwosci
+
+      //przegladarka ładujac strone tworzy jej reprezentacje w pamieci w formie drzewa node tree
+
+      // kazdy element HTML staje sie wezlem node w drzewie dokumentu
+
+      //Relacje nodes:
+      // parent - rodzic, moze byc tylko jeden
+      // child - dziecko rodzica, rodzic moze miec dowolna ilosc dzieci
+      // sibiling - rodzenstwo lub sasiad, maja tego samego rodzica
+      // leaf - wezeł bez dzieci
+-->
+
+<html>
+  <head>
+    <title>
+      My title
+    </title>
+  </head>
+  <body>
+    <h1>A heading</h1>
+    <a href="">Link text</a>
+    <div></div>
+  </body>
+</html>
+
+Root - html,
+
+Parents - html (dla head i body), head (dla title), bodt (dla h1, a i div)
+
+Children - head i body (dzieci html), title (dziecko head), h1, a i div (dzieci body)
+
+Sibilings: h1, a i div,
+
+Leaf - text nodes( Link text i A heading), div
+
+
+Elementy mają następujące właściwości umożliwiające poruszanie się po tej hierarchii.
+
+elem.parentNode - wybierze rodzica elem.
+elem.childNodes - pseudotablica, przechowująca wszystkie elementy potomne, w tym tekstowe.
+elem.children - pseudotablica, przechowuje tylko węzły potomne, czyli odpowiadające znacznikom.
+elem.firstChild - wybierze pierwszy element potomny wewnątrz elem, w tym węzły tekstowe.
+elem.firstElementChild - wybierze pierwszy węzeł potomny wewnątrz elem.
+elem.lastChild - wybierze ostatni element potomny wewnątrz elem, w tym węzły tekstowe.
+elem.lastElementChild - wybierze ostatni węzeł potomny wewnątrz elem.
+elem.previousElementSibling - wybierze element "po lewej stronie" od elem (jego poprzedniego sąsiada).
+elem.nextElementSibling - wybierze węzeł "po prawej stronie" od elem (jego następnego sąsiada).
+<script>
+
+//odwoływanie sie do elementu
+  document.getElementsByTagName("body")[0].parentNode //body
+//LUB  
+document.getElementsByTagName("body").item(0).parentNode //html
+
+//zmiana style 
+document.getElementsByTagName("div")[0].parentNode.style.border ="1px solid grey"
+// pobierz rodzica elementu div i zrob mu border
+
+//firstChild
+document.getElementsByTagName("body")[0].firstChild //text
+document.getElementsByTagName("body")[0].firstChild.nodeType // 3
+//(1 - element, 3 text w el lub atr)
+//firstChild moze wskazywac na znak nowej linii w pliku miedzy body a h1
+//lepiej jest wiec uzyc firstElementChild - ktory wskaze pierwszy element HTML ignorujac tekst i komentarze
+document.getElementsByTagName("body")[0].firstElementChild //title
+document.getElementsByTagName("body")[0].firstElementChild 
+document.getElementsByTagName("body")[0].firstElementChild.style //CSSStyleDeclaration {accentColor: '', additiveSymbols: '', alignContent: '', alignItems: '', alignSelf: ''
+
+document.getElementsByTagName("body")[0].nextSibling
+document.getElementsByTagName("div")[0].previousElementSibling.style.color = "blue";
+document.getElementsByTagName("body")[0].parentNode.style.background = "pink"
+
+/*nodeType
+An integer which specifies the type of the node.Possible values are:
+
+Node.ELEMENT_NODE(1) An Element node like < p > or < div >.
+Node.ATTRIBUTE_NODE(2)An Attribute of an Element.
+Node.TEXT_NODE(3)The actual Text inside an Element or Attr.
+Node.CDATA_SECTION_NODE(4)A CDATASection, such as <!CDATA[[ …]] >
+Node.PROCESSING_INSTRUCTION_NODE(7)A ProcessingInstruction of an XML document, such as <?xml- stylesheet … ?>.
+Node.COMMENT_NODE(8)A Comment node, such as <!-- … -->.
+Node.DOCUMENT_NODE(9)A Document node.
+Node.DOCUMENT_TYPE_NODE(10)A DocumentType node, such as <!DOCTYPE html >.
+Node.DOCUMENT_FRAGMENT_NODE(11)A DocumentFragment node.
+The following constants have been deprecated and are not in use anymore: Node.ENTITY_REFERENCE_NODE(5), Node.ENTITY_NODE(6), and Node.NOTATION_NODE(12).
+*/
+
+document.getElementsByTagName("body")[0].childNodes //NodeList(18) [text, comment, text, title, text, h1, text, a, text, div, text, comment, text, script, text, script, text, comment]
+document.getElementsByTagName("body")[0].children  //tylko el html => HTMLCollection(6) [title, h1, a, div, script, script]
+</script>
+  </body>
+</html>

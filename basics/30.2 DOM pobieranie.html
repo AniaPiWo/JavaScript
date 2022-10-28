@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JD DOM</title>
+</head>
+
+<body>
+<html>
+    <head>
+        <title id="title">My title</title>
+    </head>
+    <body>
+        <h1>A heading</h1>
+        <a href="someLink">link</a>
+        <p class="msg">paragraph 1</p>
+        <p class="msg">paragraph 2</p>
+        <ul>
+            <li>element 1</li>
+            <li>element 2</li>
+        </ul>
+        <ul>
+            <li>element 3</li>
+            <li>element 4</li>
+        </ul>
+        <form action="" id="registration">
+            <input type="text" name="email">
+            <input type="tel" name="phone" class="error">
+            <input type="date" name="dob">
+            <input type="text" name="country" class="error">
+        </form>
+    </body>
+    </html>
+
+<script>
+//getElementsById - # - jeden konkretny element
+document.getElementById("title") //  <title id="title">My title</title>
+
+//getElementsByTagName - kolekcja po tagu
+document.getElementsByTagName("p") //HTMLCollection(2) [p.msg, p.msg] (pseudotablica)
+//odwolujemy sie do elementu p drugiego po indexie
+document.getElementsByTagName("p")[1].style.background="pink";
+
+//querySelectorAll() - zwaraca WSZYSTKIE elementy po selektorze css
+let elements = document.querySelectorAll("li:last-child");
+//zwrocona kolekcja z wlasciwoscia length i funkcja dostepu po indexie item()
+console.log(elements)
+
+//mozna iterowac po petli for..of
+for (let el of elements) {
+    el.style.background = "orange" //kazdy ostatni element listy bedzie mial pomaranczowe tlo
+}
+
+//querySelector - zwraca tylko pierwszy pasujacy element
+let element = document.querySelector("li:first-child").style.background ="lime"
+console.log(element)
+
+//getElementsByName - zwaraca po name
+const emails = document.getElementsByName("email");
+console.log(emails);
+emails[0].style.border="1px dotted blue" //gdy chcemy zmienic 1 element to wpisujemy jego index
+//lub tak => document.getElementsByName("email")[0].style.border="1px dotted blue" 
+
+//getElementsByClassName - zwraca elementy po nazwie klasy
+const errors = document.getElementsByClassName("error"); 
+console.log(errors);
+//gdy chcemy zmienic wiele elementow to robimy to w petli
+for (let el of errors) {
+    el.style.background = "lightblue"
+}
+
+
+//element.matches()
+let element3 = document.querySelector('ul > li:last-child') 
+element3.style.background = "orange"
+element3.matches('ul > li:last-child'); //true
+
+
+//ŁĄCZENIE FUNKCJI W CELU WYSZUKANIA ELEMENTU - łańcuch funkcji
+let reg = document.getElementById("registration").getElementsByTagName("input")[2].style.background="violet";
+console.log(reg)
+
+</script>
+</body>
+
+</html>

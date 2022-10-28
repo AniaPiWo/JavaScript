@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JD DOM</title>
+</head>
+
+<body>
+    <html>
+
+    <head>
+        <title id="title">My title</title>
+    </head>
+
+    <body>
+        <h1>A heading</h1>
+        <a href="someLink">link</a>
+        <p class="msg">paragraph 1</p>
+        <p class="msg">paragraph 2</p>
+        <ul>
+            <li>element 1</li>
+            <li>element 2</li>
+        </ul>
+        <ul>
+            <li>element 3</li>
+            <li>element 4</li>
+        </ul>
+        <form action="" id="registration">
+            <input type="text" name="email">
+            <input type="tel" name="phone" class="error">
+            <input type="date" name="dob">
+            <input type="text" name="country" class="error">
+        </form>
+    </body>
+
+    </html>
+
+    <script>
+//The HTMLFormElement interface represents a < form > element in the DOM.It allows access to—and, in some cases, modification of—aspects of the form, as well as access to its component elements.
+
+// EventTarget <- Node <- Element <- HTMLElement <- HTMLFormElement
+
+let el = document.getElementById("registration");
+el.action //'http://127.0.0.1:5501/basics/30.3%20DOM%20interfejsy,%20iteracje%20el.html' (adres gdzie bedzie wyslany)
+el.reset //resetuje formularz
+el.childNodes//NodeList(9) [text, input, text, input.error, text, input, text, input.error, text]
+ 
+//ITERACJA HTMLCollection 
+//HTMLCollections nie jest tablica (jest pseudotablica) - nie udostepnia funkcji forEach
+//zeby po niej iterowac trzeba ja przerobic na prawdziwa tablice i wtedy forEach
+
+const inputs = document.getElementsByTagName("input");
+// HTMLCollection(4)[input, input.error, input, input.error, email: input, phone: input.error, dob: input, country: input.error]
+
+Array.from(inputs).forEach(element => {
+    console.log(element.name)
+});
+
+//ITERACJA elementow NodeList
+//NodeList nie jest tablica (jest pseudotablica) - ale udostepnia funkcje forEach
+const inputs2 = document.querySelectorAll("input"); //NodeList(4)[input, input.error, input, input.error]
+
+inputs2.forEach(element => {
+    console.log(element.name)
+});
+
+
+ </script>
+</body>
+
+</html>
