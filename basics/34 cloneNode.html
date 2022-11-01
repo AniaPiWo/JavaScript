@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+</head>
+<body>
+    <ul id="list">
+        <li>el 1</li>
+        <li>el 2</li>
+    </ul>
+</body>
+</html>
+
+<script>
+var el = document.getElementById("list").cloneNode(true);
+ // wskazujemy element do kopiowania, true kopiuje rownież dzieci
+ document.getElementsByTagName("body")[0].appendChild(el);
+ // wskazujemy, ze chcemy wstawic klon na poczatku body, nastepnie dajemy wstac i w nawiasie wskazujemy element do wstawienia
+</script>
+</body>
+
+</html>
