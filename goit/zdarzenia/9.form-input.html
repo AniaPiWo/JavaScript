@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+  body {
+  margin: 16px;
+  line-height: 1.5;
+  font-family: sans-serif;
+  letter-spacing: 0.5px;
+}
+
+p {
+  overflow-wrap: anywhere;
+}
+
+input {
+  width: 100%;
+  max-width: 320px;
+  padding: 8px;
+  font: inherit;
+  letter-spacing: inherit;
+}
+    </style>
+
+    <head>
+        <title id="title">My title</title>
+    </head>
+
+<body>
+<h2>Zdarzenie input</h2>
+<p>Występuje tylko w polach tekstowych i textarea i jest generowane za każdym razem, gdy zmienia się wartość elementu, bez
+czekania na utratę fokusu.<br> W praktyce input jest najważniejszym zdarzeniem przy pracy z polami tekstowymi formularza.</p>
+<br>
+<br>
+<input type="text" class="text-input" />
+<p>Text field value: <span class="output"></span></p>
+
+
+        <script>
+    const textInput = document.querySelector(".text-input");
+    const output = document.querySelector(".output");
+
+    textInput.addEventListener("input", (event) => {
+        output.textContent = event.currentTarget.value;
+    });
+        </script>
+
+</body>
+
+</html>

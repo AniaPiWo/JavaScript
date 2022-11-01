@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <title id="title">My title</title>
+    </head>
+
+<body>
+Domyślne działania przeglądarki
+Niektóre zdarzenia uruchamiają domyślne event handlery przeglądarki w odpowiedzi na określony typ zdarzenia. Na przykład
+kliknięcie w link inicjuje przejście na nowy adres podany w href, a wysłanie formularza powoduje ponowne załadowanie
+strony. W większości przypadków to zachowanie jest niepożądane i należy je odwrócić.
+
+Aby skasować domyślne działanie przeglądarki na obiekcie zdarzenia, istnieje standardowa metoda preventDefault().
+
+<form class="register-form" autocomplete="off">
+    <input type="text" name="username" placeholder="Username" />
+    <input type="password" name="password" placeholder="Password" />
+    <button type="submit">Register</button>
+</form>
+    <script>
+
+    const form = document.querySelector(".register-form");
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const {
+            elements: { username, password }
+        } = event.currentTarget;
+        console.log(username.value, password.value);
+    });
+
+    </script>
+
+</body>
+
+</html>

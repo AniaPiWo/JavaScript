@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <title id="title">My title</title>
+    </head>
+
+    <body>
+Metoda addEventListener()
+Dodaje detektor zdarzeń do elementu.
+
+element.addEventListener(event, handler, options);
+
+event - nazwa zdarzenia, ciąg, np. "click".
+handler - funkcja wywołania zwrotnego, która zostanie wywołana po wystąpieniu zdarzenia.
+options - opcjonalny obiekt opcji zaawansowanych.
+const button = document.querySelector(".my-button");
+
+button.addEventListener("click", () => {
+console.log("Button was clicked");
+});
+
+W przypadku wywołania zwrotnego możesz (i najlepiej tak zrobić) użyć oddzielnej funkcji i przekazać do niej link. Osobno
+zdefiniowana funkcja poprawia czytelność kodu.
+
+const button = document.querySelector(".my-button");
+
+const handleClick = () => {
+console.log("Button was clicked");
+};
+
+button.addEventListener("click", handleClick);
+
+Jeden element może mieć dowolną liczbę programów obsługi zdarzeń, nawet zdarzeń tego samego typu. Funkcje wywołania
+zwrotnego będą wywoływane w kolejności ich zarejestrowania w kodzie.
+
+<button id="single" class="btn">SINGLE CALLBACK</button>
+<hr>
+<button id="multiple" class="btn">MULTIPLE CALLBACKS</button>
+    </body>
+
+    </html>
+
+    <script>
+
+    const singleBtn = document.querySelector("#single");
+
+    const handleClick = () => {
+        console.log("click event listener callback");
+    };
+
+    singleBtn.addEventListener("click", handleClick);
+
+    // ===============================================
+    const multiBtn = document.querySelector("#multiple");
+
+    const firstCallback = () => {
+        console.log("First callback!");
+    };
+    const secondCallback = () => {
+        console.log("Second callback!");
+    };
+    const thirdCallback = () => {
+        console.log("Third callback!");
+    };
+
+    multiBtn.addEventListener("click", firstCallback);
+    multiBtn.addEventListener("click", secondCallback);
+    multiBtn.addEventListener("click", thirdCallback);
+
+    </script>
+
+</body>
+
+</html>

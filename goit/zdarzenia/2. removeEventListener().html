@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <title id="title">My title</title>
+    </head>
+
+<body>
+Metoda removeEventListener()
+Usuwa detektor zdarzeń z elementu. Argumenty są takie same jak w metodzie addEventListener().
+
+element.removeEventListener(event, handler, options);
+
+Aby usunąć event handler, musisz przekazać link dokładnie do tej funkcji zwrotnej, która została przypisana w
+addEventListener(). W tym przypadku do wywołań zwrotnych wykorzystywana jest osobna funkcja przekazywana przez nazwę
+(link).
+
+<button class="btn" data-action="add">Add Listener</button>
+<button class="btn" data-action="remove">Remove Listener</button>
+<hr>
+<button id="btn" class="btn">Click me</button>
+</body>
+
+</html>
+
+<script>
+
+    const addListenerBtn = document.querySelector('[data-action="add"]');
+    const removeListenerBtn = document.querySelector('[data-action="remove"]');
+    const btn = document.querySelector("#btn");
+
+    const handleClick = () => {
+        console.log("click event listener callback");
+    };
+
+    addListenerBtn.addEventListener("click", () => {
+        btn.addEventListener("click", handleClick);
+        console.log("click event listener was added to btn");
+    });
+
+    removeListenerBtn.addEventListener("click", () => {
+        btn.removeEventListener("click", handleClick);
+        console.log("click event listener was removed from btn");
+    });
+
+</script>
+
+</body>
+
+</html>

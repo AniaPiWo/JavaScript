@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <title id="title">My title</title>
+    </head>
+
+<body>
+Obiekt zdarzenia
+Aby prawidłowo obsłużyć zdarzenie, czasami nie wystarczy wiedzieć tylko to, że jest to kliknięcie lub naciśnięcie
+klawisza, mogą być potrzebne szczegóły. Na przykład bieżąca wartość pola tekstowego, element, w którym wystąpiło
+zdarzenie, wbudowane metody i nie tylko.
+
+Każde zdarzenie to obiekt, który zawiera informacje o szczegółach zdarzenia i jest automatycznie przekazywany jako
+pierwszy argument do procedury obsługi zdarzeń. Wszystkie zdarzenia pochodzą od klasy bazowej Event.
+
+const handleClick = event => {
+console.log(event);
+};
+
+button.addEventListener("click", handleClick);
+
+Parametr event to obiekt zdarzenia, który jest automatycznie przekazywany jako pierwszy argument podczas wywoływania
+funkcji zwrotnej. Możemy go nazwać jak chcemy, ale według konwencji jest deklarowany jako e, evt lub event.
+
+Niektóre właściwości obiektu zdarzenia:
+
+event.type - typ zdarzenia.
+event.currentTarget - element, na którym wykonywana jest procedura obsługi zdarzenia
+
+<button type="button" class="btn">Click me</button>
+
+<script>
+    const button = document.querySelector(".btn");
+
+    const handleClick = (event) => {
+        console.log("event: ", event);
+        console.log("event type: ", event.type);
+        console.log("currentTarget: ", event.currentTarget);
+    };
+
+    button.addEventListener("click", handleClick);
+
+
+</script>
+
+</body>
+
+</html>

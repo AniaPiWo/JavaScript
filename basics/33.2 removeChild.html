@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+</head>
+
+<body>
+    <div id="container">
+        <p id="paragraph">some content</p>
+    </div>
+    <ul>
+        <li>el 1</li>
+        <li>el 2</li>
+    </ul>
+</body>
+
+</html>
+
+<script>
+let elToRemove = document.getElementById("paragraph"); //oznaczamy el do usuniecia
+let div = document.getElementById("container");//oznaczamy z ktorego diva bedziemy usuwac element (czyli parenta tego elementu)
+
+let removedElement = div.removeChild(elToRemove);//usuwamy element z nawiasu wskazujac, ze to dziecko parenta oznaczonego jako div
+
+</script>
+</body>
+
+</html>

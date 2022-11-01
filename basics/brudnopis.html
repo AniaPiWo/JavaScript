@@ -9,6 +9,8 @@
   </head>
 
   <body>
+
+    <button type="button" class="btn">Click me</button>
     <script>
       const historyService = {
         orders: [
@@ -141,6 +143,17 @@
     console.log(Car.checkPrice(audi.price)); // "Success! Price is within acceptable limits"
     console.log(Car.checkPrice(bmw.price)); // "Error! Price exceeds the maximum"
 
+
+    //zdarzenia
+    const button = document.querySelector(".btn");
+
+      const handleClick = (event) => {
+        console.log("event: ", event);
+        console.log("event type: ", event.type);
+        console.log("currentTarget: ", event.currentTarget);
+      };
+
+      button.addEventListener("click", handleClick);
     </script>
   </body>
 </html>

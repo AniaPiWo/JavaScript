@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <title id="title">My title</title>
+    </head>
+
+<body>
+<h1>Zdarzenia związane z klawiaturą</h1>
+Istnieją dwa główne zdarzenia klawiatury: keydown i keyup. W przeciwieństwie do innych, zdarzenia klawiatury są
+przetwarzane w dokumencie, a nie w określonym elemencie. Obiekty zdarzeń klawiatury pochodzą z klasy bazowej
+KeyboardEvent.
+
+document.addEventListener("keydown", event => {
+console.log("Keydown: ", event);
+});
+
+document.addEventListener("keyup", event => {
+console.log("Keyup: ", event);
+});
+
+Po naciśnięciu klawisza najpierw wydarza się keydown, a po puszczeniu - keyup. W praktyce, na ogół obsługiwane jest
+tylko zdarzenie keydown, ponieważ jest ono bardziej responsywne na akcję użytkownika niż keyup, czyli użytkownik widzi
+wcześniej wynik naciśnięcia. Zdarzenia keydown i keyup są uruchamiane po naciśnięciu dowolnego klawisza, w tym klawiszy
+Ctrl, Shift, Alt, Escape i inne.
+
+<h2>Właściwości key i code</h2>
+Właściwość key zwraca znak wygenerowany przez naciśnięcie klawisza, biorąc pod uwagę stan klawiszy modyfikujących,
+takich jak Shift, a także bieżący język. Właściwość code zwraca kod fizycznego klawisza na klawiaturze i nie zmienia się
+między językami.
+
+document.addEventListener("keydown", event => {
+console.log("key: ", event.key);
+console.log("code: ", event.code);
+});
+
+Ustaw fokus na okno przykładu, klikając je myszą, śledzenie zdarzeń klawiatury będzie na elemencie document. Wpisz coś
+na klawiaturze i zobacz wynik.
+<br>
+<br>
+<button type="button" data-action="clear">Clear output</button>
+<div class="log-list"></div>
+
+    <script>
+    const clearLogBtn = document.querySelector('[data-action="clear"]');
+    const logList = document.querySelector(".log-list");
+    let keypressCounter = 1;
+
+    document.addEventListener("keydown", logMessage);
+    document.addEventListener("keyup", logMessage);
+    clearLogBtn.addEventListener("click", reset);
+
+    function logMessage({ type, key, code }) {
+        const markup = `<div class="log-item">
+    <span class="chip">${keypressCounter}</span>
+    <ul>
+      <li><b>Event</b>: ${type}</li>
+      <li><b>Key</b>: ${key}</li>
+      <li><b>Code</b>: ${code}</li>
+    </ul>
+  </div>`;
+
+        logList.insertAdjacentHTML("afterbegin", markup);
+
+        if (type === "keyup") {
+            incrementKeypressCounter();
+        }
+    }
+
+    function reset() {
+        keypressCounter = 1;
+        logList.innerHTML = "";
+    }
+
+    function incrementKeypressCounter() {
+        keypressCounter += 1;
+    }
+    </script>
+<h2>Klawisze modyfikujące</h2>
+Aby obsłużyć kombinację klawiszy, na przykład Ctrl + s lub dowolną inną, obiekt zdarzenia ma właściwości ctrlKey,
+altKey, shiftkey i metaKey, które przechowują wartość logiczną wskazującą, czy klucz modyfikujący został naciśnięty, czy
+nie.
+
+document.addEventListener("keydown", event => {
+event.preventDefault();
+
+if ((event.ctrlKey || event.metaKey) && event.code === "KeyS") {
+console.log("«Ctrl + s» or «Command + s» combo");
+}
+});
+
+Niektóre skróty klawiaturowe mogą powodować konflikty z domyślnym zachowaniem przeglądarki. Na przykład Ctrl + d albo
+Command + d tworzy zakładkę. Należy starać się zaprojektować skróty klawiszowe tak, aby nie pokrywały się z wbudowanymi
+w przeglądarkę. Jednak w wyjątkowych okolicznościach domyślne zachowanie można anulować, wywołując metodę
+event.preventDefault().
+</body>
+
+</html>

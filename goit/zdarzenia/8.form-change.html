@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+body {
+  margin: 16px;
+}
+
+select {
+  padding: 4px;
+}
+    </style>
+
+    <head>
+        <title id="title">My title</title>
+    </head>
+
+<body>
+<h2>Zdarzenie change</h2>
+<p>Występuje po zmianie elementu formularza. W przypadku pól tekstowych lub textarea zdarzenie wystąpi nie za każdym razem,
+gdy zostanie wprowadzony znak, ale w przypadku utraty fokusu, co nie zawsze jest wygodne. <br>Na przykład, gdy wpisujesz coś
+w polu tekstowym - nie ma zdarzenia, ale jak tylko fokus zniknie, nastąpi zdarzenie change.<br> W przypadku innych
+elementów, na przykład select, pól wyboru i przycisków radiowych, zdarzenie change jest wyzwalane natychmiast po
+wybraniu wartości.</p>
+<br>
+Zwróć uwagę na przydatne właściwości podczas pracy z elementem `select` w przykładzie. Dowiedz się, co jest
+    przechowywane we właściwościach value, selectedIndex i options.
+<br>
+<br>
+<p>
+    Selected option text: <span class="text-output">none</span>
+<p>
+<p>
+    Selected option value: <span class="value-output">none</span>
+<p>
+
+    <select class="pizza-select">
+        <option value="four_meats">Four Meats</option>
+        <option value="royal_cheese">Royal Cheese</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="smoked_salmon">Smoked Salmon</option>
+    </select>
+
+    <script>
+    const select = document.querySelector(".pizza-select");
+    const textOutput = document.querySelector(".text-output");
+    const valueOutput = document.querySelector(".value-output");
+
+    setOutput();
+
+    select.addEventListener("change", setOutput);
+
+    function setOutput() {
+        const selectedOptionValue = select.value;
+        const selectedOptionIndex = select.selectedIndex;
+        const selectedOptionText = select.options[selectedOptionIndex].text;
+
+        textOutput.textContent = selectedOptionText;
+        valueOutput.textContent = selectedOptionValue;
+    }
+    </script>
+
+</body>
+
+</html>

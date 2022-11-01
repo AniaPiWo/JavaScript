@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+</head>
+
+<body>
+    <div id="container">
+        some content
+    </div>
+</body>
+
+</html>
+
+<script>
+    // Dodawanie elementow za pomoca appendChild() i createElement
+    let el = document.createElement("span");// tworzymy element 
+    el.innerHTML = "<span>jakiś tekst</span>"; // przekazujemy tresc do wpisania do html
+
+    document.getElementById("container").appendChild(el);
+    //dodajemy element dzieki appendChild do innego elementu za ostatnim dzieckiem
+
+   /*      <div id="container">
+                some content
+            </div>
+            <span>
+                <span>jakiś tekst</span>
+            </span>
+        </div> */
+
+// przykłąd nr 2 - dodajemy div i jego zawartosc
+let container = document.getElementById("container"); // oznaczamy interesujacy nas div
+
+container.appendChild(document.createElement("div")); //tworzymy i wstawiamy w nim nowy div za ostatnim dzieckiem
+
+container.lastChild.id = "newDiv"; // teraz nasz nowy div jest ostatnim dzieckiem, przypisujemu my id
+document.getElementById("newDiv").appendChild(document.createTextNode("content for NEW div")); // tworzymy i wstawiamy tresc do div po jego id
+
+/* 
+     <div id="container">
+                some content
+            </div>
+            <span>
+                <span>jakiś tekst</span>
+            </span>
+
+            <div id="newDiv">content for NEW div</div>
+        </div > 
+     */
+
+// container.childNodes ->sprawdzamy dzieci container
+// NodeList(3)[text, span, div#newDiv]
+</script>
+</body>
+
+</html>

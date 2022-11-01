@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+  body {
+  margin: 16px;
+  line-height: 1.5;
+  font-family: sans-serif;
+  letter-spacing: 0.5px;
+}
+
+input {
+  width: 100%;
+  max-width: 320px;
+  padding: 8px;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+button {
+  display: inline-flex;
+  padding: 4px;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+    </style>
+
+    <head>
+        <title id="title">My title</title>
+    </head>
+
+<body>
+<h2>Zdarzenie focus i blur</h2>
+<p>Element otrzymuje fokus po kliknięciu myszą lub klawiszem Tab. Moment fokusu i utraty fokusu jest bardzo ważny, ponieważ
+przy fokusie możemy załadować dane do autouzupełniania, rozpocząć śledzenie zmian itp. W przypadku utraty fokusu sprawdź
+wprowadzone dane.
+
+Gdy element posiada fokus, pojawia się zdarzenie focus, a gdy fokus znika, na przykład użytkownik kliknie w innym
+miejscu ekranu, następuje zdarzenie blur. Możesz aktywować lub anulować fokus programowo, wywołując w kodzie metody o
+tej samej nazwie focus() i blur() w elemencie.</p>
+<br>
+<br>
+<button type="button" data-action="set">Set focus to input</button>
+<button type="button" data-action="remove">Remove focus from input</button>
+<br><br>
+<input type="text" class="text-input" />
+    <script>
+    const textInput = document.querySelector(".text-input");
+    const setFocusBtn = document.querySelector('[data-action="set"]');
+    const removeFocusBtn = document.querySelector('[data-action="remove"]');
+
+    setFocusBtn.addEventListener("click", () => {
+        textInput.focus();
+    });
+
+    removeFocusBtn.addEventListener("click", () => {
+        textInput.blur();
+    });
+
+    textInput.addEventListener("focus", () => {
+        textInput.value = "This input has focus";
+    });
+
+    textInput.addEventListener("blur", () => {
+        textInput.value = "";
+    });
+    </script>
+
+</body>
+
+</html>

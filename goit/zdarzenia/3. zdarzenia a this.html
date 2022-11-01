@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <title id="title">My title</title>
+    </head>
+
+<body>
+Słowo kluczowe this
+Jeśli wywołanie zwrotne to funkcja, która używa this, domyślnie kontekst wewnątrz niej będzie odnosić się do elementu
+DOM, na którym "wisi" detektor zdarzeń.
+
+const mango = {
+username: "Mango",
+showUsername() {
+console.log(this);
+console.log(`My username is: ${this.username}`);
+},
+};
+
+const btn = document.querySelector(".js-btn");
+
+// ✅ Działa
+mango.showUsername();
+
+// ❌ this będzie się odnosić do button jeśli używać showUsername jako callback
+btn.addEventListener("click", mango.showUsername); // nie działa
+
+// ✅ Nie zapomnij dołączyć kontekstu metod obiektowych
+btn.addEventListener("click", mango.showUsername.bind(mango));
+</body>
+
+</html>
+
+<script>
+
+
+
+</script>
+
+</body>
+
+</html>
