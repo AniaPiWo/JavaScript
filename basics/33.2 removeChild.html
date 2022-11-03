@@ -23,9 +23,9 @@
 
 <script>
 let elToRemove = document.getElementById("paragraph"); //oznaczamy el do usuniecia
-let div = document.getElementById("container");//oznaczamy z ktorego diva bedziemy usuwac element (czyli parenta tego elementu)
+let divWithElToRemove = document.getElementById("container");//oznaczamy z ktorego diva bedziemy usuwac element (czyli parenta tego elementu)
 
-let removedElement = div.removeChild(elToRemove);//usuwamy element z nawiasu wskazujac, ze to dziecko parenta oznaczonego jako div
+let removedElement = divWithElToRemove.removeChild(elToRemove);//usuwamy element z nawiasu wskazujac, ze to dziecko parenta oznaczonego jako div
 
 </script>
 </body>

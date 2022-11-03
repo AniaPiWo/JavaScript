@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+</head>
+
+
+<body id="body">
+Rozne zdarzenia niosa czesto rozne informacje przekazywane w obiekcie event, ktory jest dodawany jako argument dla podanej funkcji obslugujacej zdarzenie.
+Czasem fakt wystapienia zdarzenia to za malo, np oprocz zdarzenia klikniecia klawisza chcemy tez wiedziec jaki klawisz zostal uzyty.
+    <script>
+
+window.addEventListener("load", function(event) {
+    let bodyEl = document.getElementById("body")
+
+    onKeyDownHandler = (event) => {
+        console.log(event); //KeyboardEvent
+        console.log(event.key); // k
+        console.log(event.keyCode); //unicode  code 75
+        console.log(event.target); // klikniety element: body
+    }
+
+    //dodajemy listener klawiszy na body
+    bodyEl.addEventListener("keydown", onKeyDownHandler)
+})
+
+    </script>
+</body>
+
+
+
+</html>

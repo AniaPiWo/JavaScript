@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+    <style>
+        body * {
+            margin: 12px;
+        }
+    </style>
+</head>
+preventDefault() - Przerwanie domyslnej obslugi zdarzenia
+
+<body>
+checkbox, ktorego nie mozna zaznaczyc
+<input type="checkbox" onclick="event.preventDefault();">
+
+    <script>
+//menu kontekstowe, ktorego nie mozna wlaczyc prawym przyciskiem myszy
+document.addEventListener("contextmenu", event => event.preventDefault())
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+</head>
+
+<body>
+    <h4>Heading</h4>
+    <a href="">Link text</a>
+    <div id="div1" start="test1">
+        content
+    </div>
+
+</body>
+
+</html>
+
+<script>
+document.getElementById("div1").getAttribute("start");//pokaz atrybut(atrybut)
+   //test1
+document.getElementById("div1").setAttribute("start", "new value");//zmiana wartosci atrybutu
+
+document.getElementById("div1").getAttribute("start");//pokaz atrybut(atrybut)
+   //new value
+
+document.getElementById("div1").removeAttribute("start");//usuwamy atrybut
+
+document.getElementById("div1").getAttribute("start");//pokaz atrybut(atrybut)
+ //null
+   
+</script>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+</head>
+
+
+<body id="body">
+Funkcja removeEventListener pozwala na usuniecie listenera dodanego dzieki addEventListener
+szczegolnie przydatna, gdy chcemyusunac event handler po otrzymaniu zdarzenia.
+Wywolujemy ja z takimi samymi argumentami jak addEventListener.
+
+<script>
+    window.addEventListener("load", function(event) {
+        let bodyEl = document.getElementById("body");
+
+        onKeyDownHandler = (event) => bodyEl.removeEventListener(onKeyDownHandler);
+        // klawisze juz nie beda obslugiwane na body, bo event listener jest usuniety
+
+        //dodajemy listener do klawiszy na body
+        bodyEl.addEventListener("keydown", onKeyDownHandler)
+    })
+
+</script>
+</body>
+
+
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+</head>
+
+<body>
+ 1. Bezpośrednie podpiecie funkcji pod odpowiednia wlasciwosc elementu html w drzewie DOM
+
+<div id="divBox">div element</div>
+
+ <script>
+window.onload = function(event) {
+    console.log("DOM, css, obrazki zaladowane");
+    addEventsToElements();
+};
+
+addEventsToElements = () => {
+    document.getElementById("divBox").onclick = function() {
+        console.log("div klikniety"); 
+    }
+    document.onkeydown = function(event) {
+        console.log(event.key) // w konsoli wyswietli wcisniety klawisz
+    
+    }
+};
+</script>
+
+2. Obsługa zdarzen poprzez atrybuty w html - w elementach html mozna wpisac konkretny kod JS jaki ma sie wykonac gdy wystapi zdarzenie
+UWAGA - userCapture domyslnie ma ustawione false, ale jesli ustawimy go na true to wlacza on "event capturing" i gwarantuje, że listener bedzie wywolany PRZED reszta elementow ponizej niego na drzewie DOM
+<div id="body">
+    <div onclick="console.log('div klikniety');">some content</div>
+    <input onkeydown="console.log(event.key);">
+    <p onmousemove="someFunction(event)">paragraf</p>
+</div>
+<script>
+    someFunction = (event) => console.log("mouse move in paragrapf");
+</script>
+
+3. Obsługa zdarzen dzieki addEventListener(eventType, listener, useCapture) - pozwala na podpiecie wielu listenerow
+
+<div id="body">
+    <div id="divBox2">second div element</div>
+</div>
+<script>
+    window.addEventListener("load", function(event) {
+        console.log("DOM, css, obrazki zaladowane");
+        document.getElementById("divBox2").addEventListener("click", function(event) {
+            console.log("div2 klikniety:" + event.button);  // w konsoli wyswietli ktory przycisk myszy 
+        })
+        document.getElementById("body").addEventListener("keydown", function(event) {
+            console.log("klawisz na body" + event.key); // w konolsi wywietli wcisniety klawisz
+        })
+    }, useCapture=true)
+</script>
+
+</body>
+
+
+
+
+
+</html>

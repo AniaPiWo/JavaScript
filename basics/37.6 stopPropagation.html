@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+    <style>
+        body * {
+            margin: 12px;
+        }
+    </style>
+</head>
+
+
+<body>
+<p>ZATRZYMANIE ZDARZENIA<br>
+Przerwanie dalszej propagacji zdarzenia wykonujemy na obiekcie event z funkcja stopPropagation()<br>
+Dzięki temu zadne dalsze listenery nie beda wywolane w zwiazku z tym zdarzeniem</p>
+<br>
+<div style="border: 1px solid red;">DIV
+    <form style="border: 1px solid blue">
+        form
+        <p style="border: 1px solid greenyellow">P</p>
+    </form>
+</div>
+
+<script>
+    //
+    document.querySelectorAll("p")[0].addEventListener("click", event => event.stopPropagation())
+
+
+    for (let elem of document.querySelectorAll("*")) {
+        elem.addEventListener("click", e => console.log(`Capturing: ${elem.tagName}`), true); //html->body->div->form->p
+        elem.addEventListener("click", e => console.log(`Bubbling: ${elem.tagName}`)); // p
+    }
+</script>
+</body>
+</html>

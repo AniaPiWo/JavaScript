@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+    <style>
+        body * {
+            margin: 12px;
+        }
+    </style>
+</head>
+
+
+<body id="body">
+<p>Propagacja zdarzen - wyrozniamy trzy fazy propagacji zdarzen, za kazdym razem gdy powstaje zdarzenie:
+<br>
+- capture phase - zdarzenie idzie od poczatku drzewa DOM w dół do odbiorcy zdarzenia, tylko listenery z use capture beda wywolane. rzadko uzywane.
+<br>
+- target phase - zdarzenie dociera do docelowego elementu, np td w tabeli, listener jest wywolany
+<br>
+- bubbling phase - zdarzenie wedruje z powrotem od odbiorcy w gore drzewa DOM. Listenery bez use capture beda wywolane.
+</p>
+<img src="/images/event propagation.jpeg" alt="">
+<br>
+<p>Klikniecie elementu td w tabeli to w praktyce klikniecie tez wiersza, tabeli oraz body, czyli:<br>
+- przechwytywanie - body->table->tbody->tr->td
+<br>
+- bąbelkowanie - td->tr->tbody->table->body
+<br></p>
+
+<p>Przez wiele lat przegladarki wspierały różny model obslugi zdarzen, jako consensus ustandaryzowano oba.<br>
+    Obecnie aby obsluzyc zdarzenie bezpiecznie powinno sie uzywac babelkowania, dlatego trzeci argument addEventListener domyslnie jest false.
+    <br>
+    <br>
+
+BUBBLIN VS CAPTURING - porownanie mechanizmow w akcji
+
+<div style="border: 1px solid red;">DIV
+    <form style="border: 1px solid blue">
+        form
+        <p style="border: 1px solid greenyellow">P</p>
+    </form>
+</div>
+
+<script>
+    //paragraf otrzymna zdarzenie 2 razy - capturing i bubbling
+for (let elem of document.querySelectorAll("*")) {
+    elem.addEventListener("click", e => console.log(`Capturing: ${elem.tagName}`), true);
+    elem.addEventListener("click", e => console.log(`Bubbling: ${elem.tagName}`));
+}
+</script>
+
+<p>NIEKTORE ZDARZENIE NIE OBSLUGUJA BABELKOWANIA<br>
+np focus</p>
+<input type="text">
+<script>
+    //useCapture ustawione na false (czyli domyslnie) nie umozliwi otrzymanie eventu
+    //bo babelkowanie nie jest wspierane dla elementu focus!
+    // bedzie dzialalo dopiero jak dodamy true jako 3ci arg
+    document.addEventListener("focus", function(event) {
+        console.log("input ma focus")
+    }, true)
+</script>
+
+<p>(alternatywnie mozna uzyc focusin, ktore obsluguje bombelkowanie</p>
+</body>
+
+
+
+</html>
