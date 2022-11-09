@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+  margin: 16px;
+  line-height: 1.5;
+  color: #2a2a2a;
+  background-color: #f5f5f5;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+    </style>
+</head>
+
+<body>
+<h2>Leniwe ładowanie</h2>
+<p>Strony internetowe zawierają dużą liczbę obrazów, które zwiększają rozmiar stron i wpływają na szybkość ich ładowania.
+Większość obrazów znajduje się poza pierwszym ekranem (below the fold), więc użytkownik zobaczy je dopiero po
+przewinięciu strony w dół. Oznacza to, że możesz wgrać coś, czego użytkownik nigdy nie zobaczy, ale poświęcisz na to
+czas ładowania strony i prawdopodobnie pieniądze stracone przez priorityzację szybszych stron wyszukiwarką. Pobieranie
+niekrytycznych treści powoduje również marnowanie baterii urządzeń mobilnych i innych zasobów systemowych.</p>
+
+<img src="/images/page-fold.png" alt="" style="width:600px;">
+
+<p>Terminy "above the fold" i "below the fold" pochodzą z czasów przedcyfrowych. Jeśli kiedykolwiek kupiłeś gazetę w
+kiosku, zwykle składa się ją na pół, aby przechodnie mogli zobaczyć tylko górną połowę pierwszej strony. Jeśli nie
+spodoba im się to, co widzą, przejdą obok i sprzedaż spadnie. Dlatego tak ważne jest, aby najciekawsze treści umieszczać
+na górze strony.</p>
+
+<p>Leniwe ładowanie (lazy-loading) to technika, która opóźnia ładowanie niekrytycznych zasobów podczas ładowania strony.
+Zamiast tego te niekrytyczne zasoby są ładowane tylko wtedy, gdy są potrzebne. Zmniejsza to początkowy rozmiar zasobów,
+które należy załadować, aby wyświetlić stronę. Zużycie zasobów systemowych oraz czas jej ładowania i późniejszego
+renderowania są w taki sposób mniejsze. Wszystko to ma pozytywny wpływ na wydajność.</p>
+
+<p>Prawdopodobnie widziałeś już leniwe ładowanie w akcji. Wygląda to mniej więcej tak:
+<ul>
+    <li>Dostajesz się do strony i zaczynasz ją przewijać podczas czytania treści.</li>
+    <li>W pewnym momencie przewiniesz w dół do zaślepki.</li>
+    <li>Zaślepka zostaje nagle zastąpiona prawdziwym obrazem.</li>
+</ul>
+</p>
+
+
+<h2>Atrybut loading</h2>
+<p>Wcześniej programiści musieli polegać tylko na możliwościach JavaScript. Nowoczesne przeglądarki potrafią to zrobić bez
+JavaScript, ale niestety nie wszystkie. Atrybut HTML loading znacznika img jest obsługiwany natywnie we wszystkich
+nowoczesnych przeglądarkach z wyjątkiem Safari i pozwala przeglądarce opóźniać ładowanie obrazów poza ekranem, dopóki
+użytkownik nie przewinie do nich.
+
+ img src="my-image.jpg" loading="lazy" alt="Image description" />
+</p>
+
+<p>
+    Nie możemy rozpoznać ani zmienić zachowania i mechanizmu określania leniwego ładowania obrazu przez przeglądarkę.
+    Najważniejsze jest to, że przeglądarka załaduje takie obrazy na krótko przed wejściem do pola widoku.
+</p>
+
+<h2>Biblioteka lazysizes</h2>
+
+<p>Aby zapewnić kompatybilność przeglądarek, czyli kompatybilność ze starszymi przeglądarkami lub takimi, które jeszcze nie
+obsługują tego natywnie, możesz użyć kilku istniejących bibliotek JavaScript. Najpopularniejsze to lazysizes,
+vanilla-lazyload i lozad.js. Wybór biblioteki sprowadza się do zestawu dostarczanych funkcji i osobistych preferencji.
+Przyjrzymy się bibliotece lazysizes.</p>
+
+<p>Obsługa natywna jest ogólnie lepsza i bardziej wydajna niż korzystanie z bibliotek, ale one gwarantują działanie we
+wszystkich przeglądarkach i mogą zapewnić zaawansowane możliwości leniwego ładowania, które nie są jeszcze
+ustandaryzowane.</p>
+
+<p>Pierwszą rzeczą do zrobienia jest podłączenie biblioteki do projektu za pomocą usługi cdnjs.com. Tag z linkiem do
+skryptu jest dodawany na końcu body, tak jak zrobiliśmy to dla biblioteki Lodash.</p>
+
+        <!-- Lazysizes library script file -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
+            integrity="sha512-q583ppKrCRc7N5O0n2nzUiJ+suUv7Et1JGels4bXOaMFQcamPk9HjdUknZuuFjBNs7tsMuadge5k9RzdmO+1GQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <!-- Your script file -->
+        <script defer src="path/to/script.js"></script>
+
+<p>Biblioteka lazysizes jest inicjowana samoczynnie po załadowaniu na stronę. Oznacza to, że dla podstawowego użycia w
+JavaScript nic robić nie musisz Pełna lista jej możliwości znajduje się w dokumentacji.</p>
+
+<p>Dla wszystkich obrazów, które muszą być ładowane leniwie, ustawiamy klasę lazyload i zastępujemy atrybut src atrybutem
+data-src. Biblioteka lazysizes potrzebuje tego do poprawnego działania.
+
+<img class="lazyload" data-src="path/to/my-image.jpg" alt="Generic alt" />
+</p>
+
+<p>
+    Podczas wczytywania obrazu możesz wyświetlić symbol zastępczy niskiej jakości. Ta technika nazywa się LQIP (Low Quality
+    Image Placeholder). Istnieje wiele opcji implementacji LQIP, ale na początek wystarczy pokazać jeden standardowy symbol
+    zastępczy zamiast wszystkich obrazów. Aby to zrobić, dodaj atrybut src, którego wartością będzie link do tego obrazu
+    zastępczego.
+
+    <img class="lazyload" src="path/to/lqip-placeholder.jpg" data-src="path/to/my-image.jpg" alt="Generic alt" />
+</p>
+
+<p>Po załadowaniu obrazu biblioteka lazysizes dodaje do elementu klasę lazyloaded. Można to wykorzystać do zastosowania
+efektów CSS w momencie ładowania obrazu.
+
+<style>.blur-up {
+  filter: blur(5px);
+  transition: filter 400ms;
+}
+
+.blur-up.lazyloaded {
+  filter: blur(0);
+}
+</style>
+</p>
+
+<p>
+    Po zadeklarowaniu stylów dodaj klasę blur-up do znaczników img.
+
+    <img class="lazyload blur-up" src="path/to/lqip-placeholder.jpg" data-src="path/to/my-image.jpg" alt="Generic alt" />
+</p>
+
+
+</body>
+
+</html>
