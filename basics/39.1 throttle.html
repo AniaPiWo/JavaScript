@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  height: 5000vh;
+  font-family: sans-serif;
+  line-height: 1.5;
+  color: #212121;
+  background-color: #f5f5f5;
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.cta::before,
+.cta::after {
+  content: "\2193";
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.event-counter {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  min-width: 160px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding: 12px;
+  border: 1px solid #03a9f4;
+  border-radius: 4px;
+}
+
+.event-counter p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.event-counter span {
+  font-size: 48px;
+  font-family: monospace;
+}
+    </style>
+</head>
+<body>
+    <h2>Throttle</h2>
+    <p>Technika throttle kontroluje, ile razy funkcja może być wywołana w określonym czasie. Oznacza to, że pozwala na
+    wywołanie funkcji nie więcej niż raz w ciągu N milisekund, zapewniając jej regularne wykonywanie.</p>
+    <img src="/images/throttle.png" alt="" style="width: 800px;">
+    <br>
+    <p>Używając throttle nie mamy kontroli nad tym, jak często przeglądarka uruchamia zdarzenia. Po prostu przejmujemy kontrolę
+    nad tym, jak często wykonywana jest funkcja obsługi zdarzeń.</p>
+    <br>
+    <p>Implementacja z biblioteki Lodash oczekuje, że funkcja będzie przekazana jako pierwszy argument, a liczba milisekund
+    jako drugi. Zwraca nową funkcję, żeby przekazać do nasłuchiwacza zdarzeń.</p>
+    <br>
+
+    document.addEventListener(<br>
+    "scroll",<br>
+    _.throttle(() => {<br>
+    console.log("Scroll handler call every 300ms");<br>
+    }, 300)<br>
+    );<br>
+    <br>
+
+<p class="cta">Scroll me</p>
+
+<div class="event-counter">
+    <div class="box">
+        <p>No timing function</p>
+        <span class="output vanilla">0</span>
+    </div>
+
+    <div class="box">
+        <p>Throttled</p>
+        <span class="output throttled">0</span>
+    </div>
+</div>
+
+<script>
+    const vanillaOutput = document.querySelector(".output.vanilla");
+        const throttledOutput = document.querySelector(".output.throttled");
+        const eventCounter = {
+            vanilla: 0,
+            throttled: 0
+        };
+
+        document.addEventListener("scroll", () => {
+            eventCounter.vanilla += 1;
+            vanillaOutput.textContent = eventCounter.vanilla;
+        });
+
+        document.addEventListener(
+            "scroll",
+            _.throttle(() => {
+                eventCounter.throttled += 1;
+                throttledOutput.textContent = eventCounter.throttled;
+            }, 300)
+        );
+</script>
+</body>
+</html>

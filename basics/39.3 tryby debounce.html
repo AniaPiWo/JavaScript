@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+body {
+  height: 5000vh;
+  font-family: sans-serif;
+  line-height: 1.5;
+  color: #212121;
+  background-color: #f5f5f5;
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.cta::before,
+.cta::after {
+  content: "\2193";
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.container {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  min-width: 160px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding: 12px;
+  border: 1px solid #03a9f4;
+  border-radius: 4px;
+}
+
+.box p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.box span {
+  font-size: 48px;
+  font-family: monospace;
+}
+    </style>
+</head>
+<body>
+    <h2>Tryby metody debounce</h2>
+    <p>Domyślnie metoda debounce działa w trybie, w którym funkcja jest wywoływana w ciągu N milisekund po przerwie między
+        strumieniami zdarzeń. Ten tryb nazywa się trailing edge (na końcu). Są zadania, w których funkcję trzeba wywołać
+        natychmiast po wystąpieniu pierwszego zdarzenia w strumieniu, a następnie zignorować wszystkie kolejne zdarzenia, aż
+        do
+        przerwy między nimi, na przykład 300 milisekund. To zachowanie jest powtarzane na początku następnego strumienia
+        zdarzeń. Ten tryb nazywa się leading edge (na początku).</p>
+    <img src="/images/leading-debounce.png" alt="" style="width: 800px;">
+    <p>Do metody debounce biblioteki Lodash można przekazać opcjonalny trzeci argument — obiekt parametru, który ma dwie
+        właściwości leading (domyślnie false) i trailing (domyślnie true). Ustawienia te zmieniają tryb i wskazują, czy
+        funkcja
+        ma działać na początku strumienia zdarzeń, czy na końcu po przerwie.</p>
+    <br>
+    document.addEventListener(<br>
+    "scroll",<br>
+    _.debounce(<br>
+    () => {<br>
+    console.log("Scroll handler call on every event stream start");<br>
+    },<br>
+    300,<br>
+    {<br>
+    leading: true,<br>
+    trailing: false,<br>
+    }));<br>
+    <br>
+    <p>W praktyce tryb leading może być wykorzystany np. wtedy, gdy konieczne jest wykonanie funkcji wysłania żądania do
+        serwera przy pierwszym kliknięciu przycisku, a następnie ignorowanie wszystkich kolejnych kliknięć aż do pauzy.
+        Przykład
+        implementuje debounce w obu trybach dla zdarzenia scroll.</p>
+    HTML CSS BabelResult Skip Results Iframe
+    EDIT ON
+    <p class="cta">Scroll me</p>
+    
+    <div class="container">
+        <div class="box">
+            <p>No timing function</p>
+            <span class="output vanilla">0</span>
+        </div>
+    
+        <div class="box">
+            <p>Throttled</p>
+            <span class="output throttled">0</span>
+        </div>
+    
+        <div class="box">
+            <p>Trailing debounce</p>
+            <span class="output trailing">0</span>
+        </div>
+    
+        <div class="box">
+            <p>Leading debounce</p>
+            <span class="output leading">0</span>
+        </div>
+    </div>
+    <script>const vanillaOutput = document.querySelector(".output.vanilla");
+        const throttledOutput = document.querySelector(".output.throttled");
+        const trailingOutput = document.querySelector(".output.trailing");
+        const leadingOutput = document.querySelector(".output.leading");
+        const eventCounter = {
+            vanilla: 0,
+            throttled: 0,
+            trailing: 0,
+            leading: 0
+        };
+
+        // Trailing debounce
+        document.addEventListener(
+            "scroll",
+            _.debounce(() => {
+                eventCounter.trailing += 1;
+                trailingOutput.textContent = eventCounter.trailing;
+            }, 300)
+        );
+
+        // Leading debounce
+        document.addEventListener(
+            "scroll",
+            _.debounce(
+                () => {
+                    eventCounter.leading += 1;
+                    leadingOutput.textContent = eventCounter.leading;
+                },
+                300,
+                { trailing: false, leading: true }
+            )
+        );
+
+        document.addEventListener("scroll", () => {
+            eventCounter.vanilla += 1;
+            vanillaOutput.textContent = eventCounter.vanilla;
+        });
+
+        document.addEventListener(
+            "scroll",
+            _.throttle(() => {
+                eventCounter.throttled += 1;
+                throttledOutput.textContent = eventCounter.throttled;
+            }, 300)
+        );</script>
+</body>
+</html>

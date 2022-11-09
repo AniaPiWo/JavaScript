@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  height: 5000vh;
+  font-family: sans-serif;
+  line-height: 1.5;
+  color: #212121;
+  background-color: #f5f5f5;
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.cta::before,
+.cta::after {
+  content: "\2193";
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.event-counter {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  min-width: 160px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding: 12px;
+  border: 1px solid #03a9f4;
+  border-radius: 4px;
+}
+
+.event-counter p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.event-counter span {
+  font-size: 48px;
+  font-family: monospace;
+}
+    </style>
+</head>
+<body>
+    <h2>Debounce</h2>
+    <p>Technika debounce zapewnia, że funkcja zostanie wywołana tylko wtedy, gdy między zdarzeniami nastąpi przerwa wynosząca N
+    milisekund. Na przykład, gdy użytkownik przewija stronę, funkcja nie zostanie wywołana, ale gdy tylko przestanie
+    przewijać, funkcja zostanie wywołana po 300 milisekundach. Jeśli przewijanie zostanie wznowione wcześniej niż 300
+    milisekund po przerwie, funkcja nie zostanie wywołana.</p>
+    <img src="/images/trailing-debounce.png" alt="" style="width: 800px;">
+    <br>
+    <p>Używając debounce nie kontrolujemy, jak często przeglądarka będzie generować zdarzenia, a jedynie przejmujemy kontrolę
+    nad częstotliwością wykonywania funkcji obsługi zdarzeń.</p>
+    <br>
+    document.addEventListener(<br>
+    "scroll",<br>
+    _.debounce(() => {<br>
+    console.log("Scroll handler call after 300ms pause");<br>
+    }, 300)<br>
+    );<br>
+    <br>
+    <b>Implementacja z biblioteki Lodash oczekuje funkcji jako pierwszego argumentu i liczby milisekund jako drugiego. Zwraca
+    nową funkcję, żeby przekazać do nasłuchiwacza zdarzeń.</b>
+    <br>
+
+<p class="cta">Scroll me</p>
+
+<div class="event-counter">
+    <div class="box">
+        <p>No timing function</p>
+        <span class="output vanilla">0</span>
+    </div>
+
+    <div class="box">
+        <p>Throttled</p>
+        <span class="output throttled">0</span>
+    </div>
+
+    <div class="box">
+        <p>Debounced</p>
+        <span class="output debounced">0</span>
+    </div>
+</div>
+<script>
+    const vanillaOutput = document.querySelector(".output.vanilla");
+        const throttledOutput = document.querySelector(".output.throttled");
+        const debouncedOutput = document.querySelector(".output.debounced");
+        const eventCounter = {
+            vanilla: 0,
+            throttled: 0,
+            debounced: 0
+        };
+
+        document.addEventListener("scroll", () => {
+            eventCounter.vanilla += 1;
+            vanillaOutput.textContent = eventCounter.vanilla;
+        });
+
+        document.addEventListener(
+            "scroll",
+            _.throttle(() => {
+                eventCounter.throttled += 1;
+                throttledOutput.textContent = eventCounter.throttled;
+            }, 300)
+        );
+
+        document.addEventListener(
+            "scroll",
+            _.debounce(() => {
+                eventCounter.debounced += 1;
+                debouncedOutput.textContent = eventCounter.debounced;
+            }, 300)
+        );
+</script>
+
+</body>
+</html>

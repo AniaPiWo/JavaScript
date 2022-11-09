@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  height: 5000vh;
+  font-family: sans-serif;
+  line-height: 1.5;
+  color: #212121;
+  background-color: #f5f5f5;
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}
+
+.cta::before,
+.cta::after {
+  content: "\2193";
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.event-counter {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #03a9f4;
+  border-radius: 4px;
+}
+
+.event-counter p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.event-counter span {
+  font-size: 48px;
+  font-family: monospace;
+}
+    </style>
+</head>
+<body>
+<h2>Throttle i debaunce wprowadzenie</h2>
+
+  <p>Dość często musisz poradzić sobie ze zmianą rozmiaru okna, przewijaniem, ruchem myszy lub wprowadzaniem tekstu przez
+użytkownika. Może to być sortowanie kolekcji i renderowanie wyników, animowanie elementu, manipulacje drzewem DOM i tak
+dalej. Wszystko to poprawia UX (user experience), ale niestety bardzo obciąża przeglądarkę ze względu na to, że funkcje
+do obsługi zdarzeń są uruchamiane zbyt często. Takie wydarzenia są nieformalnie nazywane «chatty events».</p>
+    
+<p>Na przykład, jeśli do przewijania dodasz nasłuchiwacz zdarzeń, to podczas przewijania strony myszą możesz wywołać około
+30 zdarzeń na sekundę. Powolne przewijanie (swipe) w smartfonie może wywołać do 100 zdarzeń na sekundę. Jeśli procedura
+obsługi zdarzeń przewijania wykonuje intensywne obliczenia i inne manipulacje DOM, problemy z wydajnością są
+gwarantowane.
+</p>
+<p>Throttle i Debounce to dwa podobne podejścia, ale są one różne ze względu na zachowanie. Throttle i debounce pozwalają
+nam kontrolować, ile razy pozwalamy na wykonanie funkcji z biegiem czasu. Korzystamy z ich implementacji w bibliotece
+<a href="https://lodash.com/">Lodash</a></p>
+ 
+
+    <p class="cta">Scroll me</p>
+    
+    <div class="event-counter">
+        <div class="box">
+            <p>Number of scroll events</p>
+            <span class="output">0</span>
+        </div>
+    </div>
+<script>
+    const output = document.querySelector(".output");
+    let scrollEventCounter = 0;
+
+    document.addEventListener("scroll", () => {
+        scrollEventCounter += 1;
+        output.textContent = scrollEventCounter;
+    });
+</script>
+
+
+<h2>Podłączanie biblioteki</h2>
+<p>CDN (Content Delivery Network) to rozproszona geograficznie infrastruktura sieciowa, która zapewnia szybkie dostarczanie
+treści użytkownikom usług i witryn internetowych. Serwery wchodzące w skład CDN są rozmieszczone geograficznie w taki
+sposób, aby zminimalizować czas odpowiedzi użytkowników serwisu/usługi.
+
+Podłączmy bibliotekę <a href="https://lodash.com/">Lodash</a> do projektu przez CDN. W tym celu skorzystajmy z usługi <a href="https://cdnjs.com/libraries/lodash.js">CDN</a> i dodajmy link do skryptu
+biblioteki na końcu dokumentu HTML, jak pokazano w przykładzie.</p>
+
+  <!--HTML-markup -->
+
+    <!-- Lodash library script file -->
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"
+        integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Your script file -->
+    <script defer src="path/to/script.js"></script>
+<p>Możemy teraz uzyskać dostęp do biblioteki w naszym skrypcie. Przy łączeniu bibliotek przez CDN do obiektu window
+dodawana jest właściwość, która przechowuje to, co zapewnia biblioteka. Nazwa tej właściwości jest unikalna dla
+biblioteki i jest opisana w jej dokumentacji. Dla Lodash jest to podkreślenie _. Do sprawdzenia używamy metody add,
+która po prostu dodaje dwie liczby.</p>
+
+const result = _.add(2, 3);<br>
+console.log(result); // 5
+</body>
+
+</html>
+</body>
+</html>

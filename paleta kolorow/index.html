@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+    <p class="output">Selected color: none </p>
+    <div class="color-palette"></div></div>
+</body>
+<script>
+    const colorPalette = document.querySelector(".color-palette");
+        const output = document.querySelector(".output");
+
+        colorPalette.addEventListener("click", selectColor);
+
+        // This is where delegation «magic» happens
+        function selectColor(event) {
+            if (event.target.nodeName !== "BUTTON") {
+                return;
+            }
+
+            const selectedColor = event.target.dataset.color;
+            output.textContent = `Selected color: ${selectedColor}`;
+            output.style.color = selectedColor;
+        }
+
+        // Some helper functions to render palette items
+        createPaletteItems();
+
+        function createPaletteItems() {
+            const items = [];
+            for (let i = 0; i < 84; i++) {
+                const color = getRangomColor();
+                const item = document.createElement("button");
+                item.type = "button";
+                item.dataset.color = color;
+                item.style.backgroundColor = color;
+                item.classList.add("item");
+                items.push(item);
+            }
+            colorPalette.append(...items);
+        }
+
+        function getRangomColor() {
+            return `#${getRandomHex()}${getRandomHex()}${getRandomHex()}`;
+        }
+
+        function getRandomHex() {
+            return Math.round(Math.random() * 256)
+                .toString(16)
+                .padStart(2, "0");
+        }
+</script>
+</html>
