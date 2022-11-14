@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+    <style></style>
+  </head>
+
+  <body>
+    <h2>EVENT</h2>
+    <p>
+      LOOP JS jest jezykiem jednowatkowym czyli NIE URUCHOMI jednoczesnie dwoch
+      kawalkow kodu (dlatego nieskonczona petla while(true){}) zawiesi
+      przegladarke)
+    </p>
+    <p>
+      Zdarzenia (np klikniecie) nie beda przetworzone dopoki petla nie zostanie
+      przerwana. EngineJS czeka na zakonczenie petli (co nigdy nie nastapi) i
+      nie zajmie sie innymi zadaniami z kolejki zadan.
+    </p>
+    <p>
+      JS jest synchroniczny, wykonuje kod linijka po linijce, przez co jego
+      wydajnosc jest ograniczona i nie nadaje sie do pracochlonnych zadan (np
+      przetwarzanie obrazow). Mozna sprawic, aby kod przetworzyl sie
+      asynchronicznie dzieki funkcji setTimeout() (funkcja wywola sie po
+      okreslonym czasie)
+    </p>
+    <script>
+      //przyklad 1
+      console.log("msg 1"); // wyswietli sie od razu - pierwsza
+
+      setTimeout(function () {
+        console.log("msg 2"); //wyswietli sie po 100milisekundach - jako trzecia
+      }, 100); // nawet jesli ustawimy czas na 0 to i tak bedzie trzecia
+
+      console.log("msg 3"); //wyswietli sie od razu - druga
+
+      //przyklad 2
+      //nawet ustawiajac wykonmanie kodu najszybciej jak to mozliwe czyli 0ms, rowniez musi odczekac na swoja kolejke
+
+      console.log("msg 1"); // wyswietli sie od razu - pierwsza
+
+      setTimeout(function () {
+        console.log("msg 2"); //wyswietli sie po pozostalych - jako trzecia
+      }, 0);
+
+      //dluga synchroniczna operacja (np i < 1000000 razy)
+      for (let i = 0; i < 10; i++) {
+        //wyswietli sie po wykonaniu sie 100 razy - druga
+        console.log("msg 3");
+      }
+    </script>
+    <h2>STOS WYWOLAN</h2>
+    <p>to kolejka instrukcji do wywolania</p>
+    <p>
+      Gdy uruchamiamy funkcje to trafia ona na stos wywolan, jesli ona tez
+      wywola funkcje to rowniez trafia na stos
+    </p>
+    <p>Gdy funkcja się zakonczy jest zdejmowana ze stosu</p>
+    <br />
+    <p>Stoss wywolan (call stack) zawsze wykonuje instrukcje az bedzie pusty</p>
+
+    <script>
+      //przyklad stosu wywolan
+      console.log("msg 1"); //msg 1
+      console.log("msg 2"); //msg 2
+      console.log("msg 3"); //msg 3
+    </script>
+
+    <h2>Stos wywolan dziala na zasadzie LIFO - Last In First Out</h2>
+    <p>
+      czyli ostatnia funkcja wrzucona na stos bedzie pierwsza zdjeta ze stosu
+    </p>
+
+    <script>
+      function first() {
+        throw new Error("some error");
+      }
+
+      function second() {
+        first();
+      }
+
+      function third() {
+        second();
+      }
+
+      third();
+
+      // kolejnoisc wywolan funkcji - third(), second(), first()
+      //Na gorze stosu i jako pierwsza do zdjecia jest first().
+      //LIFO jest jak stos ciastek, trzeba zdjac nowe ciastko zeby dostac sie do starszego
+    </script>
+
+    <h3>PODSUMOWANIE EVENT LOOP</h3>
+    <ol>
+      <li>Wykonywane jest wszystko ze stosu wywolan az bedzie pusty</li>
+      <li>Wykonywane jest wszystko z kolejki mikrozadan, az bedzie pusta</li>
+      <li>Wykonana jest cala kolejka renderowania</li>
+      <li>Nastepuje spr czy stos wyowalan jest pusty</li>
+      <li>
+        Jesli tak - pobierany jest pierwszy callback zkolejki zadan na stos
+        wywolan i wykonywany
+      </li>
+      <li>Nastepuje przejscie do pkt 1</li>
+    </ol>
+  </body>
+</html>

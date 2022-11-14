@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="John Doe" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript</title>
+  </head>
+
+  <body>
+    <script>
+      console.log("msg 1");
+
+      setTimeout(function () {
+        console.log("msg 2");
+      }, 100);
+
+      console.log("msg 3");
+    </script>
+    <h2>Web API to funkcje przegladarek</h2>
+    <p>często asynchroniczne, wiec ich wynik bedzie po jakims czasie</p>
+    <p>
+      Wywolanie setTimeout będzie wg kolejnosci instrukcji, ale przekaze
+      callback do web api, gdzie bedzie zekac min 100s na wywolanie
+    </p>
+
+    <script>
+      //KROK 1
+
+      //Callstack:
+      console.log("msg 1");
+      //setTimeout(...);
+      console.log("msg3");
+
+      //Web API
+      //function () { console.log("msg 2"); } //czeka 100ms
+
+      //Konsola
+      //Callback czeka w kolejce, ale zanim to sie stanie instrukcje w stosie
+      //wywolan beda wykonane i zdjete ze stosu
+      //msg 1
+      //msg 2
+
+      //KROK 2
+
+      //Callstack:
+      //pusty - instrukcje zostaly wykonane
+
+      //webApi
+      //przekazuje fukcje do task queue (tylko przekazuje, funkvja NIE jest jeszcze wykonana)
+
+      //Task queue
+      //function () { console.log("msg 2"); } //czeka 100ms
+    </script>
+
+    <h2>TASK QUEUE</h2>
+    <p>
+      Kolejka zadan zawiera wszystkie callbaki metod asynchronicznych.
+      zdjemowane sa w kolejnosci FIFO - Firs In Firs Out. Pierszy callback ktory
+      trafi do kolejki jest pierwszym do zdjecia z kolejki
+    </p>
+    <br />
+
+    <h2>KROK 3 - teraz wkracza event LOOP</h2>
+    <p>
+      Event loop caly czas dziala w tle, łaczy kolejke zadan ze stosem wywolan.
+      Event loop sprawdza czy stos wywolan jest pusty (nie ma juz instrukcji do
+      wywolania).
+    </p>
+    <p>
+      Jesli jest pusty to pobierany jest callback z kolejki zadan i wrzucany na
+      callstack Callback jest wywolany, zwraca wartosc jeslki jest to potrzebne
+      i zabierany ze stosu
+    </p>
+    <p>
+      Ponownie najpierw wywolywane sa wszytskie funkcje na stosie wywolan az
+      bedzi epusty zanim pobrany zostanie kolejny callback
+    </p>
+  </body>
+</html>
