@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=h2, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Menedżer pakietów npm</h2>
+    <ul>
+        <li>Strona npmjs.com - służy do wyszukiwania i zapoznania się z dokumentacją pakietu.</li>
+        <li>Interfejs wiersza poleceń (CLI) - program uruchamiany z terminala, udostępnia zestaw poleceń do pracy z rejestrem i pakietami. Umożliwia tworzenie skryptów również uruchamianych w terminalu.</li>
+        <li>Rejestr pakietów (registry) - duża publiczna baza danych narzędzi programistycznych (pakietów).</li>
+    </ul>
+    <p>Pakiet (package) - to mała biblioteka JavaScript, która rozwiązuje konkretny problem. Pakiety są pisane przez samych programistów i udostępniane społeczności. Takie podejście ułatwia życie, ponieważ nie trzeba wymyślać koła na nowo, wszystkie koła od dawna stoją na półkach rejestru i są gotowe do użycia.</p>
+    <br>
+    <br>
+    <h2>Inicjowanie projektu</h2>
+    <p>Każdy projekt rozpoczyna się od stworzenia pliku package.json - śledzi on zależności, zawiera informacje o usługach, umożliwia pisanie skryptów npm oraz służy jako instrukcja przy tworzeniu nowego projektu na podstawie gotowych ustawień. Możesz utworzyć plik package.json za pomocą polecenia npm init, inicjując w ten sposób projekt w bieżącym folderze.</p>
+    <p>Zostaniesz poproszony o podanie nazwy projektu, wersji, opisu itp. Możesz po prostu naciskać Enter, aż plik package.json zostanie utworzony i umieszczony w folderze projektu. Aby nie naciskać Enter, pomijając puste pola, użyj polecenia init z flagą --yes. Flaga to dodatkowe ustawienie polecenia.</p>
+    <p>Większość flag mają alias, czyli skrót. Alias dla flagi --yes to -y, więc polecenia npm init --yes i npm init -y robią to samo.</p>
+    <p>package.json zostanie wygenerowany z wartościami domyślnymi. Aby ustawić na przykład dane autora projektu po wygenerowaniu packege.json, w terminalu uruchom po kolei następujące polecenia, wstawiając swoje imię oraz pocztę</p>
+    <p>npm config set init.author.name "YOUR_NAME"</p>
+    <p>npm config set init.author.email "YOUR_EMAIL"</p>
+    <p>Możesz edytować plik package.json ręcznie lub ponownie uruchomić npm init. Jeśli otworzysz package.json w edytorze, będzie to wyglądało mniej więcej tak. Są to tylko metadane dotyczące projektu.</p>
+
+<!--     package.json
+{
+  "name": "node-tut",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexander Repeta <mycoolemail@mail.com>",
+  "license": "ISC",
+  "keywords": [],
+  "description": ""
+} -->
+<br>
+
+<h2>skrypty npm</h2>
+<p>Skrypty umożliwiają uruchamianie zainstalowanych pakietów do wykonania. Za pomocą skryptów npm można tworzyć systemy budowania całych projektów. Zautomatyzujmy uruchamianie index.js. W tym celu w pliku package.json w polu scripts dodaj skrypt startowy start.</p>
+<p>{
+    "scripts": {
+      "start": "node index.js"
+    }
+  }</p>
+  <p>Jeśli utworzysz skrypt o nazwie innej niż start lub test, będzie on uruchamiać się jako npm run nazwa-skryptu - nie zapomnij run. Zapoznaj się z dokumentacja - How npm handles the "scripts" field.</p>
+  <br>
+
+
+  <h2>Instalacja pakietów</h2>
+  <p>Jedną z możliwości oferowanych przez npm jest instalacja pakietów, które są wyodrębniane z rejestru i rozpakowywane do folderu node_modules w katalogu głównym projektu. Po utworzeniu pliku package.json możesz dodać zależności do projektu.</p>
+  <p>Zależność to pakiet npm używany podczas programowania. Są to wszelkiego rodzaju narzędzia i biblioteki. Zainstaluj bibliotekę validator.js do walidacji ciągów, na przykład wprowadzania danych użytkownika w polach formularzy.</p>
+  <p>npm install validator</p>
+  <p>NPM pobrał validator i umieścił go w node_modules - folderze, który będzie zawierał wszystkie zewnętrzne zależności.</p>
+  <p>UWAGA
+    Nie dodawaj folderu node_modules do systemu kontroli wersji, wszyscy programiści będą mieli swój własny. Jeśli używasz Git, pamiętaj o dodaniu folderu node_modules do pliku .gitignore.</p>
+<p>Zwróć uwagę, że wygenerowany plik package-lock.json jest dziennikiem wersji drzewa zależności projektu. Zapewnia, że zespół programistów używa tej samej wersji zależności. NPM automatycznie aktualizuje go podczas dodawania, usuwania i aktualizowania pakietów.</p>
+<p>W polu dependencies pojawiła się nowa zależność w package.json. Oznacza to, że validator wersji 11.1.0 został zainstalowany jako zależność i jest gotowy do użycia. Pakiety są stale aktualizowane, Twoja wersja może się różnić.</p>
+<p>package.json
+    {
+      "dependencies": {
+        "validator": "^11.1.0"
+      }
+    }</p>
+<p>Aby uzyskać interfejs pakietu w kodzie Node.js, musisz wywołać funkcję require("nazwa-modułu"), przekazując jej nazwę modułu bez podawania ścieżki jako argument - nazywa się to ścieżką bezwzględną. Ścieżka nie jest potrzebna, ponieważ domyślnie moduł będzie wyszukiwany w folderze node_modules. W wyniku jego wykonania funkcja zwróci interfejs modułu - obiekt z metodami lub po prostu funkcję, w zależności od pakietu.</p>
+<script>
+    const validator = require("validator");
+
+const validateEmail = email => {
+  return validator.isEmail(email);
+};
+
+console.log(
+  "Is mango@mail.com a valid email?: ",
+  validateEmail("mango@mail.com")
+);
+
+console.log(
+  "Is Mangozedog.com a valid email?: ",
+  validateEmail("Mangozedog.com")
+);
+</script>
+<p>Wykonując npm start w terminalu, otrzymujemy:</p>
+<p>Is mango@mail.com a valid email?: true</p>
+<p>Is Mangozedog.com a valid email?: false</p>
+<br>
+
+
+<h2>Usuwanie pakietów</h2>
+<p>Załóżmy, że wersja validator zainstalowana w poprzednim przykładzie powoduje problemy ze zgodnością. Możemy usunąć ten pakiet i zainstalować starszą wersję.</p>
+<p>npm uninstall validator</p>
+<br>
+<h2>Instalacja określonej wersji pakietu</h2>
+<p>Teraz zainstalujmy poprawną wersję validator. W poleceniu instalacji numer wersji jest określony po symbolu @.</p>
+<p>npm install validator@1.0.0</p>
+<p>Instalacja pakietu określonej wersji jest używana w projektach komercyjnych, aby zapewnić działanie bazy kodu i możliwość długoterminowego wsparcia. W projekcie prywatnym możesz zainstalować najnowsze wersje.</p>
+
+
+<h2>Rodzaje zależności</h2>
+<p>Wyobraź sobie ciasto, do jego przygotowania szef kuchni potrzebuje produktów, które w nim będą. Poza tym, do gotowania przydadzą się również narzędzia takie jak miski, łyżki, łopatki itp. A w kuchni stoły i piekarniki, lodówki itp. - co służy do przygotowania każdej potrawy, wspólne narzędzia, które są w kuchni.</p>
+<p>Podobnie jest z zależnościami projektowymi – niektóre zostaną wykorzystane w powstałym produkcie, inne potrzebne są tylko na etapie rozwoju, a są takie, które trzeba wykorzystać niezależnie od projektu.</p>
+<p>Dlatego polecenia npm install i npm uninstall mają trzy flagi.
+    <ul>
+        <li>--save - wskazuje, że dodawana jest zależność, która zostanie włączona do produktu końcowego. Pakiet zostanie zainstalowany lokalnie w folderze node_modules, a wpis zostanie dodany do pola dependencies w package.json.</li>
+        <li>--save-dev - wskazuje, że dodano zależność programistyczną. Pakiet zostanie zainstalowany lokalnie w folderze node_modules, a wpis zostanie dodany do pola devDependencies w package.json.</li>
+        <li>--global - wskazuje, że dodawana jest globalna zależność, czyli narzędzie dostępne dla każdego projektu. Pakiet zostanie zainstalowany globalnie (w systemie).</li>
+    </ul></p>
+
+    <p>Jeśli pominiesz flagę, domyślnie zostanie użyty --save.</p>
+    <p>Podczas odinstalowywania pakietu należy podać poprawną flagę, tak samo jak podczas instalacji.</p>
+    <p>Nie instaluj pakietów globalnie, jeśli pracujesz nad projektem z innymi programistami.</p>
+
+<h2>Zarządzanie wersjami pakietów</h2>
+<p>Z pakietami powiązany jest numer wersji. Numery wersji są zgodne ze standardem SemVer.
+    <ul>
+        <li>npm outdated - używany do wyszukiwania aktualizacji, programowego wykrywania kompatybilnych wersji.</li>
+        <li>npm update - zaktualizuje wszystkie pakiety do maksymalnej dozwolonej wersji.</li>
+        <li>npm update [nazwa-pakietu] - zaktualizuje określony pakiet.</li>
+    </ul>
+</p>
+<p>Jeśli nie ufasz maszynom lub chcesz określonej wersji pakietu, możesz otworzyć package.json i ręcznie zmienić wersje pakietów, a następnie uruchomić npm install.</p>
+
+<h2>Zarządzanie pamięcią podręczną</h2>
+<p>Po zainstalowaniu pakietu npm zapisuje jego kopię w pamięci podręcznej, więc przy następnej instalacji nie trzeba ponownie pobierać go z Internetu. Pamięć podręczna jest przechowywana w folderze .npm twojego katalogu domowego.</p>
+<p>Z biegiem czasu folder ten zaśmieca się starymi pakietami i czasami warto go wyczyścić, niezbyt często (kilka razy w roku. Buforowanie jest przydatne, ponieważ skraca czas instalacji już używanych pakietów.</p>
+<p>npm cache clean</p>
+
+</body>
+</html>
