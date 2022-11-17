@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Asynchroniczność</h1>
+
+    <p>Cały kod jest wykonywany przez procesor komputera. Kod, który do tej pory napisaliśmy, był synchroniczny, czyli zajmował procesor przez cały czas jego wykonywania. Na przykład szybkość pętli do iteracji po tablicy zależy od szybkości procesora.</p>
+
+    <p>Istnieją operacje, które wchodzą w interakcję ze światem zewnętrznym. Na przykład wymiana danych z serwerem przez sieć, co jest znacznie wolniejsze niż pobieranie ich z pamięci. Jeżeli takie operacje są przetwarzane synchronicznie, procesor jest bezczynny, podczas gdy żądanie sieciowe do serwera jest w toku, zamiast wykonywać inny kod.</p>
+
+    <p>Kod synchroniczny jest wykonywany sekwencyjnie, każda instrukcja czeka na wykonanie poprzedniej. Gdy wywołujesz funkcję, która wykonuje długotrwałą akcję, zatrzymuje program na cały czas jego wykonywania. Oznacza to, że w modelu programowania synchronicznego wszystko dzieje się po kolei.</p>
+
+    <p>Wyobraź sobie kolejkę za biletami na dworcu. Nie możesz zacząć kupować biletu, dopóki nie kupi go osoba przed tobą. Również osoby stojące za tobą nie mogą zacząć kupować biletów, dopóki Ty nie kupisz.</p>
+
+    <p>W kodzie asynchronicznym wiele operacji może być wykonywanych jednocześnie. W tym modelu żądanie sieciowe do serwera nie zatrzyma programu, będzie on kontynuował wykonywanie innych operacji. Po zakończeniu żądania program jest o tym informowany i uzyskuje dostęp do wyniku (np. danych z serwera).</p>
+
+    <p>Wyobraź sobie obiad w restauracji. Ty i inni goście zamawiacie jedzenie. Nie musisz czekać, aż im przyniosą jedzenie przed złożeniem swojego zamówienia. Podobnie inni odwiedzający nie muszą czekać, aż otrzymasz danie i zjesz, zanim będą mogli zamówić. Każdy otrzyma swoje danie, gdy tylko zostanie ugotowane.</p>
+
+    <p>Rozważmy różnicę w przykładzie, w którym program wysyła do serwera dwa żądania sieciowe, a następnie przetwarza ich wynik. Operacje 1 i 2 to funkcje, które wysyłają żądania do serwera, a 3,4 i 5 to każdy inny kod, który znasz.</p>
+
+    <img src="/images/sync-vs-async.png" alt="" width="800">
+
+    <p>W modelu synchronicznym wszystko jest jasne i raczej smutne – poprzednie operacje blokują wykonanie kolejnych aż do ich zakończenia. Jeśli operacje 3-5 przetwarzają kliknięcia użytkownika, interfejs po prostu zawiesi się, dopóki wyniki żądań 1-2 nie zostaną zakończone i przetworzone.</p>
+
+    <p>Na przykład użytkownik opublikował komentarz (żądanie sieciowe) i jednocześnie chciał otworzyć pasek boczny z najnowszymi wiadomościami. Po kliknięciu wyślij komentarz, interfejs zawiesi się i nie będzie reagował na jego działania, dopóki wynik wysłania komentarza nie nadejdzie z serwera. Zgódź się, to nie jest zbyt wygodne.</p>
+
+    <p>W modelu asynchronicznym rozpoczęcie żądania sieciowego powoduje rozwidlenie, czyli uruchomienie żądania i wynikiem jego przetworzenia są różne akcje. Podczas wykonywania żądania program kontynuuje działanie i wykonuje inny kod. Gdy żądanie sieciowe zostanie zakończone, program może rozpocząć przetwarzanie swojego wyniku, gdy tylko będzie wolny. Oznacza to, że użytkownik opublikował komentarz i mógł od razu otworzyć pasek boczny z najnowszymi wiadomościami, nie czekając na odpowiedź z serwera.</p>
+
+    <p>Oznacza to, że w jednostce czasu można wykonać tylko jedną operację, ponieważ JavaScript jest jednowątkowy. Programowanie asynchroniczne jest osiągane przez odroczone wywołania funkcji, w których inicjowanie operacji asynchronicznej i przetwarzanie jej wyniku to różne akcje.</p>
+
+    <h2>Kod asynchroniczny</h2>
+
+    <p>W kodzie synchronicznym kolejna instrukcja nie może rozpocząć wykonywania, dopóki nie zostanie wykonana poprzednia. Oznacza to, że instrukcje są przetwarzane sekwencyjnie.</p>
+
+    <script>
+        console.log("First log");
+        console.log("Second log");
+        console.log("Third log");
+    </script>
+
+    <p>Poniższy kod jest asynchroniczny. Z funkcją setTimeout() zapoznamy się później. Teraz musimy wiedzieć tylko to, że przyjmuje dwa parametry: funkcję wywołania zwrotnego, która zostanie wywołana po czasie, który przekażemy jako drugi argument.</p>
+
+    <script>
+        // Will run first
+        console.log("First log");
+
+        setTimeout(() => {
+        // Will run last, after 2000 milliseconds
+            console.log("Second log");
+        }, 2000);
+
+        // Will run second
+        console.log("Third log");
+    </script>
+
+    <p>Funkcja setTimeout() wykonuje się synchronicznie i rejestruje odroczone wywołanie przekazanej funkcji wywołania zwrotnego, która zostanie wywołana asynchronicznie po określonym przedziale czasu.</p>
+
+    <h2>Wielowątkowość</h2>
+
+    <p>Nie myl asynchroniczności i wielowątkowości (współbieżności) - to różne modele programowania. Podamy prostą analogię, która postawi wszystko na swoim miejscu. Wyobraź sobie, że jesteś szefem kuchni w restauracji i masz zamówienie na kawę i tosty.</p>
+
+    <ul>
+        <li><b>Podejście synchroniczne jednostrumieniowe</b> - najpierw przygotowujesz kawę, następnie tosty i podajesz, a potem sprzątasz w kuchni.</li>
+        <li><b>Asynchroniczne podejście jednowątkowe</b> - zaczynasz robić kawę i ustawiasz minutnik, następnie zaczynasz robić tosty i ustawiasz minutnik w ten sam sposób. Podczas przygotowywania kawy i tostów sprzątasz kuchnię. Kiedy dzwoni minutnik, zdejmujesz kawę z ognia, wyjmujesz tosty i podajesz.</li>
+        <li><b>Podejście wielowątkowe (współbieżność</b> - zatrudniasz dwóch asystentów, jednego do parzenia kawy i drugiego do robienia tostów. Teraz masz problem z zarządzaniem asystentami (wątkami), aby nie kolidowali ze sobą w kuchni podczas dzielenia się zasobami.</li>
+    </ul>
+</body>
+</html>

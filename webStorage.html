@@ -15,6 +15,144 @@
     <p>Magazyn internetowy składa się z magazynu lokalnego (localStorage) i magazynu sesji (sessionStorage). Zapewnia sposób przechowywania danych w intuicyjnie zrozumiały sposób w postaci par klucz:wartość. Z technicznego punktu widzenia w magazynie internetowym można zapisywać tylko ciągi, ale nie stanowi to problemu, jeśli używasz metod klasy JSON do konwersji typów złożonych. Metody obiektowe lub funkcje nie są zapisywane w magazynie internetowym, tylko dane.</p>
     <p>Magazyn lokalny (localStorage) jest unikalny dla każdej aplikacji internetowej i będzie taki sam na wielu zakładkach, na których jest uruchomiony (aplikacja internetowa). Dane w magazynie lokalnym nie są usuwane nawet po zamknięciu przeglądarki lub wyłączeniu komputera. Aby je usunąć, musisz użyć JavaScript.</p>
 
-    
+    <h2>Magazyn lokalny</h2>
+    <p>Umożliwia przechowywanie niewygasających danych w formacie par klucz:wartość na komputerze użytkownika i odczytywanie ich podczas ponownego odwiedzania strony. Magazyn lokalny i magazyn sesji są częścią przeglądarki, więc są dostępne jako właściwości obiektu window, mają ten sam zestaw właściwości i metod, a różnią się tylko zachowaniem.</p>
+    <ul>
+        <li>setItem(key, value) - tworzy nowy lub aktualizuje istniejący rekord w magazynie.</li>
+        <li>getItem(key) - zwraca wartość z kluczem key z magazynu.</li>
+        <li>removeItem(key) - usuwa rekord z kluczem key z magazynu.</li>
+        <li>clear() - całkowicie czyści wszystkie rekordy w magazynie.</li>
+        <li>length - przechowuje liczbę rekordów w magazynie.</li>
+    </ul>
+
+    <h2>Przechowywanie</h2>
+    <p>Używając metody setItem(key, value), możesz dodać nowy wpis jako parę klucz:wartość.</p>
+    <script>
+        localStorage.setItem("ui-theme", "light");
+        localStorage.setItem("sidebar", "expanded");
+        localStorage.setItem("notification-level", "mute");
+    </script>
+
+    <p>Jeśli chcesz przechowywać coś innego niż ciąg, na przykład tablicę lub obiekt, musisz przekonwertować go na ciąg za pomocą metody JSON.stringify().</p>
+    <script>
+        const settings1 = {
+            theme: "dark",
+            isAuthenticated: true,
+            options: [1, 2, 3],
+        };
+
+        localStorage.setItem("settings", JSON.stringify(settings));
+    </script>
+
+    <h2>Odczytywanie</h2>
+    <p>Metoda getItem(key) pozwala na odczytanie z magazynu wpisu z kluczem key. Jeśli w magazynie nie ma wpisu z takim kluczem, metoda zwraca null. Gdy wartość jest zwykłym ciągiem, nie ma potrzeby go parsować.</p>
+    <script>
+        localStorage.setItem("ui-theme", "dark");
+        const theme = localStorage.getItem("ui-theme");
+        console.log(theme); // "dark"
+    </script>
+
+    <p>W przeciwnym razie musisz przeparsować wartość za pomocą metody JSON.parse(), aby uzyskać prawidłowe dane.</p>
+    <script>
+        const settings2 = {
+            theme: "dark",
+            isAuthenticated: true,
+            options: [1, 2, 3],
+        };
+
+        localStorage.setItem("settings", JSON.stringify(settings));
+
+        const savedSettings = localStorage.getItem("settings");
+        const parsedSettings = JSON.parse(savedSettings);
+        console.log(parsedSettings); // settings object
+    </script>
+
+    <p>Nie zapomnij użyć konstrukcji try...catch z metodą JSON.parse(), aby uniknąć „zawieszenia” skryptu, jeśli nagle przeczytasz nieprawidłowy JSON.</p>
+
+    <h2>Usuwanie</h2>
+    <p>Metoda removeItem(key) usuwa istniejący wpis z kluczem key z magazynu.</p>
+    <script>
+        localStorage.setItem("ui-theme", "dark");
+        console.log(localStorage.getItem("ui-theme")); // "dark"
+
+        localStorage.removeItem("ui-theme");
+        console.log(localStorage.getItem("ui-theme")); // null
+    </script>
+
+    <h2>Czyszczenie magazynu</h2>
+    <p>Operacja całkowitego oczyszczenia magazynu jest niebezpieczna, ponieważ może wpłynąć na wpisy dokonane przez innych deweloperów projektu. Jeśli jednak chcesz całkowicie wyczyścić magazyn, wywołaj metodę clear().</p>
+    <script>
+        localStorage.setItem("ui-theme", "light");
+        localStorage.setItem("sidebar", "expanded");
+        localStorage.setItem("notification-level", "mute");
+        console.log(localStorage.getItem("ui-theme")); // "light"
+        console.log(localStorage.getItem("sidebar")); // "expanded"
+        console.log(localStorage.getItem("notification-level")); // "mute"
+
+        localStorage.clear();
+        console.log(localStorage.getItem("ui-theme")); // null
+        console.log(localStorage.getItem("sidebar")); // null
+        console.log(localStorage.getItem("notification-level")); // null
+    </script>
+
+    <h2>Jak zapisać wiadomość</h2>
+    <p>Stwórzmy formularz, aby wpisać wiadomość i zapisać ją w localStorage po przesłaniu. Zmień wartość pola tekstowego i kliknij przycisk „Zapisz”. Tekst w polu wyjściowym zmieni się na wprowadzony. Odśwież stronę, a zobaczysz ten sam tekst, chociaż jeszcze nic nie wpisałeś. Po załadowaniu strony pobieramy ostatnią przechowywaną wartość z localStorage. Początkowo w magazynie nie ma takiego rekordu, więc zostanie wyświetlony pusty ciąg.</p>
+
+    <p>Value from localStorage: <span id="output"></span></p>
+    <form id="message-form">
+    <input type="text" class="input" name="message">
+    <button type="submit" class="btn">Save</button>
+
+    <script>
+        const form = document.querySelector("#message-form");
+        const output = document.querySelector("#output");
+        const LOCALSTORAGE_KEY = "goit-example-message";
+
+        updateOutput();
+        form.addEventListener("submit", saveMessage);
+
+        function saveMessage(evt) {
+            evt.preventDefault();
+            localStorage.setItem(LOCALSTORAGE_KEY, form.elements.message.value);
+            updateOutput();
+            form.reset();
+        }
+
+        function updateOutput() {
+            output.textContent = localStorage.getItem(LOCALSTORAGE_KEY) || "";
+        }
+    </script>
+
+    <p>Zawartość magazynu internetowego można wyświetlić w narzędziach programistycznych na karcie Application. Możesz tam również ręcznie usuwać i dodawać rekordy. W praktyce jest to wykorzystywane podczas tworzenia i debugowania aplikacji.</p>
+
+    <h2>Usługa dla localStorage</h2>
+    <p>Aby zmniejszyć ilość powtarzającego się kodu podczas pracy z magazynem internetowym, możesz napisać usługę ze standardowymi metodami, na przykład save i load. Będą abstrahować od powtarzającego się kodu sprawdzania błędów parsowania i tym podobnych.</p>
+    <script>
+        const save = (key, value) => {
+            try {
+                const serializedState = JSON.stringify(value);
+                localStorage.setItem(key, serializedState);
+            } catch (error) {
+                console.error("Set state error: ", error.message);
+            }
+        };
+
+        const load = key => {
+            try {
+                const serializedState = localStorage.getItem(key);
+            return serializedState === null ? undefined : JSON.parse(serializedState);
+            } catch (error) {
+             console.error("Get state error: ", error.message);
+            }
+        };
+
+        export default {
+        save,
+        load,
+        };
+    </script>
+
+    <p>Możemy teraz bezpiecznie dodawać i odczytywać rekordy z lokalnego magazynu. Spróbuj samodzielnie dodać metodę remove(key), aby usunąć wpis, podobnie jak load(key) i save(key, value).</p>
+</form>
 </body>
 </html>
