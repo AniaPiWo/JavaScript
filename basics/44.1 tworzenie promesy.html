@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Tworzenie</h1>
+    <p>Obietnica jest tworzona jako instancja klasy Promise, która przyjmuje funkcję (executor) jako argument i wywołuje ją natychmiast, nawet zanim obietnica zostanie utworzona i zwrócona.</p>
+    <script>
+        const promise = new Promise((resolve, reject) => {
+        // Asynchronous operation
+        });
+    </script>
+    <p>Funkcja executor powiadamia instancję (obietnicę), kiedy i jak operacja, z którą jest powiązana, zakończy się. W niej można wykonać dowolną operację asynchroniczną, po której zakończeniu należy wywołać resolve() w przypadku powodzenia (stan fulfilled), lub reject() w przypadku błędu (stan rejected). Wartość zwracana przez tę funkcję jest ignorowana.</p>
+
+    <ul>
+        <li>resolve(value) - funkcja, która zostanie wywołana po udanej operacji. Argumentem do niej przekazanym będzie wartość spełnionej obietnicy.</li>
+        <li>reject(error) - funkcja do wywołania w przypadku błędu. Argumentem do niej przekazanym będzie wartość odrzuconej obietnicy.</li>
+    </ul>
+
+    <img src="/images/creating-promise.png" alt="" width="800">
+    <script>
+        // Change value of isSuccess variable to call resolve or reject
+    const isSuccess = true;
+
+    const promise2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+        if (isSuccess) {
+        resolve("Success! Value passed to resolve function");
+        } else {
+        reject("Error! Error passed to reject function");
+        }
+        }, 2000);
+    });
+    </script>
+    <p>Obietnica (obiekt) w stanie pending zostanie zapisana do zmiennej promise2, i dwie sekundy później, po wywołaniu resolve() lub reject(), obietnica przejdzie w stan fulfilled lub rejected i możemy ją przetworzyć.</p>
+</body>
+</html>
