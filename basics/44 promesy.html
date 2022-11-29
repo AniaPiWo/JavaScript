@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Obietnice</h1>
+    <p>Polly obiecuje upiec ciasto na moje urodziny za dwa tygodnie. Jeśli wszystko pójdzie dobrze i ona nie zachoruje, będę miał ciasto. Jeśli Polly źle się poczuje, nie będzie mogła upiec ciasta. Tak czy inaczej, i tak będziemy mieć imprezę. Obietnica nie jest gwarancją spełnienia, nie wiemy, czy zostanie spełniona, czy nie. W programowaniu są też zadania, których wynik poznamy dopiero w przyszłości.</p>
+    <img src="/images/promise-story.png" alt="" width="800">
+    <p>Promise (obietnica) - obiekt reprezentujący aktualny stan operacji asynchronicznej. Jest to opakowanie na wartość nieznaną w momencie tworzenia obietnicy. Pozwala traktować wyniki operacji asynchronicznych tak, jakby były synchroniczne: zamiast końcowego wyniku operacji asynchronicznej zwracana jest obietnica otrzymania wyniku w przyszłości.</p>
+
+    <ul>Obietnica może mieć trzy stany:
+        <li>Oczekujący (pending) - stan początkowy podczas tworzenia obietnicy.</li>
+        <li>Spełniony (fulfilled) - operacja zakończona sukcesem, z pewnym wynikiem.</li>
+        <li>Odrzucony (rejected) - operacja została odrzucona z błędem.</li>
+    </ul>
+    <img src="/images/promise-states.png" alt="" width="800">
+    <p>Kiedy obietnica jest tworzona, jest w stanie oczekującym (pending), po czym może zakończyć się pomyślnie (fulfilled), zwracając wynik (wartość) lub z błędem (rejected), zwracając przyczynę. Kiedy obietnica wchodzi w stan fulfilled lub rejected, jest to na zawsze.</p>
+    <p>Kiedy obietnica jest spełniona lub odrzucona, mówi się, że jest zakończona (settled). Jest to po prostu termin opisujący, że obietnica jest w innym stanie, niż oczekujący.</p>
+    
+    <p>Różnice między obietnicą a funkcją wywołania zwrotnego:
+        <ul>
+            <li>Callbacki to funkcje, obietnice to obiekty.</li>
+            <li>Wywołania zwrotne są przekazywane jako argumenty z kodu zewnętrznego do kodu wewnętrznego, a obietnice są zwracane z kodu wewnętrznego do zewnętrznego.</li>
+            <li>Callbacki obsługują udane lub nieudane zakończenie operacji, obietnice niczego nie obsługują.</li>
+            <li>Callbacki mogą obsługiwać wiele zdarzeń, obietnice są powiązane tylko z jednym zdarzeniem.</li>
+        </ul>
+    </p>
+
+</body>
+</html>

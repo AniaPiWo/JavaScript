@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Liczniki czasu</h1>
+
+    <p>Wewnętrzny harmonogram czasowy przeglądarki umożliwia odroczenie wywołania funkcji na określony czas. Istnieją limity czasu i interwały, które kontrolują, kiedy i jak często funkcja jest wywoływana. Timery są zaimplementowane w przeglądarce, a nie wbudowane w język i są dostępne w globalnym obiekcie window.</p>
+
+    <h2>Limit czasu</h2>
+
+    <p>Metoda setTimeout() umożliwia zaplanowanie uruchomienia funkcji po określonym czasie.</p>
+    <p>const timerId = setTimeout(callback, delay, arg1, arg2, ...);</p>
+
+    <ul>
+        <li>callback - funkcja, której wykonanie należy zaplanować.</li>
+        <li>delay - czas w milisekundach, po którym funkcja callback zostanie jednorazowo wywołana.</li>
+    </ul>
+
+    <p>Dodatkowe argumenty (arg1, arg2 itd.) zostaną przekazane do funkcji wywołania zwrotnego w czasie wywołania. Zwraca numeryczny identyfikator utworzonego timera, który służy do jego usunięcia</p>
+
+    <button type="button" class="btn">Click me</button>
+
+    <script>
+        const button = document.querySelector("button");
+
+        const onClick = () => {
+            setTimeout(() => {
+            alert("I love async JS!");
+            }, 2000);
+        };
+
+        // Two seconds after clicking the button, 
+        // alert specified inside the setTimeout callback will appear.
+        button.addEventListener("click", onClick);
+    </script>
+
+    <p>Jeśli z jakiegoś powodu musimy anulować wywołanie funkcji wewnątrz limitu czasu, używana jest metoda clearTimeout(id), która pobiera identyfikator timera i czyści go (usuwa).</p>
+
+    <script>
+        const greet = () => {
+            console.log("Hello!");
+        };
+
+        const timerId = setTimeout(greet, 3000);
+
+       clearTimeout(timerId);
+    </script>
+
+    <p>Ponieważ wywołaliśmy clearTimeout(), która zostanie wykonana przed wywołaniem funkcji greet(), timer z timerId zostanie usunięty, a oczekujące wywołanie greet() zostanie wyrejestrowane. Dlatego nic nie zostanie wyprowadzone na konsolę.</p>
+
+    <h2>Interwał</h2>
+    <p>Metoda setInterval() to prosty sposób na powtarzanie kodu w kółko w określonym czasie. Składnia i parametry są takie same jak setTimeout(). W przeciwieństwie do setTimeout(), interwał rozpoczyna wykonywanie funkcji nie raz, ale regularnie powtarza ją po określonym przedziale czasu. Możesz zatrzymać wykonywanie, wywołując metodę clearInterval(id).</p>
+
+    <p>const timerId = setInterval(callback, delay, arg1, arg2, ...);</p>
+
+    <p>Po kliknięciu przycisku „Start” rozpoczniemy interwał i co sekundę będziemy wyprowadzać ciąg do konsoli. Używamy Math.random(), aby ciągi były różne. Klikając przycisk „Stop”, wywołamy clearInterval() i przekażemy identyfikator interwału, który ma zostać zatrzymany.</p>
+
+    <button class="btn js-start">Start</button>
+    <button class="btn js-stop">Stop</button>
+
+    <script>
+        const startBtn = document.querySelector(".js-start");
+        const stopBtn = document.querySelector(".js-stop");
+        let timerId2 = null;
+
+        startBtn.addEventListener("click", () => {
+            timerId2 = setInterval(() => {
+            console.log(`I love async JS!  ${Math.random()}`);
+            }, 1000);
+        });
+
+
+        stopBtn.addEventListener("click", () => {
+            clearInterval(timerId2);
+            console.log(`Interval with id ${timerId2} has stopped!`);
+        });
+    </script>
+
+    <h2>Częstotliwość uruchomienia licznika</h2>
+
+    <p>Licznik przeglądarki ma najmniejsze możliwe opóźnienie. W nowoczesnych przeglądarkach waha się od około 0 do 4 milisekund. W starszych przeglądarkach opóźnienie może być dłuższe, do 15 milisekund. Zgodnie ze standardem minimalne opóźnienie wynosi 4 milisekundy, więc nie ma różnicy między setTimeout(callback, 1) i setTimeout(callback, 4).</p>
+
+    <p>Timer może uruchamiać się rzadziej niż określono w parametrze delay, ponieważ jeśli obciążenie procesora jest zbyt duże, niektóre uruchomienia funkcji interwałowych zostaną pominięte. Przeglądarki nadal wykonują limity czasu i interwały, nawet gdy karta przeglądarki jest nieaktywna, ale zmniejszają częstotliwość uruchomienia licznika</p>
+</body>
+</html>

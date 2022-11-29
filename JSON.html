@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=h2, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>JSON</h2>
+    <p>JSON (JavaScript Object Notation) to nowoczesny format tekstowy do przechowywania i przekazywania danych strukturalnych w formie tekstowej. Znajoma składnia JSON jest bardzo wygodna. To właśnie w tym formacie dane będą przesyłane i wysyłane na serwer, przechowywane w pamięci lokalnej itp.</p>
+    <p>Ale JSON nie jest obiektem, ale jego reprezentacją w postaci ciągu. Poniżej znajduje się przykładowy plik JSON. Składnia jest podobna do obiektu, z wyjątkiem tego, że klucze są zawsze ciągami w podwójnych cudzysłowach. Wartości ciągu również muszą być ujęte w podwójne cudzysłowy. Wartościami właściwości mogą być typu string, number, object, array, boolean i null.</p>
+    <p>
+        {
+            "name": "Josh",
+            "weight": 175,
+            "age": 30,
+            "eyecolor": "brown",
+            "isHappy": true,
+            "cars": ["Chevy", "Honda"],
+            "favoriteBook": {
+              "title": "The Last Kingdom",
+              "author": "Bernard Cornwell",
+              "rating": 8.38
+            }
+          }
+    </p>
+    <p>JavaScript i JSON świetnie ze sobą współdziałają dzięki metodom wbudowanej klasy JSON, które konwertują obiekty JavaScript na JSON i odwrotnie. Bez względu na to, co masz, łatwo jest uzyskać coś przeciwnego.</p>
+
+    <h2>Metoda JSON.stringify()</h2>
+    <p>Pobiera wartość i konwertuje ją na JSON. Wartość może być liczbą, wartością logiczną, null, tablicą lub obiektem. Ciągi są już poprawnym JSON, więc ich konwersja nie ma sensu.</p>
+
+    const dog = {
+        name: "Mango",
+        age: 3,
+        isHappy: true,
+      };
+      
+      const dogJSON = JSON.stringify(dog);
+      console.log(dogJSON); // "{"name":"Mango","age":3,"isHappy":true}"
+
+    <p>Wynikiem wywołania JSON.stringify(dog) jest prawidłowy JSON (ciąg), który można zapisać do pliku lub przesłać przez sieć.</p>
+    <p>Nie każdy obiekt JavaScript można przekonwertować jeden do jednego na JSON. Na przykład, jeśli obiekt ma metody, zostaną one zignorowane podczas konwersji.</p>
+    
+
+    const dog = {
+        name: "Mango",
+        age: 3,
+        isHappy: true,
+        bark() {
+          console.log("Woof!");
+        },
+      };
+      
+      const dogJSON = JSON.stringify(dog);
+      console.log(dogJSON); // "{"name":"Mango","age":3,"isHappy":true}"
+
+    <p>Ponadto podczas próby konwersji funkcji do formatu JSON wynik będzie undefined.</p>
+
+    JSON.stringify(() => console.log("Well, this is awkward")); // undefined
+
+    <h2>Metoda JSON.parse()</h2>
+    <p>Aby uzyskać prawidłową wartość JavaScript z JSON, należy ją przeparsować (parse). Jest to odwrotna operacja konwersji na ciąg (stringify). Teraz, gdy dog jest prawidłowym obiektem, możesz z nim pracować jak zwykle.</p>
+
+    const json = '{"name":"Mango","age":3,"isHappy":true}';
+
+    const dog = JSON.parse(json);
+    console.log(dog); // {name: "Mango", age: 3, isHappy: true}
+    console.log(dog.name); // "Mango"
+
+    <h2>Obsługa błędów</h2>
+    <p>jeśli nieprawidłowy JSON zostanie przekazany do metod klasy JSON, to wystąpi błąd i cały skrypt się zawiesi. Aby tego uniknąć, używana jest konstrukcja try...catch, która pozwala "wyłapać" i obsłużyć błędy wykonania skryptu.</p>
+
+    try {
+        // Code that may throw a runtime error
+      } catch (error) {
+        // Error handling
+      }
+
+   <ol>
+    <li>Najpierw wykonywany jest kod wewnątrz bloku try.</li>
+    <li>Jeśli nie ma błędów, blok catch jest ignorowany, a sterowanie jest przekazywane dalej.</li>
+    <li>Jeśli w bloku try wystąpi błąd, jego wykonanie zostaje zatrzymane, a interpreter przejdzie do bloku catch.</li>
+   </ol>
+
+   <p>Zmienna error to obiekt błędu z informacją o tym, co się stało. Ten obiekt ma kilka przydatnych właściwości:
+    <ul>
+        <li>name - rodzaj błędu. W przypadku błędu parsowania jest to SyntaxError.</li>
+        <li>message - wiadomość o szczegółach błędu.</li>
+        <li>stack - stos wywołań funkcji w momencie wystąpienia błędu. Używany do debugowania.</li>
+    </ul>
+   </p>
+
+   <p>Na przykład parsowanie ciągu doprowadzi do tego scenariusza, ponieważ ciąg znaków nie jest prawidłowym JSON, ponieważ nie można go przekonwertować na prawidłową wartość JavaScript.</p>
+
+   // Script will crash during parse
+    const data = JSON.parse("Well, this is awkward");
+    console.log("❌ You won't see this log");
+
+    <p>Używając konstrukcji try...catch możemy obsłużyć ten wyjątek, dzięki czemu skrypt będzie działał nawet w przypadku błędu.</p>
+
+    try {
+        const data = JSON.parse("Well, this is awkward");
+      } catch (error) {
+        console.log(error.name); // "SyntaxError"
+        console.log(error.message); // Unexpected token W in JSON at position 0
+      }
+      
+      console.log("✅ This is fine, we handled parse error in try...catch");
+
+    <p>To samo stanie się przy próbie parsowania nieprawidłowego JSON, który na przykład może pochodzić z back-endu lub zostać odczytany z pliku. W tym przykładzie we właściwości username brakuje otaczających podwójnych cudzysłowów.</p>
+
+    try {
+        const data = JSON.parse('{username: "Mango"}');
+      } catch (error) {
+        console.log(error.name); // "SyntaxError"
+        console.log(error.message); // "Unexpected token u in JSON at position 1"
+      }
+      
+      console.log("✅ This is fine, we handled parse error in try...catch");
+
+    <h2>Fazy wykonania kodu</h2>
+    <p>W JavaScript kod nie jest wykonywany od razu, najpierw silnik musi go odczytać i sprawdzić, czy w ogóle można go wykonać.</p>
+    <ul>
+        <li>Faza interpretacji lub oceny (compile time, evaluation time) - przygotowanie przed wykonaniem kodu, silnik wyszukuje błędy składniowe, błędy pisarskie itp. Oznacza to, że kod nie jest jeszcze wykonywany, jest tylko oceniany. Jeśli ta faza się powiedzie, oznacza to przynajmniej, że w kodzie nie ma błędów składniowych i można go uruchomić w celu wykonania.</li>
+        <li>Faza wykonania (runtime) - skrypt rozpoczyna wykonywanie, wykonywane są instrukcje wywoływania funkcji i obliczania wyrażeń, poszukiwane są niezbędne identyfikatory w odpowiednich zakresach i tym podobne.</li>
+    </ul>
+    Jeśli ta faza druga zakończy się pomyślnie, to skrypt został napisany bez oczywistych błędów i zakończył swoją pracę. Podczas tej fazy mogą wystąpić błędy związane z brakiem właściwości i zmiennych, konwersją typów itp., czyli coś, co dzieje się tylko podczas wykonywania kodu.
+
+    <p>Wypróbuj następujący kod. Ponieważ popełniliśmy literówkę i zamiast const próbujemy zadeklarować zmienną value za pomocą słowa kluczowego cos, błąd składni zostanie wykryty podczas fazy kompilacji, a faza wykonywania nawet się nie rozpocznie. W konsoli od razu zobaczymy komunikat o błędzie.
+    </p>
+
+    console.log('This message will not appear in the console');
+
+    cos value = 5;
+
+    <p>try...catch wyłapuje tylko błędy, które wystąpiły podczas wykonywania kodu (runtime errors). Oznacza to, że kod musi być poprawny składniowo, w przeciwnym razie faza wykonania po prostu nie rozpocznie się. Błędy, które występują w fazie oceny, nazywane są błędami parsowania.</p>
+</html>
