@@ -1,43 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="keywords" content="HTML, CSS, JavaScript" />
     <meta name="author" content="John Doe" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript</title>
-</head>
+  </head>
 
+  <script>
+    //Zdarzenia Dom
+    //Event - czyli sytuacje powstajace w przegladarcenp:
+    // - DOMContentLoaded (bez css i zdjec) -drzewo DOM zostalo zaladowane po parsowaniu pliku html i jest gotowe do uzycia np przez JS
+    // - load - całośc z css i zdjeciami jest gotowa
+    // - click event - użytkownik kliknal w przycisk na stronie
+    // - keydown, keyup event - uzykownik wcisnal klawisz na klawiaturze
+    // - load event - obrazek zostal zaladowany na stronie
+    // - mouseover - wskaznik myszy najechal na link
+    // change event - uzytkownik wpisac cos do formularza
 
-<script>
-//Zdarzenia Dom
-//Event - czyli sytuacje powstajace w przegladarcenp:
-// - DOMContentLoaded (bez css i zdjec) -drzewo DOM zostalo zaladowane po parsowaniu pliku html i jest gotowe do uzycia np przez JS 
-// - load - całośc z css i zdjeciami jest gotowa
-// - click event - użytkownik kliknal w przycisk na stronie
-// - keydown, keyup event - uzykownik wcisnal klawisz na klawiaturze
-// - load event - obrazek zostal zaladowany na stronie 
-// - mouseover - wskaznik myszy najechal na link
-// change event - uzytkownik wpisac cos do formularza
+    //zdarzenia DOM - dodatkowe slowa kluczowe
+    // event type - string, nazwa zdarzenia np -> click, load, mouseover etc
+    // event target - element z którym zwiazane jest zdarzenie np klikniety button wyzwoli zdarzenie click
+    // event handler (wymienna nazwa -> event listener) - funkcja odpowiedzialna za obsluge zdarzenia
+    // event object - interfejs/obiekt posiadajacy informacje o zdarzeniu, na nim bazuja inne zdarzenia jak: FocusEvent, MouseEvent, ProgressEvent itd
+    // event propagation - przegladarka decyduje, ktore obiekty  poinformowac o powstalym zdarzeniu
 
-//zdarzenia DOM - dodatkowe slowa kluczowe
-// event type - string, nazwa zdarzenia np -> click, load, mouseover etc
-// event target - element z którym zwiazane jest zdarzenie np klikniety button wyzwoli zdarzenie click
-// event handler (wymienna nazwa -> event listener) - funkcja odpowiedzialna za obsluge zdarzenia
-// event object - interfejs/obiekt posiadajacy informacje o zdarzeniu, na nim bazuja inne zdarzenia jak: FocusEvent, MouseEvent, ProgressEvent itd
-// event propagation - przegladarka decyduje, ktore obiekty  poinformowac o powstalym zdarzeniu 
+    //przyklady obslugi zdarzen
+    window.addEventListener("load", function (event) {
+      console.log("DOM, CSS, obrazki załadowane");
+    });
 
-//przyklady obslugi zdarzen
- window.addEventListener("load", function(event) {console.log("DOM, CSS, obrazki załądowane")})
-
-function linkClicked() {console.log("link klikniety")};
-</script>
-<body id="body">
-    <a href="#" onclick="linkClicked();">some link</a> <!-- jak uzytkownik kliknie w link to wywola funkcje linkClicked-->
+    function linkClicked() {
+      console.log("link klikniety");
+    }
+  </script>
+  <body id="body">
+    <a href="#" onclick="linkClicked();">some link</a>
+    <!-- jak uzytkownik kliknie w link to wywola funkcje linkClicked-->
     <div id="divBox">div element</div>
-</body>
 
-
-
+    <button>Kliknij mnie!</button>
+    <script>
+      document
+        .querySelector("button")
+        .addEventListener("click", () => console.log("guzik klikiniety"));
+    </script>
+  </body>
 </html>
