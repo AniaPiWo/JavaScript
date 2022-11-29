@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .timer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      button {
+        padding: 1rem 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="timer">
+      <h1>0</h1>
+      <div>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+      </div>
+    </div>
+    <script>
+      /*
+            wpisuje kolejne wtyswietlenia jako cyferki obok hi
+        setInterval(() => {
+            console.log("Hi");
+        }, 2000); */
+
+      //to samo, tylko konsola wyrzuca hi jdno pod drugim z numerem
+
+      /*     let i = 0;
+          setInterval(() => {
+            console.log("Hi", i++);
+          }, 2000); */
+
+      const timer = document.querySelector("h1");
+
+      const startBtn = document.querySelector("#start");
+      const stopBtn = document.querySelector("#stop");
+
+      let i = 0; //licznik
+      let intervalId;
+
+      const stopInterval = () => clearInterval(intervalId);
+
+      const startInterval = () => {
+        if (intervalId) clearInterval(intervalId); // czyszczenie poprzednich interval, zeby byl tylko jeden na raz
+
+        intervalId = setInterval(() => {
+          timer.textContent = i;
+          console.log("Hi", i++);
+        }, 1000);
+      };
+
+      startBtn.addEventListener("click", startInterval);
+      stopBtn.addEventListener("click", stopInterval);
+
+      const startTimer = () => {
+        const interval = setInterval(() => {
+          timer.textContent = i;
+          console.log("Hi", i++);
+        }, 1000);
+
+        const unsubscribe = () => clearInterval(interval);
+
+        return unsubscribe;
+      };
+
+      const unsub = startTimer();
+    </script>
+  </body>
+</html>

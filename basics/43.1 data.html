@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Metody obiektu Date()</h1>
+    <p>
+      JavaScript udostępnia wiele metod związanych z obiektem Date(). Metody
+      wykorzystywane częściej zaznaczono pogrubioną czcionką. UTC to Uniwersalny
+      Czas Kodowany. My korzystamy z GMT (Uniwersalny Czas Greenwich).
+    </p>
+    <p>
+      Metody służące do ustawiania czasu działają jedynie w obrębie skryptu. Nie
+      wpływają na ustawienie zegara urządzenia.
+    </p>
+
+    <h2>Najczęsciej wykorzystywane metody</h2>
+    <ul>
+      <li>getDate() - dzień miesiąca (wartość z przedziału 1 - 31)</li>
+      <li>
+        getDay() - dzień tygodnia (0 dla niedzieli, 1 dla poniedziałku, 2 dla
+        wtorku itd.)
+      </li>
+      <li>
+        getYear() - liczba reprezentująca rok (dla zakresu dat 1900 - 1999 jest
+        to 2-cyfrowa - liczba, a dla późniejszych jest to liczba 4-cyfrowa)
+      </li>
+      <li>getFullYear() - pełna liczba reprezentująca rok</li>
+      <li>getHours() - zwraca aktualną godzinę (z przedziału 0 - 23)</li>
+      <li>getMillisecond() - zwraca milisekundy (z przedziału 0 - 999)</li>
+      <li>getMinutes() - zwraca minuty (z przedziału 0 - 59)</li>
+      <li>getMonth() - zwraca aktualny miesiąc (0 - styczeń, 1 - luty itd.)</li>
+      <li>
+        getSeconds() - zwraca aktualną liczbę sekund (z przedziału 0 - 59)
+      </li>
+      <li>
+        getTime() - zwraca aktualny czas jako liczbę reprezentującą liczbę
+        milisekund która upłynęła od godziny 00:00 1 stycznia 1970 roku
+      </li>
+    </ul>
+    <a href="https://www.medianauka.pl/data-czas-javascript"
+      >Pozostałe metody</a
+    >
+    <p>
+      <b
+        >UWAGA - Jesli do konstruktora podajemy tylko jeden argument to jest on
+        traktowany jako ilosc milisekund!</b
+      >
+      <script>
+        const date1 = new Date(20000); //20 sekund, nie 2000 rok!
+        console.log("Tylko jeden argument w konstruktorze: " + date1); //Tylko jeden argument w konstruktorze: Thu Jan 01 1970 01:00:20 GMT+0100 (czas środkowoeuropejski standardowy) (czyli poczatek + 20 sekund)
+      </script>
+    </p>
+    <b>Jesli ma to byc rok to musi byc w ""</b>
+    <script>
+      const date2 = new Date("2000"); // 2000 rok!
+      console.log("Jeden argument ale w konstruktorze: " + date2);
+    </script>
+    <script>
+      const date = new Date();
+
+      console.log(date); //Tue Nov 29 2022 14:38:28 GMT+0100 (czas środkowoeuropejski standardowy)
+      console.log(date.toString()); //Tue Nov 29 2022 14:38:28 GMT+0100 (czas środkowoeuropejski standardowy)
+      console.log(date.toISOString()); //2022-11-29T13:39:20.717Z
+
+      /*   setTimeout(() => {
+        console.log(new Date().toISOString());
+      }, 2000); */
+
+      const standardizedDateString = date.toISOString();
+      console.log("standarized: " + standardizedDateString); //2022-11-29T13:47:45.837Z
+
+      const deserializedDate = new Date(standardizedDateString);
+      console.log("deserialized: " + deserializedDate); //Tue Nov 29 2022 14:51:42 GMT+0100 (czas środkowoeuropejski standardowy)
+
+      const bday = new Date();
+      console.log("Data przed set: " + bday);
+
+      bday.setFullYear(2022);
+      bday.setMonth(10);
+      bday.setDate(15);
+      console.log("Data po set: " + bday);
+
+      const d1 = new Date();
+      const d2 = new Date(2000, 0);
+      console.log(d1 - d2); //723050468739
+      console.log(d1.getTime() - d2.getTime()); //723050468739
+
+      console.log(new Date().getTime()); //obecny czas w ms
+      console.log(Date.now()); //obecny czas w ms
+
+      console.clear();
+
+      let lastDate = Date.now();
+      /*
+      setInterval(() => {
+        // console.log(new Date());
+        //console.log(Date.now()); //obecny czas w ms
+        const now = Date.now();
+        const secondsPassed = Math.round((now - lastDate) / 1000);
+        console.log(secondsPassed);
+        //lastDate = now;
+      }, 1000); */
+
+      console.clear();
+
+      interval = setInterval(() => {
+        const now = Date.now();
+        const secondsPassed = Math.round((now - lastDate) / 1000);
+        console.log(secondsPassed);
+
+        if (secondsPassed >= 60) clearInterval(interval);
+      }, 1000);
+    </script>
+  </body>
+</html>

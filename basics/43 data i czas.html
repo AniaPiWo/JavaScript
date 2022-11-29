@@ -1,180 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Data i czas</h1>
-    <p>Klasa Date abstrahuje większość pracy bezpośrednio z datami. Pozwala nam to reprezentować momenty w czasie jako obiekty i manipulować nimi za pomocą predefiniowanych metod. Korzystając z możliwości klasy Date można tworzyć zegary, liczniki, kalendarze i inne interaktywne elementy interfejsu.</p>
+    <p>
+      Klasa Date abstrahuje większość pracy bezpośrednio z datami. Pozwala nam
+      to reprezentować momenty w czasie jako obiekty i manipulować nimi za
+      pomocą predefiniowanych metod. Korzystając z możliwości klasy Date można
+      tworzyć zegary, liczniki, kalendarze i inne interaktywne elementy
+      interfejsu.
+    </p>
 
     <h2>Tworzenie daty</h2>
-    <p>Instancja obiektu Date to obiekt reprezentujący określony punkt w czasie. Utworzenie daty bez argumentów zwraca obiekt przechowujący datę i czas w momencie jej inicjalizacji, czyli obecne. W konwersji ciągów obiekt zwraca wynik wywołania metody toString(), więc w pierwszym logu otrzymujemy ciąg, a nie obiekt.</p>
+    <p>
+      Instancja obiektu Date to obiekt reprezentujący określony punkt w czasie.
+      Utworzenie daty bez argumentów zwraca obiekt przechowujący datę i czas w
+      momencie jej inicjalizacji, czyli obecne. W konwersji ciągów obiekt zwraca
+      wynik wywołania metody toString(), więc w pierwszym logu otrzymujemy ciąg,
+      a nie obiekt.
+    </p>
 
     <script>
-        const date = new Date();
+      const date = new Date();
 
-        console.log(date);
-        // "Fri Jun 18 2021 15:01:35 GMT+0300 (Eastern European Summer Time)" - object
+      console.log(date);
+      // "Fri Jun 18 2021 15:01:35 GMT+0300 (Eastern European Summer Time)" - object
 
-        console.log(date.toString());
-        // "Fri Jun 18 2021 15:01:35 GMT+0300 (Eastern European Summer Time)" - string
+      console.log(date.toString());
+      // "Fri Jun 18 2021 15:01:35 GMT+0300 (Eastern European Summer Time)" - string
     </script>
 
     <h2>Czas uniksowy</h2>
-    <p><b>Wewnętrznie daty są reprezentowane w milisekundach od północy 1 stycznia 1970 roku w strefie czasowej UTC.</b> W przypadku komputera jest to data początkowa całego czasu - czas uniksowy. Dlatego podczas inicjowania daty z pojedynczą liczbą reprezentuje on liczbę milisekund, które minęły.</p>
+    <p>
+      <b
+        >Wewnętrznie daty są reprezentowane w milisekundach od północy 1
+        stycznia 1970 roku w strefie czasowej UTC.</b
+      >
+      W przypadku komputera jest to data początkowa całego czasu - czas
+      uniksowy. Dlatego podczas inicjowania daty z pojedynczą liczbą
+      reprezentuje on liczbę milisekund, które minęły.
+    </p>
     <script>
-        console.log(new Date(0));
-        // "Thu Jan 01 1970 03:00:00 GMT+0300 (Eastern European Standard Time)"
+      console.log(new Date(0));
+      // "Thu Jan 01 1970 03:00:00 GMT+0300 (Eastern European Standard Time)"
 
-        console.log(new Date(15000));
-        // "Thu Jan 01 1970 03:00:15 GMT+0300 (Eastern European Standard Time)"
+      console.log(new Date(15000));
+      // "Thu Jan 01 1970 03:00:15 GMT+0300 (Eastern European Standard Time)"
     </script>
 
-    <p>Metoda getTime() zwraca liczbową reprezentację daty (timestamp) - liczbę milisekund, które minęły od północy 1 stycznia 1970 roku</p>
+    <p>
+      Metoda getTime() zwraca liczbową reprezentację daty (timestamp) - liczbę
+      milisekund, które minęły od północy 1 stycznia 1970 roku
+    </p>
     <script>
-        const date2 = new Date();
-        console.log(date2.getTime()); // 1624021654154
+      const date2 = new Date();
+      console.log(date2.getTime()); // 1624021654154
     </script>
-    <p>Wygoda tego formatu polega na tym, że możesz przedstawić dokładne punkty w czasie jako pojedynczą liczbę i nie martwić się o daty, ciągi znaków i strefy czasowe, ponieważ możesz uzyskać wszystkie potrzebne informacje, gdy ich potrzebujesz.</p>
+    <p>
+      Wygoda tego formatu polega na tym, że możesz przedstawić dokładne punkty w
+      czasie jako pojedynczą liczbę i nie martwić się o daty, ciągi znaków i
+      strefy czasowe, ponieważ możesz uzyskać wszystkie potrzebne informacje,
+      gdy ich potrzebujesz.
+    </p>
 
     <h2>Ustawienie daty</h2>
-    <p>Podczas tworzenia instancji klasy Date możesz ustawić datę jako ciąg lub liczby. Ciąg może opisywać tylko datę lub datę i czas.</p>
+    <p>
+      Podczas tworzenia instancji klasy Date możesz ustawić datę jako ciąg lub
+      liczby. Ciąg może opisywać tylko datę lub datę i czas.
+    </p>
     <script>
-        const teamMeetingDate = new Date("March 16, 2030");
-        console.log(teamMeetingDate);
-        // "Mon Mar 16 2030 00:00:00 GMT+0200 (Eastern European Standard Time)"
+      const teamMeetingDate = new Date("March 16, 2030");
+      console.log(teamMeetingDate);
+      // "Mon Mar 16 2030 00:00:00 GMT+0200 (Eastern European Standard Time)"
 
-        const preciseTeamMeetingDate = new Date("March 16, 2030 14:25:00");
-        console.log(preciseTeamMeetingDate);
-        // "Mon Mar 16 2030 14:25:00 GMT+0200 (Eastern European Standard Time)"
+      const preciseTeamMeetingDate = new Date("March 16, 2030 14:25:00");
+      console.log(preciseTeamMeetingDate);
+      // "Mon Mar 16 2030 14:25:00 GMT+0200 (Eastern European Standard Time)"
     </script>
-    <p>Ustawienie czasu jako ciągów wewnętrznie wywołuje metodę Date.parse(), która konwertuje ciąg na liczbę - liczbę milisekund. Dlatego format przesyłanego ciągu jest bardzo elastyczny. Na przykład możesz pominąć zero dla dni i miesięcy. Spójrzmy na kilka przykładów, które doprowadzą do tego samego wyniku.</p>
+    <p>
+      Ustawienie czasu jako ciągów wewnętrznie wywołuje metodę Date.parse(),
+      która konwertuje ciąg na liczbę - liczbę milisekund. Dlatego format
+      przesyłanego ciągu jest bardzo elastyczny. Na przykład możesz pominąć zero
+      dla dni i miesięcy. Spójrzmy na kilka przykładów, które doprowadzą do tego
+      samego wyniku.
+    </p>
     <script>
-        new Date("2030-03-16");
-        new Date("2030-03");
-        new Date("2018");
-        new Date("03/16/2030");
-        new Date("2030/03/16");
-        new Date("2030/3/16");
-        new Date("March 16, 2030");
-        new Date("March 16, 2030 14:25:00");
-        new Date("2030-03-16 14:25:00");
-        new Date("2030-03-16T14:25:00");
-        new Date("16 March 2030");
+      new Date("2030-03-16");
+      new Date("2030-03");
+      new Date("2018");
+      new Date("03/16/2030");
+      new Date("2030/03/16");
+      new Date("2030/3/16");
+      new Date("March 16, 2030");
+      new Date("March 16, 2030 14:25:00");
+      new Date("2030-03-16 14:25:00");
+      new Date("2030-03-16T14:25:00");
+      new Date("16 March 2030");
     </script>
-    <p>Innym sposobem tworzenia nowych obiektów jest przekazanie siedmiu liczb opisujących rok, miesiąc (zaczynając od 0), dzień, godziny, minuty, sekundy i milisekundy. Wymagane są tylko pierwsze trzy.</p>
+    <p>
+      Innym sposobem tworzenia nowych obiektów jest przekazanie siedmiu liczb
+      opisujących rok, miesiąc (zaczynając od 0), dzień, godziny, minuty,
+      sekundy i milisekundy. Wymagane są tylko pierwsze trzy.
+    </p>
     <script>
-        const date3 = new Date(2030, 2, 16, 14, 25, 0, 0);
-        console.log(date3);
-        // Sat Mar 16 2030 14:25:00 GMT+0200 (Eastern European Standard Time)
+      const date3 = new Date(2030, 2, 16, 14, 25, 0, 0);
+      console.log(date3);
+      // Sat Mar 16 2030 14:25:00 GMT+0200 (Eastern European Standard Time)
     </script>
 
     <h2>Metody</h2>
-    <p>Instancja klasy Date ma wiele metod odczytywania i zapisywania wartości daty i czasu. Metody zwracają lub przypisują rok, miesiąc, dzień miesiąca lub tygodnia, godzinę, minutę, sekundę i milisekundę dla każdej instancji. Dane te mogą być prezentowane w postaci ciągu na podstawie lokalnego kalendarza lub języka.</p>
+    <p>
+      Instancja klasy Date ma wiele metod odczytywania i zapisywania wartości
+      daty i czasu. Metody zwracają lub przypisują rok, miesiąc, dzień miesiąca
+      lub tygodnia, godzinę, minutę, sekundę i milisekundę dla każdej instancji.
+      Dane te mogą być prezentowane w postaci ciągu na podstawie lokalnego
+      kalendarza lub języka.
+    </p>
 
     <h3>Gettery</h3>
-    <p>Gettery służą do odczytywania całej daty lub pojedynczej części. Zwracana wartość zależy od aktualnej strefy czasowej ustawionej na komputerze.</p>
+    <p>
+      Gettery służą do odczytywania całej daty lub pojedynczej części. Zwracana
+      wartość zależy od aktualnej strefy czasowej ustawionej na komputerze.
+    </p>
     <script>
-        const date4 = new Date();
-        console.log("Date: ", date);
+      const date4 = new Date();
+      console.log("Date: ", date);
 
-        // Zwraca dzień miesiąca od 1 do 31
-        console.log("getDate(): ", date4.getDate());
+      // Zwraca dzień miesiąca od 1 do 31
+      console.log("getDate(): ", date4.getDate());
 
-        // Zwraca dzień tygodnia od 0 do 6
-        console.log("getDay(): ", date4.getDay());
+      // Zwraca dzień tygodnia od 0 do 6
+      console.log("getDay(): ", date4.getDay());
 
-        // Zwraca miesiąc od 0 do 11
-        console.log("getMonth(): ", date4.getMonth());
+      // Zwraca miesiąc od 0 do 11
+      console.log("getMonth(): ", date4.getMonth());
 
-        // Zwraca rok z 4 cyfr
-        console.log("getFullYear(): ", date4.getFullYear());
+      // Zwraca rok z 4 cyfr
+      console.log("getFullYear(): ", date4.getFullYear());
 
-        // Zwraca godzinę
-        console.log("getHours(): ", date4.getHours());
+      // Zwraca godzinę
+      console.log("getHours(): ", date4.getHours());
 
-        // Zwraca minuty
-        console.log("getMinutes(): ", date4.getMinutes());
+      // Zwraca minuty
+      console.log("getMinutes(): ", date4.getMinutes());
 
-        // Zwraca sekundy
-        console.log("getSeconds(): ", date4.getSeconds());
+      // Zwraca sekundy
+      console.log("getSeconds(): ", date4.getSeconds());
 
-        // Zwraca milisekundy
-        console.log("getMilliseconds(): ", date4.getMilliseconds());
+      // Zwraca milisekundy
+      console.log("getMilliseconds(): ", date4.getMilliseconds());
     </script>
-    <p>Istnieją równoważne wersje tych metod, które zwracają wartości w formacie UTC (Coordinated Universal Time), a nie dostosowane do bieżącej strefy czasowej użytkownika.</p>
+    <p>
+      Istnieją równoważne wersje tych metod, które zwracają wartości w formacie
+      UTC (Coordinated Universal Time), a nie dostosowane do bieżącej strefy
+      czasowej użytkownika.
+    </p>
     <script>
-        const date5 = new Date();
-        console.log("Date: ", date);
+      const date5 = new Date();
+      console.log("Date: ", date);
 
-        // Zwraca dzień miesiąca od 1 do 31
-        console.log("getUTCDate(): ", date5.getUTCDate());
+      // Zwraca dzień miesiąca od 1 do 31
+      console.log("getUTCDate(): ", date5.getUTCDate());
 
-        // Zwraca dzień tygodnia od 0 do 6
-        console.log("getUTCDay(): ", date5.getUTCDay());
+      // Zwraca dzień tygodnia od 0 do 6
+      console.log("getUTCDay(): ", date5.getUTCDay());
 
-        // Zwraca miesiąc od 0 do 11
-        console.log("getUTCMonth(): ", date5.getUTCMonth());
+      // Zwraca miesiąc od 0 do 11
+      console.log("getUTCMonth(): ", date5.getUTCMonth());
 
-        // Zwraca rok z 4 cyfr
-        console.log("getUTCFullYear(): ", date5.getUTCFullYear());
+      // Zwraca rok z 4 cyfr
+      console.log("getUTCFullYear(): ", date5.getUTCFullYear());
 
-        // Zwraca godzinę
-        console.log("getUTCHours(): ", date5.getUTCHours());
+      // Zwraca godzinę
+      console.log("getUTCHours(): ", date5.getUTCHours());
 
-        // Zwraca minuty
-        console.log("getUTCMinutes(): ", date5.getUTCMinutes());
+      // Zwraca minuty
+      console.log("getUTCMinutes(): ", date5.getUTCMinutes());
 
-        // Zwraca sekundy
-        console.log("getUTCSeconds(): ", date5.getUTCSeconds());
+      // Zwraca sekundy
+      console.log("getUTCSeconds(): ", date5.getUTCSeconds());
 
-        // Zwraca milisekundy
-        console.log("getUTCMilliseconds(): ", date5.getUTCMilliseconds());
+      // Zwraca milisekundy
+      console.log("getUTCMilliseconds(): ", date5.getUTCMilliseconds());
     </script>
 
     <h3>Settery</h3>
-    <p>Wszystko, co można odczytać, można napisać, metody zapisu są również nazywane setterami, ale zaczynają się od przedrostka set. Ponadto wszystkie metody mają swój odpowiednik w UTC.</p>
+    <p>
+      Wszystko, co można odczytać, można napisać, metody zapisu są również
+      nazywane setterami, ale zaczynają się od przedrostka set. Ponadto
+      wszystkie metody mają swój odpowiednik w UTC.
+    </p>
     <script>
-        const date6 = new Date("March 16, 2030 14:25:00");
+      const date6 = new Date("March 16, 2030 14:25:00");
 
-        date6.setMinutes(50);
-        // "Sat Mar 16 2030 14:50:00 GMT+0200"
+      date6.setMinutes(50);
+      // "Sat Mar 16 2030 14:50:00 GMT+0200"
 
-        date6.setFullYear(2040, 4, 8);
-        // "Tue May 08 2040 14:50:00 GMT+0300"
+      date6.setFullYear(2040, 4, 8);
+      // "Tue May 08 2040 14:50:00 GMT+0300"
     </script>
 
     <h2>Formatowanie daty</h2>
-    <p>Obiekt daty może być reprezentowany w różnych formatach ciągów i liczb. Jest na to kilka metod. Na przykład toString(), toDateString() i toTimeString() zwracają standardową reprezentację ciągu, nie zakodowaną na stałe w standardzie, ale zależną od przeglądarki. Jedynym wymaganiem jest czytelność dla człowieka. Metoda toString() zwraca całą datę, a toDateString() i toTimeString() - odpowiednio tylko datę i godzinę.</p>
+    <p>
+      Obiekt daty może być reprezentowany w różnych formatach ciągów i liczb.
+      Jest na to kilka metod. Na przykład toString(), toDateString() i
+      toTimeString() zwracają standardową reprezentację ciągu, nie zakodowaną na
+      stałe w standardzie, ale zależną od przeglądarki. Jedynym wymaganiem jest
+      czytelność dla człowieka. Metoda toString() zwraca całą datę, a
+      toDateString() i toTimeString() - odpowiednio tylko datę i godzinę.
+    </p>
     <script>
-        const date7 = new Date("March 16, 2030 14:25:00");
+      const date7 = new Date("March 16, 2030 14:25:00");
 
-        date.toString();
-        // "Sat Mar 16 2030 14:25:00 GMT+0200 (Eastern European Standard Time)"
+      date.toString();
+      // "Sat Mar 16 2030 14:25:00 GMT+0200 (Eastern European Standard Time)"
 
-        date.toTimeString();
-        // "14:25:00 GMT+0200 (Eastern European Standard Time)"
+      date.toTimeString();
+      // "14:25:00 GMT+0200 (Eastern European Standard Time)"
 
-        date.toLocaleTimeString();
-        // "2:25:00 PM"
+      date.toLocaleTimeString();
+      // "2:25:00 PM"
 
-        date.toUTCString();
-        // "Sat, 16 Mar 2030 12:25:00 GMT"
+      date.toUTCString();
+      // "Sat, 16 Mar 2030 12:25:00 GMT"
 
-        date.toDateString();
-        // "Sat Mar 16 2030"
+      date.toDateString();
+      // "Sat Mar 16 2030"
 
-        date.toISOString();
-        // "2030-03-16T12:25:00.000Z"
+      date.toISOString();
+      // "2030-03-16T12:25:00.000Z"
 
-        date.toLocaleString();
-        // "3/16/2030, 2:25:00 PM"
+      date.toLocaleString();
+      // "3/16/2030, 2:25:00 PM"
 
-        date.getTime();
-        // 1899894300000
+      date.getTime();
+      // 1899894300000
     </script>
-</body>
+
+    <a
+      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"
+      >Developer Mozilla - metody</a
+    >
+  </body>
 </html>
