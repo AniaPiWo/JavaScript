@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Promise.resolve() i Promise.reject()</h1>
+    <p>Statyczne metody do tworzenia natychmiastowych udanych lub odrzuconych obietnic. Działają w taki sam sposób, jak new Promise() z wyjątkiem tego, że można określić opóźnienie, ale mają krótszą składnię.</p>
+    <script>
+    // Fulfilled promise
+    new Promise(resolve => resolve("success value")).then(value =>
+        console.log(value)
+    );
+
+Promise.resolve("success value").then(value => console.log(value));
+
+    // Rejected promise
+    new Promise((resolve, reject) => reject("error")).catch(error =>
+        console.error(error)
+    );
+
+Promise.reject("error").catch(error => console.error(error));
+    </script>
+    <p>Te metody są używane podczas "promisyfikacji" funkcji, gdy trzeba zbudować łańcuch obietnic, a początkowa wartość już istnieje. Zrefaktoryzujmy następujący kod.</p>
+
+    <script>
+        const makeGreeting = guestName => {
+  if (guestName === "" || guestName === undefined) {
+    return {
+      success: false,
+      message: "Guest name must not be empty",
+    };
+  }
+
+  return {
+    success: true,
+    message: `Welcome ${guestName}`,
+  };
+};
+
+const result = makeGreeting("Ania");
+
+if (result.success) {
+  console.log(result.message);
+} else {
+  console.error(result.message);
+}
+    </script>
+
+    
+<p>Wykorzystując wywołania zwrotne, nie ma potrzeby zwracania złożonych obiektów ze statusem operacji i sprawdzania go w kodzie zewnętrznym.</p>
+    <script>
+        const makeGreeting2 = (guestName, onSuccess, onError) => {
+  if (guestName === "" || guestName === undefined) {
+    return onError("Guest name must not be empty");
+  }
+  onSuccess(`Welcome ${guestName}`);
+};
+
+makeGreeting2(
+  "Ania",
+  greeting => console.log(greeting),
+  error => console.error(error)
+);
+    </script>
+
+
+    
+<p>Ostatnim krokiem jest "promisyfikacja" funkcji makeGreeting(), w celu całkowitego usunięcia jej zależności od kodu zewnętrznego.</p>
+    <script>
+const makeGreeting3 = guestName => {
+  if (guestName === "" || guestName === undefined) {
+    return Promise.reject("Guest name must not be empty");
+  }
+
+  Promise.resolve(`Welcome ${guestName}`);
+};
+
+makeGreeting3("Mango").then(greeting => console.log(greeting)).catch(error => console.error(error));
+    </script>
+</body>
+</html>
