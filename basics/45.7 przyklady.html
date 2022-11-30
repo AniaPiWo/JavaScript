@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const somePromise = new Promise((resolve, reject) => {
+            const isSuccess = Math.random() >= 0.5;
+
+           setTimeout(() => {
+            if(isSuccess) {
+                resolve("Great success!")
+            } else {
+                reject("fail :(")
+            };
+           }, 1200)
+        });
+
+    //console.log(somePromise);
+
+/*     setTimeout(()=> {
+        console.log("setTimeout 1: " + somePromise);
+        console.log("setTimeout 2: " + somePromise.value); //undefined
+    }, 4000) */
+
+/*     somePromise.then((promisedValue) => console.log(promisedValue)); // jak sukces to wydrukuje "Great success!", jak blad to wyswietli kod bledu Uncaught (in promise) fail :( i undefined
+
+    let value = null;
+
+    const abc =  somePromise.then((promisedValue) =>  {
+        console.log("then: " + promisedValue)
+        value = promisedValue
+    }); 
+
+    console.log("abc: " + abc) 
+    console.log("value: " + value) 
+    
+
+    setTimeout(() => {
+        console.log("setTimeout value: " + value);
+    }, 3000) */
+
+
+ /*    somePromise.then(console.log).catch(console.log);
+    somePromise.then(console.log).catch(console.error);
+    somePromise.then(console.log).catch(console.warn); */
+
+    somePromise
+        .then(val => console.log(val)) //void = undefined
+        .then(val => {
+            const double = val + 2; //undefined + 2
+            console.log(double) //NaN
+        })
+        .catch(error => console.log("upsi: ", error))
+        .finally(() => console.log("Promise finished"))
+
+
+    </script>
+
+</body>
+</html>

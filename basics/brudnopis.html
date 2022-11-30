@@ -12,6 +12,11 @@
 
     <button type="button" class="btn">Click me</button>
     <script>
+
+      for (let i=3; i>0; i--) {
+        const delay = i * 1000;
+        setTimeout(() => console.log(i), delay);
+      }
       const historyService = {
         orders: [
           { email: "jacob@hotmail.com", dish: "Burrito" },
