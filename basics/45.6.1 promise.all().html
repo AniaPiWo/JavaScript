@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Promise.all()</h1>
+    <p>Bierze szereg obietnic, czeka na ich spełnienie i zwraca obietnicę. Jeśli wszystkie obietnice się powiedzą, zwrócona obietnica przejdzie do stanu fulfilled, a jej wartością będzie tablica wyników realizacji każdej obietnicy. Jeżeli chociaż jedna z obietnic zostanie odrzucona, to zwrócona obietnica przejdzie do stanu rejected, a jej wartość będzie błędna.</p>
+    <p>Promise.all([promise1, promise2, promise3, ...])</p>
+    <p>Napiszmy funkcję, która pobiera tekst dla resolve() i opóźnienie w milisekundach, a w wyniku jej wykonania zwraca obietnicę. Następnie stworzymy dwie obietnice z różnymi czasami opóźnienia.</p>
+    <script>
+       const makePromise = (text, delay) => {
+            return new Promise(resolve => {
+                setTimeout(() => resolve(text), delay);
+            });
+    };
+
+const promiseA = makePromise("promiseA value", 1000);
+const promiseB = makePromise("promiseB value", 3000);
+
+Promise.all([promiseA, promiseB])
+  .then(value => console.log(value)) //["promiseA value", "promiseB value"]
+  .catch(error => console.log(error)); 
+    </script>
+    <p>Wywołanie zwrotne metody then() zostanie wywołane po trzech sekundach, czyli po spełnieniu obietnicy promiseB. Obietnica promiseA zostanie wykonana w ciągu jednej sekundy i po prostu będzie czekać. Jeśli którakolwiek z obietnic zostanie odrzucona, wywołana zostanie funkcja zwrotna metody catch().</p>
+</body>
+</html>

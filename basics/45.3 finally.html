@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Metoda finally()</h1>
+    <p>Ta metoda może być przydatna, jeśli musisz wykonać kod po rozwiązaniu obietnicy (fulfilled lub rejected), niezależnie od wyniku. Unika powielania kodu w procedurach obsługi then() i catch().</p>
+    <img src="/images/method-finally.png" alt="" width="800">
+    <script>promise.finally(() => {
+        // Promise fulfilled or rejected
+      });</script>
+      <p>Funkcja callback nie otrzyma żadnych argumentów, ponieważ nie można określić, czy obietnica została spełniona, czy odrzucona. Tutaj zostanie wykonany kod, który w każdym przypadku należy uruchomić.</p>
+      <script>
+        const isSuccess = true;
+
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    if (isSuccess) {
+      resolve("Success! Value passed to resolve function");
+    } else {
+      reject("Error! Error passed to reject function");
+    }
+  }, 2000);
+});
+
+promise
+  .then(value => console.log(value)) // "Success! Value passed to resolve function"
+  .catch(error => console.log(error)) // "Error! Error passed to reject function"
+  .finally(() => console.log("Promise settled")); // "Promise settled"
+      </script>
+</body>
+</html>

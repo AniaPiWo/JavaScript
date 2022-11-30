@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Promise.race()</h1>
+    <p>Zwraca spełnioną lub odrzuconą obietnicę, w zależności od wyniku, z jakim zakończy się „najszybsza” z przesyłanych obietnic, z wartością lub powodem jej odrzucenia.</p>
+    <p>Promise.race([promise1, promise2, promise3, ...])</p>
+    <p>Gdy przynajmniej jedna obietnica z tablicy zostanie spełniona lub odrzucona, zwrócona obietnica przejdzie w stan resolved lub rejected, a cała reszta zostanie odrzucona.</p>
+    <script>
+        const makePromise = (text, delay) => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(text), delay);
+  });
+};
+
+const promiseA = makePromise("promiseA value", 1000);
+const promiseB = makePromise("promiseB value", 3000);
+
+Promise.race([promiseA, promiseB])
+  .then(value => console.log(value)) // "promiseA value"
+  .catch(error => console.log(error));
+    </script>
+    <p>Wywołanie zwrotne metody then() lub catch() zostanie wywołane sekundę później po spełnieniu promiseA. Druga obietnica promiseB zostanie zignorowana.</p>
+</body>
+</html>

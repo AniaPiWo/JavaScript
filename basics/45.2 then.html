@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Metoda then()</h1>
+    <p>Kod, który musi zrobić coś asynchronicznie, tworzy obietnicę i ją zwraca. Kod zewnętrzny, po otrzymaniu obietnicy, wiesza na nim programy obsługi. Po zakończeniu procesu kod asynchroniczny umieszcza obietnicę w stanie fulfilled lub rejected a procedury obsługi w kodzie zewnętrznym są wywoływane automatycznie.</p>
+    <p>
+        Po utworzeniu obietnicy jej wynik jest przetwarzany w funkcjach wywołania zwrotnego. Kod pisze się tak, jakbyśmy myśleli o tym, co może się stać, jeśli obietnica zostanie spełniona, czy nie, bez zastanawiania się nad ramami czasowymi.
+    </p>
+    <p>
+        Metoda then() przyjmuje dwa argumenty - funkcje wywołania zwrotnego, które będą wywoływane, gdy obietnica zmieni stan. Jako argumenty otrzymają wynik obietnicy, wartość lub błąd.
+    </p>
+    <p>promise.then(onResolve, onReject)
+        <ul>
+            <li>onResolve(value) - zostanie wywołana po pomyślnym wykonaniu obietnicy i otrzyma jej wynik jako argument.</li>
+            <li>onReject(error) - zostanie wywołany, po wykonaniu obietnicy z błędem i otrzyma ją jako argument.</li>
+        </ul>
+    </p>
+    <img src="/images/method-then.png" alt="" width="800">
+    <p>
+        W tym przykładzie funkcja wywołania zwrotnego onResolve zostanie wywołana po dwóch sekundach, jeśli obietnica się powiedzie, a onReject zostanie wywołana dwie sekundy później, jeśli obietnica się nie powiedzie.
+    </p>
+    <script>
+        // Change value of isSuccess variable to call resolve or reject
+const isSuccess = true;
+
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    if (isSuccess) {
+      resolve("Success! Value passed to resolve function");
+    } else {
+      reject("Error! Error passed to reject function");
+    }
+  }, 2000);
+});
+
+// Will run first
+console.log("Before promise.then()");
+
+// Registering promise callbacks
+promise.then(
+  // onResolve will run third or not at all
+  value => {
+    console.log("onResolve call inside promise.then()");
+    console.log(value); // "Success! Value passed to resolve function"
+  },
+  // onReject will run third or not at all
+  error => {
+    console.log("onReject call inside promise.then()");
+    console.log(error); // "Error! Error passed to reject function"
+  }
+);
+
+// Will run second
+console.log("After promise.then()");
+    </script>
+<p>INTERESUJĄCE
+    Jeśli funkcje onResolve i onReject zawierają złożoną logikę, dla wygody są one deklarowane jako funkcje zewnętrzne i przekazywane do metody then() według nazwy.</p>
+</body>
+</html>

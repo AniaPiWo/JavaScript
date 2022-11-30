@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Metoda catch()</h1>
+    <p>W praktyce w metodzie then() obsługuje się tylko pomyślne wykonanie obietnicy, a błąd jej wykonania w specjalnej metodzie catch() do „wyłapania” błędów.</p>
+    <img src="/images/method-catch.png" alt="" width="800">
+    <script>
+        promise.catch(error => {
+            // Promise rejected
+        });
+    </script>
+    <p>Funkcja callback zostanie wywołana po wykonaniu obietnicy z błędem i otrzyma ją jako argument.</p>
+    <script>// Change value of isSuccess variable to call resolve or reject
+        const isSuccess = true;
+        
+        const promise = new Promise((resolve, reject) => {
+          setTimeout(() => {
+            if (isSuccess) {
+              resolve("Success! Value passed to resolve function");
+            } else {
+              reject("Error! Error passed to reject function");
+            }
+          }, 2000);
+        });
+        
+        promise
+          .then(value => {
+            console.log(value);
+          })
+          .catch(error => {
+            console.log(error);
+          });</script>
+</body>
+</html>

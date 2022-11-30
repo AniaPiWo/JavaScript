@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Łańcuchy obietnic</h1>
+    <p>Metoda then() zwraca w wyniku wykonania kolejną obietnicę, której wartością będzie to, co zwróci jej funkcja wywołania zwrotnego onResolve. Pozwala to na budowanie asynchronicznych łańcuchów obietnic.</p>
+    <img src="/images/promise-chain.png" alt="" width="800">
+    <p>Ponieważ metoda then() zwraca obietnicę, może minąć trochę czasu zanim zostanie wykonana, więc reszta łańcucha będzie czekać. Jeśli błąd wystąpi gdziekolwiek w łańcuchu, wykonanie wszystkich kolejnych operacji then() jest anulowane, a kontrola przekazywana do metody catch(). Dlatego znajduje się na końcu łańcucha obietnic.</p>
+    <script>
+        const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(5);
+  }, 2000);
+});
+
+promise
+  .then(value => {
+    console.log(value); // 5
+    return value * 2;
+  })
+  .then(value => {
+    console.log(value); // 10
+    return value * 3;
+  })
+  .then(value => {
+    console.log(value); // 30
+  })
+  .catch(error => {
+    console.log(error);
+  })
+  .finally(() => {
+    console.log("Final task");
+  });
+    </script>
+</body>
+</html>
