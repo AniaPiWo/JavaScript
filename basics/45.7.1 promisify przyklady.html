@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //zasob na serwerze
+        const books = [
+            {name: "A", author: "Adam"},
+            {name: "B", author: "Adam"},
+            {name: "C", author: "Adam"},
+            {name: "D", author: "Beth"},
+            {name: "E", author: "Beth"},
+            {name: "F", author: "Beth"},
+            {name: "G", author: "Colin"},
+            {name: "H", author: "Colin"},
+            {name: "I", author: "Colin"},
+        ];
+
+                
+        //server function
+        const getBooksByAuthorFromDatabase = (author) => {
+            return books.filter(book => book.author === author)
+        }
+
+
+        /* PRZED PROMISIFY 
+
+        //server function
+        const getBooksByAuthorFromDatabase = (author) => {
+            return books.filter(book => book.author === author)
+        }
+
+        //client code
+        const getBooksAuthorFromDerver = (author, onSuccess, onFailure) => {
+            console.log("Requesting books...");
+
+            setTimeout(() => {
+                const isSuccess = Math.random() > 0.5;
+
+                if(isSuccess) {
+                    const result = getBooksByAuthorFromDatabase(author);
+
+                    onSuccess(result);
+                } else {
+                    onFailure("Failed to get books :(")
+                }
+
+            }, 3000)
+        };
+
+        getBooksAuthorFromDerver(
+            "Beth", //author - 1st arg
+            (books) => console.log(books), //onSuccess 2nd arg
+            (failureMsg) => console.error(failureMsg), //onFailure - 3rd arg
+            );
+            console.log(result); //undefined
+            */
+
+            
+
+        //client code
+        const getBooksAuthorFromDerver = (author) => {
+            return new Promise((onSuccess, onFailure) => {
+            console.log("Requesting books...");
+
+            setTimeout(() => {
+                const isSuccess = Math.random() > 0.5;
+
+                if(isSuccess) {
+                    const result = getBooksByAuthorFromDatabase(author);
+
+                    onSuccess(result);
+                } else {
+                    onFailure("Failed to get books :(")
+                }
+
+            }, 3000)
+        })
+        };
+
+        const result = getBooksAuthorFromDerver("Colin")
+            .then(books => console.log(books))
+            .catch(failureMsg => console.error(failureMsg))
+
+            console.log("result: " + result); //promise
+
+            //async i await
+/*             const someAsyncFunc = async () => {
+                const result = await getBooksAuthorFromDerver("Beth");
+                console.log("Result from async fn: " + result)
+                return result;
+            };
+
+            someAsyncFunc().then(books => {
+                console.log("Do stuff with books")
+            }); */
+    </script>
+</body>
+</html>
