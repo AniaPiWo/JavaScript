@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  margin: 16px;
+  line-height: 1.5;
+  color: #212121;
+  font-family: sans-serif;
+}
+
+p {
+  margin: 0;
+}
+
+.user-list {
+  margin: 0;
+  list-style: none;
+  padding: 24px;
+}
+
+.user-list li:not(:last-child) {
+  margin-bottom: 16px;
+}
+    </style>
+</head>
+<body>
+    <h2>Parametry ciągu zapytania</h2>
+<p>Parametry zapytania pozwalają określić dodatkowe kryteria dla backendu. Na przykład, ile elementów kolekcji chcemy otrzymać w żądaniu, być może musimy dodać sortowanie po jakiejś właściwości obiektu, ograniczyć wybór itp. Lista parametrów zapytania, ich nazwy i możliwe wartości zależą od backendu i są opisane w dokumentacji.</p>
+<ul>
+    <li>Znak ? wskazuje początek parametrów zapytania.</li>
+    <li>Każdy parametr jest parą nazwa=wartość</li>
+    <li> Znak & jest używany do wskazania znaczącego „AND”, oddzielając parametry w ciągu zapytania.</li>
+</ul>
+<p>const url = "https://jsonplaceholder.typicode.com/users?_limit=7&_sort=name";</p>
+<p>Takie żądanie GET zwróci tablicę siedmiu użytkowników (w sumie 10) posortowanych według nazwy (pole name) w kolejności alfabetycznej. Podkreślenia w nazwach parametrów są specyficzne dla tego backendu, nie jest to jakiś standard.</p>
+
+<button type="button" class="btn">Fetch users</button>
+<ul class="user-list"></ul>
+
+<script>
+const fetchUsersBtn = document.querySelector(".btn");
+const userList = document.querySelector(".user-list");
+
+fetchUsersBtn.addEventListener("click", () => {
+  fetchUsers()
+    .then((users) => renderUserList(users))
+    .catch((error) => console.log(error));
+});
+
+function fetchUsers() {
+  return fetch(
+    "https://jsonplaceholder.typicode.com/users?_limit=7&_sort=name"
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+    return response.json();
+  });
+}
+
+function renderUserList(users) {
+  const markup = users
+    .map((user) => {
+      return `
+          <li>
+            <p><b>Name</b>: ${user.name}</p>
+            <p><b>Email</b>: ${user.email}</p>
+            <p><b>Company</b>: ${user.company.name}</p>
+          </li>
+      `;
+    })
+    .join("");
+  userList.innerHTML = markup;
+}
+</script>
+
+<h2>Klasa URLSearchParams</h2>
+<p>Parametrów może być wiele i nie jest wygodnie komponować z nich jedną długą linię, zarówno dla czytelności, jak i późniejszej edycji. Podczas tworzenia ciągu parametrów tworzona jest instancja klasy URLSearchParams i inicjowana za pomocą obiektu. Wynikiem będzie specjalny obiekt (iterator) z metodami, który w konwersji ciągu znaków zwraca wynik wywołania metody toString() - ciąg znaków.</p>
+
+<script>
+    const searchParams = new URLSearchParams({
+  _limit: 5,
+  _sort: "name",
+});
+
+console.log(searchParams.toString()); // "_limit=5&_sort=name"
+
+const url = `https://jsonplaceholder.typicode.com/users?${searchParams}`;
+console.log(url); // "https://jsonplaceholder.typicode.com/users?_limit=5&_sort=name"
+</script>
+
+<p>W postaci ciągu właściwości obiektu stają się parametrami i ich wartościami. Parametry zostaną oddzielone znakiem &. Podczas interpolacji wartości w ciągach szablonu jest on niejawnie konwertowany na ciąg, więc nie trzeba wywoływać metody toString() podczas konstruowania adresu URL. Nie zapomnij wskazać początku ciągu zapytania znakiem ?.</p>
+
+
+<h2>Nagłówki HTTP</h2>
+<p>Klasa Headers umożliwia wykonywanie różnych akcji w nagłówkach żądań i odpowiedzi HTTP. Działania te obejmują pobieranie, konfigurowanie, dodawanie i usuwanie nagłówków.</p>
+<script>
+    const headers = new Headers({
+  "Content-Type": "application/json",
+  "X-Custom-Header": "custom value",
+});
+
+headers.append("Content-Type", "text/bash");
+headers.append("X-Custom-Header", "custom value");
+headers.has("Content-Type"); // true
+headers.get("Content-Type"); // "text/bash"
+headers.set("Content-Type", "application/json");
+headers.delete("X-Custom-Header");
+</script>
+<p>
+    W praktyce prosty literał obiektowy z właściwościami jest zwykle używany do tworzenia nagłówków żądań. W takim przypadku nie będzie żadnych metod, które często nie są wymagane.
+</p>
+<script>
+    const headers2 = {
+  "Content-Type": "application/json",
+  "X-Custom-Header": "custom value",
+};
+
+//Żądanie używające nagłówków wyglądałoby tak:
+fetch("https://jsonplaceholder.typicode.com/users", {
+  headers: {
+    Accept: "application/json",
+  },
+}).then(response => {
+  // ...
+});
+</script>
+
+<p>Nowoczesne przeglądarki domyślnie dodają wiele nagłówków, w zależności od operacji i treści żądania, więc nie ma potrzeby jawnego określania standardowych nagłówków.</p>
+</body>
+</html>

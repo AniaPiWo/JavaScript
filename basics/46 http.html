@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Protokół HTTP</h1>
+    <p>Zanim użytkownik zobaczy na ekranie zawartość strony, przeglądarka wysyła do serwera żądanie otrzymania tej właśnie treści. Plik HTML, obrazy, style i skrypty pochodzą z serwera za pośrednictwem protokołu HTTP - zestawu reguł i konwencji wykorzystywanych podczas przesyłania danych przez sieć.</p>
+    <img src="../images/client-server.png" alt="" width="800">
+
+    <p><b>HyperText Transfer Protocol (protokół przesyłania hipertekstu)</b> jest szeroko rozpowszechnionym protokołem przesyłania różnych typów zasobów internetowych: html, css, javascript, obrazów, audio i wideo itp.</p>
+    <p>
+        HTTP bazuje na strukturze klient-serwer oraz modelu żądanie-odpowiedź, w którym aplikacja kliencka inicjuje połączenie, tworzy żądanie i wysyła je do serwera, po czym serwer przetwarza to żądanie, generuje odpowiedź i odsyła ją do klienta. Komunikacja między nimi odbywa się poprzez szereg naprzemiennych żądań HTTP i odpowiedzi HTTP.
+    </p>
+    <img src="../images/request-response.png" alt="" width="800">
+    <p>
+        Żądanie odbywa się w kilku etapach:
+        <ol>
+            <li><b>Zapytanie DNS</b> wyszukiwanie najbliższego serwera DNS, aby przetłumaczyć adres (na przykład google.com) na jego numeryczną reprezentację, adres IP (74.125.87.99).</li>
+            <li><b>Połączenie</b> - nawiązanie połączenia z serwerem z wykorzystaniem otrzymanego adresu IP.</li>
+            <li><b>Wysyłanie danych</b> - przekazywanie pakietów od klienta do serwera.</li>
+            <li><b>Oczekiwanie na odpowiedź</b> - oczekiwanie na dotarcie pakietów danych do serwera, serwer je przetworzy i odpowiedź wróci.</li>
+            <li><b>Odbieranie danych</b> - pakiety dotarły, możesz odbierać z nich dane.</li>
+        </ol>
+    </p>
+    <br>
+    <h2>Protokół HTTPS</h2>
+    <p>HyperText Transfer Protocol Secure to dodatek do protokołu HTTP, w którym wszystkie wiadomości między klientem a serwerem są szyfrowane w celu zwiększenia bezpieczeństwa. Zapewnia ochronę przed atakami podsłuchowymi. Dane są przesyłane protokołami kryptograficznymi SSL lub TLS.</p>
+    <img src="../images/http-vs-https.png" alt="" width="800">
+    <p>
+        Podczas komunikacji przez zwykłe połączenie HTTP wszystkie dane są przesyłane w postaci tekstu i mogą być odczytane przez każdego, kto uzyskał dostęp do połączenia między klientem a serwerem. Jeśli użytkownicy robią zakupy online i wypełniają formularz zamówienia zawierający informacje o karcie kredytowej, ich dane finansowe są znacznie łatwiejsze do kradzieży, jeśli są przesyłane jako tekst. Dzięki HTTPS dane zostaną zaszyfrowane i haker nie będzie mógł ich odszyfrować, ponieważ odszyfrowanie wymaga dostępu do klucza prywatnego przechowywanego na serwerze.
+    </p>
+    <p>
+        Protokół HTTPS zapewnia, że informacje o klientach, takie jak numery kart kredytowych, są szyfrowane i nie można ich przechwycić w formie odszyfrowanej. Odwiedzający mogą potwierdzić, że strona jest bezpieczna, patrząc na ikonę po lewej stronie paska adresu, zabezpieczone połączenia są oznaczone ikoną kłódki.
+    </p>
+
+    C:\>tracert
+
+    <br>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/72snZctFFtA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br> <br>
+    <a href="https://www.youtube.com/playlist?list=PLzdnOPI1iJNfMRZm5DDxco3UdsFegvuB7">WHAT IS INTERNET </a>
+    <br> <br>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/Dxcc6ycZ73M" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <br><br>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/AEaKrq3SpW8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>REST API</h1>
+    <p>
+        Serwer to komputer ze specjalnym oprogramowaniem. Backend to program znajdujący się na serwerze, który może przetwarzać przychodzące żądania HTTP i posiada zestaw gotowych akcji dla określonych żądań.
+    </p>
+    <img src="../images/rest-api.png" alt="" width="800">
+    <p>
+        <strong>API (interfejs programowania aplikacji)</strong> - zestaw dobrze zdefiniowanych reguł komunikacji pomiędzy różnymi komponentami oprogramowania. Interfejs opisuje, o co możesz poprosić program i jaki będzie wynik.
+    </p>
+    <p>
+        <strong>REST (representational state transfer)</strong> - to styl architektury backendu oparty na zestawie zasad opisujących sposób definiowania i adresowania zasobów sieciowych.
+    </p>
+    <p>
+        <strong>REST API</strong> - backend zbudowany na zasadzie REST. Służy jako warstwa między aplikacją internetową a bazą danych. Posiada standardowy interfejs dostępu do zasobów. Działa jak strona internetowa, wysyłamy żądanie HTTP od klienta do serwera i w odpowiedzi zamiast strony HTML otrzymujemy dane w formacie JSON
+    </p>
+
+    <h2>Format żądania</h2>
+    <p>
+        Usługa REST wymaga od klienta złożenia żądania dodania, pobrania lub zmodyfikowania danych. Żądanie może składać się z następujących części.
+    </p>
+    <p>
+        <style type="text/css">
+            .tg  {border-collapse:collapse;border-spacing:0;}
+            .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+              overflow:hidden;padding:10px 5px;word-break:normal;}
+            .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+              font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+            .tg .tg-0lax{text-align:left;vertical-align:top}
+            </style>
+            <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-0lax">Entry</th>
+                <th class="tg-0lax">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tg-0lax">Metoda HTTP</td>
+                <td class="tg-0lax">Określa, jaką operację wykonać.</td>
+              </tr>
+              <tr>
+                <td class="tg-0lax">Nagłówki HTTP</td>
+                <td class="tg-0lax">	Umożliwia klientowi przesyłanie informacji serwisowych dotyczących żądania.</td>
+              </tr>
+              <tr>
+                <td class="tg-0lax">Ścieżka</td>
+                <td class="tg-0lax">Ścieżka do zasobu. Dostępne ścieżki są opisane w dokumentacji backendu.</td>
+              </tr>
+              <tr>
+                <td class="tg-0lax">Ciało</td>
+                <td class="tg-0lax">	Blok żądania zawierający dane.</td>
+              </tr>
+            </tbody>
+            </table>
+    </p>
+
+    <h2>Metody HTTP</h2>
+    <style type="text/css">
+        .tg  {border-collapse:collapse;border-spacing:0;}
+        .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+          overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+          font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+        .tg .tg-z9od{font-size:12px;text-align:left;vertical-align:top}
+        .tg .tg-0lax{text-align:left;vertical-align:top}
+        </style>
+        <table class="tg">
+        <thead>
+          <tr>
+            <th class="tg-z9od">Method</th>
+            <th class="tg-0lax">Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-0lax">POST</td>
+            <td class="tg-0lax">Utwórz nowy zasób</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">GET</td>
+            <td class="tg-0lax">Uzyskaj zestaw zasobów lub jeden zasób</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">PUT</td>
+            <td class="tg-0lax">Zaktualizuj istniejący lub utwórz nowy zasób</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">PATCH</td>
+            <td class="tg-0lax">	Zaktualizuj istniejący zasób</td>
+          </tr>
+          <tr>
+            <td class="tg-0lax">DELETE</td>
+            <td class="tg-0lax">Usuń zasób</td>
+          </tr>
+        </tbody>
+        </table>
+
+        <h2>Nagłówki HTTP</h2>
+        <p>
+            Żądania muszą zawierać ścieżkę do zasobu, na którym wykonywana jest operacja. Dostępne ścieżki (punkty końcowe, zasoby) są opisane w dokumentacji backendu.
+        </p>
+        <p>GET https://bookstore.com/api/orders</br>
+            Accept: application/json</p>
+
+        <p>
+            Taka ścieżka wyraźnie wskazuje zasób, nawet jeśli nigdy wcześniej go nie widziałeś, ponieważ jest hierarchiczny i opisowy. Realizujemy żądanie pobrania zbioru zamówień.
+        </p>
+
+        <p>W celu uzyskania jednego elementu kolekcji do zasobu dodawany jest jego identyfikator. Rozważmy żądanie odczytania jednego zamówienia o identyfikatorze 289.</p>
+
+        <p>
+            GET https://bookstore.com/api/orders/289<br>
+            Accept: application/json
+        </p>
+        <p>
+            Ostatnia część ścieżki nazywana jest parametrem dynamicznym i jest opisana w dokumentacji jako /zasób/:parametr. Zasób pozostaje niezmieniony, jest to ścieżka do całej kolekcji, a wartość parametru zmienia się dla każdego z jej elementów.
+        </p>
+
+        <h2>Kody odpowiedzi</h2>
+
+        <p>Serwer wysyła odpowiedź na żądanie klienta, która zawiera kod statusu informujący klienta o wyniku operacji. Kody podzielone są na grupy.</p>
+
+        <style type="text/css">
+            .tg  {border-collapse:collapse;border-spacing:0;}
+            .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+              overflow:hidden;padding:10px 5px;word-break:normal;}
+            .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+              font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+            .tg .tg-z9od{font-size:12px;text-align:left;vertical-align:top}
+            .tg .tg-0lax{text-align:left;vertical-align:top}
+            </style>
+            <table class="tg">
+            <thead>
+              <tr>
+                <th class="tg-z9od">Group</th>
+                <th class="tg-0lax">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tg-0lax">1XX</td>
+                <td class="tg-0lax">W celach informacyjnych</td>
+              </tr>
+              <tr>
+                <td class="tg-0lax">2XX</td>
+                <td class="tg-0lax">Kody sukcesu</td>
+              </tr>
+              <tr>
+                <td class="tg-0lax">3XX</td>
+                <td class="tg-0lax">	Opisują wszystko związane z przekierowaniem (redirect)</td>
+              </tr>
+              <tr>
+                <td class="tg-0lax">4XX</td>
+                <td class="tg-0lax">	Wskazują błędy po stronie klientów</td>
+              </tr>
+              <tr>
+                <td class="tg-0lax">5XX</td>
+                <td class="tg-0lax">Wskazują błędy po stronie serwera</td>
+              </tr>
+            </tbody>
+            </table>
+            <p>       Wszystkie kody <a href="https://www.webfx.com/web-development/glossary/http-status-codes/">HTTP Status Codes Glossary</a></p>
+
+            <p>Najczesciej uzywane kody odpowiedzi</p>
+            <style type="text/css">
+                .tg  {border-collapse:collapse;border-spacing:0;}
+                .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                  overflow:hidden;padding:10px 5px;word-break:normal;}
+                .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+                  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+                .tg .tg-z9od{font-size:12px;text-align:left;vertical-align:top}
+                .tg .tg-0lax{text-align:left;vertical-align:top}
+                </style>
+                <table class="tg">
+                <thead>
+                  <tr>
+                    <th class="tg-z9od">Code</th>
+                    <th class="tg-0lax">Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="tg-0lax">200 (OK)</td>
+                    <td class="tg-0lax">	Standardowa odpowiedź na udane żądania HTTP.</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">201 (Created)</td>
+                    <td class="tg-0lax">	Standardowa odpowiedź na żądanie HTTP, które zakończyło się pomyślnym utworzeniem zasobu.</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">400 (Bad Request)</td>
+                    <td class="tg-0lax">	Nie można przetworzyć żądania z powodu nieprawidłowej składni żądania lub innego błędu klienta.</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">401 (Unauthorized)</td>
+                    <td class="tg-0lax">Aby uzyskać dostęp do zasobu, wymagana jest autoryzacja.</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">403 (Forbidden)</td>
+                    <td class="tg-0lax">Klient nie ma uprawnień dostępu do tego zasobu.</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">404 (Not Found)</td>
+                    <td class="tg-0lax">W tej chwili nie znaleziono zasobu. Być może został usunięty lub jeszcze nie istnieje.</td>
+                  </tr>
+                  <tr>
+                    <td class="tg-0lax">500 (Internal Server Error)</td>
+                    <td class="tg-0lax">Ogólna odpowiedź na nieoczekiwaną awarię serwera, chyba że dostępne są bardziej szczegółowe informacje.</td>
+                  </tr>
+                </tbody>
+                </table>
+
+        <h2>Żądanie-Odpowiedź</h2>
+        <p>
+            Załóżmy, że mamy aplikację, która umożliwia przeglądanie, tworzenie, edytowanie i usuwanie klientów i zamówień z małej księgarni z backendem hostowanym pod adresem bookstore.com/api. Wykorzystując zdobytą wiedzę, za pomocą pseudokodu opisujemy proces żądanie-odpowiedź do backendu.
+        </p>
+        <p>=> <b>Jeśli chcemy uzyskać dane o wszystkich klientach, żądanie GET będzie wyglądać tak:</b><br>
+            GET bookstore.com/api/customers<br>
+            Accept: application/json</p>
+
+        <p>=> Na co serwer wyśle nam taką odpowiedź:<br>
+            Status: 200 OK<br>
+            Content-Type: application/json<br>
+            Body: dane JSON dla wszystkich klientów</p>
+            <br>
+
+        <p>=> <b>Aby otrzymać dane jednego klienta, wskazujemy jego identyfikator, określając żądanie GET:<br></b>
+            GET bookstore.com/api/customers/289<br>
+            Accept: application/json</p>
+        
+        <p>=> Na co serwer wyśle nam taką odpowiedź:<br>
+            Status: 200 OK<br>
+            Content-Type: application/json<br>
+            Body: dane JSON o kliencie</p>
+        <br>
+        <p>=><b> W celu dodania nowego klienta wykonujemy żądanie POST:</b><br>
+            POST bookstore.com/api/customers<br>
+            Content-Type: application/json<br>
+            Body: { "username": "Mango", "email": "mango@gmail.com" }</p>
+
+        <p>=> Serwer dodaje unikalny identyfikator i jako wynik zwraca cały obiekt<br>
+            Status: 201 Created<br>
+            Content-type: application/json<br>
+            Body: { "id": 18674, "username": "Mango", "email": "mango@gmail.com" }</p>
+</body>
+</html>

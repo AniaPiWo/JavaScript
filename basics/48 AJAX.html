@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>AJAX</h1>
+    <p><b>AJAX (Asynchronous JavaScript and XML)</b> - metoda ściągania lub wysyłania danych, a następnie aktualizowania interfejsu o te dane, bez konieczności przeładowywania strony. Skraca to czas odpowiedzi i sprawia, że strona internetowa jest bardziej interaktywna. Proces ten można zobaczyć na przykładzie ładowania danych:
+    </p>
+    <ol>
+        <li>Na stronie internetowej ma miejsce zdarzenie (strona ładuje się, kliknięty jest przycisk "Pokaż więcej", przesyłany formularz itp.).</li>
+        <li>Na kliencie za pomocą JavaScript w odpowiedzi na to zdarzenie zostanie wykonana funkcja do pracy z serwerem, na którym tworzone i wysyłane jest żądanie HTTP.</li>
+        <li>Serwer odbiera i przetwarza żądanie HTTP, odsyłając w odpowiedzi dane w formacie JSON.</li>
+        <li>Na kliencie za pomocą JavaScript przetwarzana jest odpowiedź z serwera, odczytywane są dane i aktualizowany interfejs.</li>
+    </ol>
+    <p>Mimo to, że w nazwie technologii występuje XML, we współczesnej sieci został zastąpiony przez JSON, a nazwę pozostawiono w hołdzie pamięci. AJAX oznacza dowolną komunikację z serwerem bez przeładowywania strony.</p>
+
+    <h2>Fetch API</h2>
+    <p>Zbudowany w przeglądarce interfejs dostępny w obiekcie window, który zawiera zestaw właściwości i metod do wysyłania, odbierania i przetwarzania zasobów z serwera. Metoda fetch() zapewnia nowoczesny interfejs do wysyłania żądań do serwera i jest zbudowana na obietnicach.
+    </p>
+    <p>fetch(url, options)</p>
+    <ul>
+        <li>url - ścieżka do danych na backendzie, które należy pobrać, utworzyć lub zmodyfikować. Wymagany argument.</li>
+        <li>options - obiekt ustawień żądania: metoda (domyślnie GET), nagłówki, ciało itp. Argument opcjonalny.</li>
+    </ul>
+    <p>Będziemy robić żądania do <a href="https://jsonplaceholder.typicode.com/">JSONPlaceholder API </a> - publicznego API REST do szybkiego prototypowania, który zapewnia kolekcję fałszywych użytkowników w zasobie /users.</p>
+    <script>
+        fetch("https://jsonplaceholder.typicode.com/users")
+        .then(response => {
+            // Response handling
+        })
+        .then(data => {
+            // Data handling
+        })
+        .catch(error => {
+            // Error handling
+        });
+    </script>
+
+    <script>
+    //przyklad ze strony
+        fetch('https://jsonplaceholder.typicode.com/todos/1')
+  .then(response => response.json())
+  .then(json => console.log(json))
+  //{userId: 1, id: 1, title: 'delectus aut autem', completed: false}
+    </script>
+
+<h2>Sprawdzanie odpowiedzi</h2>
+<p>Wartość obietnicy, która zwraca metodę fetch(), to obiekt z informacją serwisową o stanie odpowiedzi serwera. Instancja klasy Response wyposażona w różne metody i właściwości. W zależności od typu odbieranej zawartości używana jest inna metoda konwersji treści odpowiedzi na dane.</p>
+<ul>
+    <li>json() - parsuje dane w formacie JSON.</li>
+    <li>text() - analizuje dane w formacie zwykłego tekstu, na przykład .csv (dane tabelaryczne).</li>
+    <li>blob() - analizuje dane opisujące plik, takie jak obraz, audio lub wideo.</li>
+</ul>
+
+<p>Pierwsza metoda then() sprawdza status odpowiedzi i konwertuje dane do prawidłowego formatu lub jawnie zgłasza błąd, żeby obsłużyć nieudane żądanie HTTP w bloku catch().</p>
+<script>
+    fetch("https://jsonplaceholder.typicode.com/users")
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(response.status);
+    }
+    return response.json();
+  })
+  .then(data => {
+    // Data handling
+  })
+  .catch(error => {
+    // Error handling
+  });
+</script>
+<p>Jest to konieczne, aby fetch() poprawnie zareagowała na status kod 404, który technicznie nie jest błędem, ale nie jest pomyślnym wynikiem dla klienta.</p>
+
+<h2>Karta Network</h2>
+<p>W narzędziach programistycznych karta Network wyświetla wszystkie żądania HTTP wykonywane na stronie. Wybranie filtra XHR, spowoduje pozostawienie tylko żądań do backendu. Po kliknięciu przycisku w przykładzie, po chwili żądanie zostanie wyświetlone na liście. Wybierając go, możesz wyświetlić informacje służbowe i treść odpowiedzi na podkartach Headers, Preview i Response.</p>
+
+<img src="../images/network-tab.png" alt="" width="800">
+
+<h2>Praca z publicznym REST API</h2>
+<p>Każdy backend jest wyjątkowy, są ich tysiące. Z drugiej strony API REST są zbudowane na standardowej architekturze. Oznacza to, że możesz zrozumieć zasadę ich działania, po czym wystarczy zapoznać się z dokumentacją backendu, którego potrzebujesz.</p>
+<p>
+    Kontynuujemy pracę z JSONPlaceholder API. Z dokumentacji pobieramy adres URL zasobu, aby zażądać informacji o zbiorze fałszywych użytkowników
+</p>
+<p>https://jsonplaceholder.typicode.com/users</p>
+
+<p>
+    Ta ścieżka składa się z następujących części:
+    <ul>
+        <li>https://jsonplaceholder.typicode.com - to punkt końcowy, podstawowy adres URL, punkt wejścia API.</li>
+        <li>/users - zasób, do którego uzyskujemy dostęp.</li>
+    </ul>
+    <p>Klikając przycisk "Fetch users" wykonamy żądanie GET i na podstawie otrzymanych danych renderujemy listę użytkowników.</p>
+
+    <style>body {
+        margin: 16px;
+        line-height: 1.5;
+        color: #212121;
+        font-family: sans-serif;
+      }
+      
+      p {
+        margin: 0;
+      }
+      
+      .user-list {
+        margin: 0;
+        list-style: none;
+        padding: 24px;
+      }
+      
+      .user-list li:not(:last-child) {
+        margin-bottom: 16px;
+      }</style>
+    <button type="button" class="btn">Fetch users</button>
+    <ul class="user-list"></ul>
+
+    <script>
+        const fetchUsersBtn = document.querySelector(".btn");
+        const userList = document.querySelector(".user-list");
+
+        fetchUsersBtn.addEventListener("click", () => {
+        fetchUsers()
+        .then((users) => renderUserList(users))
+        .catch((error) => console.log(error));
+        });
+
+function fetchUsers() {
+  return fetch("https://jsonplaceholder.typicode.com/users").then(
+    (response) => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    }
+  );
+}
+//Zauważ, że funkcja fetchUsers() zwraca obietnicę, więc do wyniku wywołania dodajemy łańcuch metodthen() i catch().
+
+function renderUserList(users) {
+  const markup = users
+    .map((user) => {
+      return `<li>
+          <p><b>Name</b>: ${user.name}</p>
+          <p><b>Email</b>: ${user.email}</p>
+          <p><b>Company</b>: ${user.company.name}</p>
+        </li>`;
+    })
+    .join("");
+  userList.innerHTML = markup;
+}
+    </script>
+</p>
+
+<h2>Błąd początkującego</h2>
+<p>
+    Przyjrzyjmy się częstym błędom podczas pracy z kodem asynchronicznym - próbie użycia danych żądania HTTP poza wywołaniem zwrotnym metody then(). Początkujący próbuje zapisać „wynik fetch” do zmiennej zewnętrznej i użyć jej w dalszej części kodu natychmiast po wywołaniu metody fetch().
+</p>
+
+<script>
+    let globalVariable; // undefined
+
+// Initializing data fetching
+fetch("https://jsonplaceholder.typicode.com/users")
+  .then(response => response.json())
+  .then(users => {
+    console.log("users inside then callback: ", users);
+
+    // Writing the result to a global variable
+    globalVariable = users;
+
+    // Everything is ok here, the data is in the variable
+    console.log("globalVariable inside fetch callback: ", globalVariable);
+  });
+
+// No async data here
+console.log("globalVariable outside fetch: ", globalVariable); // undefined
+</script>
+<br>
+<p>Poza wywołaniem zwrotnym metody then() nie ma danych, ponieważ ostatni console.log() zostanie wykonany przed nadejściem odpowiedzi z serwera. W tym czasie zmienna globalVariable nadal zawiera undefined. Wartość spełnionej obietnicy jest dostępna tylko w wywołaniu zwrotnym metody then().</p>
+
+
+</body>
+</html>
