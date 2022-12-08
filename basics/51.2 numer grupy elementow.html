@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  margin: 16px;
+  line-height: 1.5;
+  color: #212121;
+  font-family: sans-serif;
+}
+
+p {
+  margin: 0;
+}
+
+.posts {
+  margin: 0;
+  list-style: none;
+  padding: 24px;
+}
+
+.posts li:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.post-title {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.post-title:first-letter {
+  text-transform: uppercase;
+}
+
+.post-body {
+  margin: 0;
+}
+    </style>
+</head>
+<body>
+<h1>Numer grupy elementów</h1>
+<p>Określając w odpowiedzi żądaną liczbę elementów, zawsze otrzymamy ten sam wynik - pierwsze per_page elementów kolekcji, tzw. pierwsza grupa lub „strona”. Drugi parametr paginacji steruje przesunięciem w obrębie kolekcji - numer grupy elementów, którą chcemy uzyskać. Jeśli backend implementuje paginację, to domyślną wartością tego parametru jest jeden – pierwsza grupa lub „strona” elementów. Niech w naszym przypadku będzie się nazywać page.</p>
+<img src="../images/page-param.png" alt="" width="800">
+<p>
+    Zmieniając wartość parametru page, określamy backendowi, jaką kolejną grupę elementów chcemy otrzymać i tak dalej, aż w kolekcji zabraknie elementów. Jeśli ustawisz wartość ujemną lub więcej niż grup w kolekcji, odpowiedź backendu będzie zależeć od jego implementacji.<br>
+</p><br>
+<p>
+    Aby wiedzieć, kiedy w kolekcji kończą się elementy i wyświetlić użytkownikowi komunikat o tym, backend w każdej odpowiedzi zwraca nie tylko tablicę elementów, ale także metadane o dostępnej liczbie grup („stron”), w zależności od wartości parametru per_page lub po prostu o ogólnej liczbie elementów w kolekcji, wtedy obliczenie liczby grup spada na barki programisty front-end. Niestety JSONPlaceholder API nie implementuje tego funkcjonału.
+</p><br>
+<p>
+    W JSONPlaceholder API parametr kontrolujący grupę elementów nazywa się _page. Zmień jego wartość w przykładzie i sprawdź odpowiedź backendu w interfejsie oraz w karcie Network.
+</p><br>
+<button type="button" class="btn">Fetch posts</button>
+<ul class="posts"></ul>
+<script>
+    const fetchPostsBtn = document.querySelector(".btn");
+const userList = document.querySelector(".posts");
+
+fetchPostsBtn.addEventListener("click", () => {
+  fetchPosts()
+    .then((posts) => renderPosts(posts))
+    .catch((error) => console.log(error));
+});
+
+function fetchPosts() {
+  const params = new URLSearchParams({
+    _limit: 1,
+    // Change the group number here
+    _page: 1
+  });
+
+  return fetch(`https://jsonplaceholder.typicode.com/posts?${params}`).then(
+    (response) => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    }
+  );
+}
+
+function renderPosts(posts) {
+  const markup = posts
+    .map(({ id, title, body, userId }) => {
+      return `<li>
+          <h2 class="post-title">${title.slice(0, 30)}</h2>
+          <p><b>Post id</b>: ${id}</p>
+          <p><b>Author id</b>: ${userId}</p>
+          <p class="post-body">${body}</p>
+        </li>`;
+    })
+    .join("");
+  userList.innerHTML = markup;
+}
+</script>
+</body>
+</html>

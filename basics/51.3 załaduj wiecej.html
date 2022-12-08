@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  margin: 16px;
+  line-height: 1.5;
+  color: #212121;
+  font-family: sans-serif;
+}
+
+p {
+  margin: 0;
+}
+
+.posts {
+  margin: 0;
+  list-style: none;
+  padding: 24px;
+}
+
+.posts li:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.post-title {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.post-title:first-letter {
+  text-transform: uppercase;
+}
+
+.post-body {
+  margin: 0;
+}
+    </style>
+</head>
+<body>
+<h1>Technika „Załaduj więcej”</h1>
+
+<p>
+    Aby dynamicznie zmieniać numer grupy dla każdego kolejnego żądania, wystarczy zadeklarować jeszcze jedną zmienną globalną, nazwiemy ją page i ustawimy wartość początkową na 1 - pierwsza grupa elementów. Po każdym udanym żądaniu, w wywołaniu zwrotnym metody then() zwiększymy wartość page o jeden. Tworząc parametry żądania, posługujemy się jego wartością.
+</p>
+<br>
+<p>
+    Po wczytaniu pierwszej grupy elementów tekst na przycisku zmieni się, a sam przycisk spadnie pod listę postów. Gdy użytkownik przewinie stronę i ponownie ją kliknie, zostanie wykonane żądanie dla drugiej grupy elementów, która zostanie dodana do już istniejących znaczników listy postów. Jeśli po kliknięciu przycisku „Fetch posts” nie ma więcej postów do pobrania, wyświetlamy alert.
+</p>
+<br>
+<p>
+    Dodaliśmy sprawdzanie końca kolekcji we frontendzie, ponieważ JSONPlaceholder API nie implementuje tego funkcjonału w backendzie. W naszym przypadku wystarczy podzielić łączną ilość elementów w kolekcji przez ilość elementów w jednej grupie. Jest to podobne do przypadku, gdy backend nie zwraca liczby dostępnych stron, ale całkowitą liczbę elementów w kolekcji.
+</p>
+<div class="alert">We're sorry, there are no more posts to load</div>
+<ul class="posts"></ul>
+<button type="button" class="btn">Fetch posts</button>
+<script>
+    const fetchPostsBtn = document.querySelector(".btn");
+const userList = document.querySelector(".posts");
+const alertPopup = document.querySelector(".alert");
+let isAlertVisible = false;
+
+// Controls the group number
+let page = 1;
+// Controls the number of items in the group
+let limit = 5;
+// In our case total number of pages is calculated on frontend
+const totalPages = 100 / limit;
+
+fetchPostsBtn.addEventListener("click", () => {
+  // Check the end of the collection to display an alert
+  if (page > totalPages) {
+    return toggleAlertPopup();
+  }
+
+  fetchPosts()
+    .then((posts) => {
+      renderPosts(posts);
+      // Increase the group number
+      page += 1;
+
+      // Replace button text after first request
+      if (page > 1) {
+        fetchPostsBtn.textContent = "Fetch more posts";
+      }
+    })
+    .catch((error) => console.log(error));
+});
+
+function fetchPosts() {
+  const params = new URLSearchParams({
+    _limit: limit,
+    _page: page
+  });
+
+  return fetch(`https://jsonplaceholder.typicode.com/posts?${params}`).then(
+    (response) => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    }
+  );
+}
+
+function renderPosts(posts) {
+  const markup = posts
+    .map(({ id, title, body, userId }) => {
+      return `<li>
+          <h2 class="post-title">${title.slice(0, 30)}</h2>
+          <p><b>Post id</b>: ${id}</p>
+          <p><b>Author id</b>: ${userId}</p>
+          <p class="post-body">${body}</p>
+        </li>`;
+    })
+    .join("");
+  userList.insertAdjacentHTML("beforeend", markup);
+}
+
+function toggleAlertPopup() {
+  if (isAlertVisible) {
+    return;
+  }
+  isAlertVisible = true;
+  alertPopup.classList.add("is-visible");
+  setTimeout(() => {
+    alertPopup.classList.remove("is-visible");
+    isAlertVisible = false;
+  }, 3000);
+}
+</script>
+</body>
+</html>

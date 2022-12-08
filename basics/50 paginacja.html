@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  margin: 16px;
+  line-height: 1.5;
+  color: #212121;
+  font-family: sans-serif;
+}
+
+p {
+  margin: 0;
+}
+
+.posts {
+  margin: 0;
+  list-style: none;
+  padding: 24px;
+}
+
+.posts li:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.post-title {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.post-title:first-letter {
+  text-transform: uppercase;
+}
+
+.post-body {
+  margin: 0;
+}
+    </style>
+</head>
+<body>
+    <h1>Paginacja</h1>
+    <p>
+        Baza danych może przechowywać kolekcje setek milionów rekordów. Dlatego zwracanie całej kolekcji dla każdego żądania GET wymaga zbyt dużych zasobów. Rozmiar treści odpowiedzi będzie zbyt duży, a czas żądania będzie ciągnął się o kilkadziesiąt sekund, a nawet minut – im więcej danych w odpowiedzi z backendu, tym dłużej zajmuje ona sieć.
+    </p>
+    <p>Ponadto musisz pomyśleć o użytkownikach - nie potrzebują wszystkich milionów rekordów naraz. Przetworzenie tak dużej ilości danych w odpowiedzi i renderowanie interfejsu będzie wymagało ogromnych zasobów urządzenia, na którym przeglądana jest strona internetowa. Według statystyk użytkownicy znajdują interesujące ich informacje na pierwszych kilku ekranach.</p>
+    <p>
+        Załóżmy, że nasz backend my-api.com przechowuje bardzo dużą kolekcję postów w zasobie /posts, którą reprezentujemy na ilustracji za pomocą dwunastu elementów.
+    </p>
+    <img src="../images/no-pagination.png" alt="" width="800">
+    <p>
+        Dla każdego żądania GET backend będzie musiał zwrócić całą kolekcję, a my zmierzymy się z opisanymi wcześniej problemami. Aby je rozwiązać, istnieje paginacja - technika, w której nie cała kolekcja jest zwracana do pierwszego i każdego kolejnego żądania GET, ale pewna jej część. Paginacja jest zaimplementowana na backendzie i używana na frontendzie za pomocą specjalnych parametrów żądania.
+    </p>
+
+    <h2>Liczba elementów odpowiedzi</h2>
+    <p>
+        Pierwszy parametr określa liczbę elementów w odpowiedzi z backendu. Niech w naszym przypadku nazywa się to per_page. Nie ma standardu nazewnictwa parametrów paginacji, więc ich nazwy zależą od programisty Backend.
+    </p>
+    <img src="../images/per-page-param.png" alt="" width="800">
+    <p>W takim żądaniu GET backend nie zwróci całej kolekcji z dwunastu elementów, ale tylko pierwsze cztery. Jeśli przekażesz wartość ujemną lub wartość większą niż liczba elementów w kolekcji, backend może zareagować inaczej - zignoruje je lub zwróci błąd 400 (BAD REQUEST), w zależności od jego implementacji.</p>
+    <p>
+        Publiczny JSONPlaceholder API również obsługuje paginację - liczba elementów w odpowiedzi jest kontrolowana przez parametr _limit. Łącznie w kolekcji /posts znajduje się 100 pozycji. Zmień wartość parametru _limit w przykładzie i sprawdź odpowiedź backendu w interfejsie oraz w karcie Network.
+    </p>
+    <button type="button" class="btn">Fetch posts</button>
+<ul class="posts"></ul>
+<script>
+const fetchPostsBtn = document.querySelector(".btn");
+const userList = document.querySelector(".posts");
+
+fetchPostsBtn.addEventListener("click", () => {
+  fetchPosts()
+    .then((posts) => renderPosts(posts))
+    .catch((error) => console.log(error));
+});
+
+function fetchPosts() {
+  // Change the number of items in the group here  
+  return fetch("https://jsonplaceholder.typicode.com/posts?_limit=1").then(
+    (response) => {
+      if (!response.ok) {
+        throw new Error(response.status);
+      }
+      return response.json();
+    }
+  );
+}
+
+function renderPosts(posts) {
+  const markup = posts
+    .map(({ id, title, body, userId }) => {
+      return `<li>
+          <h2 class="post-title">${title.slice(0, 30)}</h2>
+          <p><b>Post id</b>: ${id}</p>
+          <p><b>Author id</b>: ${userId}</p>
+          <p class="post-body">${body}</p>
+        </li>`;
+    })
+    .join("");
+  userList.innerHTML = markup;
+}
+</script>
+
+</body>
+</html>
