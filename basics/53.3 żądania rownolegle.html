@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>
+        Żądania równoległe
+    </h1>
+    <p>
+        Jeśli potrzebujesz wykonać wiele żądań w tym samym czasie, użyj bardzo ostrożnie składni async/await. W poniższym przykładzie zostaną wykonane trzy sekwencyjne żądania, ponieważ wykonanie funkcji asynchronicznej jest zawieszone, gdy interpreter napotka await. Ponadto parsowanie wyników żądania będzie również sekwencyjne, co zajmie więcej czasu.
+    </p>
+    <script>
+const fetchUsers3 = async () => {
+  const baseUrl = "https://jsonplaceholder.typicode.com";
+  const firstResponse = await fetch(`${baseUrl}/users/1`);
+  const secondResponse = await fetch(`${baseUrl}/users/2`);
+  const thirdResponse = await fetch(`${baseUrl}/users/3`);
+
+  const firstUser = await firstResponse.json();
+  const secondUser = await secondResponse.json();
+  const thirdUser = await thirdResponse.json();
+
+  console.log(firstUser, secondUser, thirdUser);
+};
+
+fetchUsers3();
+    </script>
+
+<p>
+    Na karcie Network wyraźnie widać, że uruchomienie każdego kolejnego żądania czeka na zakończenie poprzedniego. Oznacza to, że są one wykonywane sekwencyjnie, co zajmuje więcej czasu, który jest równy sumie trwania wszystkich żądań. Jest to w porządku, jeśli żądania są od siebie zależne, tzn. następne wykorzystuje wynik poprzedniego.
+</p>
+<img src="/images/concurrent-requests.png" alt="" width="800">
+<p>
+    W naszym przypadku są one całkowicie niezależne, więc trzeba je uruchamiać równolegle. W tym celu tworzona jest tablica obietnic, po których wykorzystywana jest metoda Promise.all() do oczekiwania na ich wykonanie. Tablica obietnic jest tworzona przez metody map(), filter() i tak dalej, w zależności od zadania.
+</p>
+<script>
+const fetchUsers2 = async () => {
+  const baseUrl = "https://jsonplaceholder.typicode.com";
+  const userIds = [1, 2, 3];
+
+  // 1. Tworzymy tablicę obietnic
+  const arrayOfPromises = userIds.map(async userId => {
+    const response = await fetch(`${baseUrl}/users/${userId}`);
+    return response.json();
+  });
+
+  // 2. Uruchamiamy wszystkie obietnice równolegle i czekamy na ich zakończenie
+  const users = await Promise.all(arrayOfPromises);
+  console.log(users);
+};
+
+fetchUsers2();
+</script>
+<p>
+    Przy takim podejściu żądania są uruchamiane równolegle, co oszczędza czas oczekiwania na ich wykonanie, który jest równy czasowi trwania „najwolniejszego” z nich. Ta technika jest odpowiednia tylko wtedy, gdy żądania są od siebie niezależne.
+</p>
+<img src="/images/parallel-requests.png" alt="" width="800">
+<p>
+    Przekonaj się o tym, otwierając narzędzia programistyczne w przykładzie na żywo. Dodaliśmy również przycisk po kliknięciu którego żądanie jest wykonywane, i obsłużyliśmy ewentualny błąd za pomocą konstrukcji try...catch. Jest to standardowy kod AJAX używający funkcji asynchronicznych.
+</p>
+<button type="button" class="btn">Fetch users</button>
+<ul class="user-list"></ul>
+<script>const fetchUsersBtn = document.querySelector(".btn");
+    const userList = document.querySelector(".user-list");
+    
+    fetchUsersBtn.addEventListener("click", async () => {
+      try {
+        const users = await fetchUsers();
+        renderUserListItems(users);
+      } catch (error) {
+        console.log(error.message);
+      }
+    });
+    
+    async function fetchUsers() {
+      const baseUrl = "https://jsonplaceholder.typicode.com";
+      const userIds = [1, 2, 3, 4, 5];
+    
+      const arrayOfPromises = userIds.map(async (userId) => {
+        const response = await fetch(`${baseUrl}/users/${userId}`);
+        return response.json();
+      });
+    
+      const users = await Promise.all(arrayOfPromises);
+      return users;
+    }
+    
+    function renderUserListItems(users) {
+      const markup = users
+        .map(
+          (user) => `<li class="item">
+            <p><b>Name</b>: ${user.name}</p>
+            <p><b>Email</b>: ${user.email}</p>
+            <p><b>Company</b>: ${user.company.name}</p>
+          </li>`
+        )
+        .join("");
+      userList.innerHTML = markup;
+    }</script>
+</body>
+</html>

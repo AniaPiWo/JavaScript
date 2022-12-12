@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+  margin: 16px;
+  line-height: 1.5;
+  color: #212121;
+  font-family: sans-serif;
+}
+
+p {
+  margin: 0;
+}
+
+.posts {
+  margin: 0;
+  list-style: none;
+  padding: 24px;
+}
+
+.posts li:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.post-title {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.post-title:first-letter {
+  text-transform: uppercase;
+}
+
+.post-body {
+  margin: 0;
+}
+    </style>
+</head>
+<body>
+    <h1>Funkcje asynchroniczne</h1>
+    <p>Praca z backendem może być myląca, po jednej operacji asynchronicznej trzeba wysłać kolejne żądanie do serwera, korzystając z otrzymanych danych, i tak dalej kilka razy. <b>Na przykład na stronie profilu użytkownik chce zobaczyć listę znajomych. Pierwszą rzeczą do zrobienia jest potwierdzenie jego praw dostępu do tej strony w backendzie.</b> Aby to zrobić, musisz wysłać żądanie do my-api.com/me. Jeśli backend umożliwia dostęp, w odpowiedzi otrzymamy unikalny token dostępu do chronionych zasobów.</p><br>
+    <script>
+        const fetchFriends1 = () => {
+            return fetch("my-api.com/me").then(token => {
+            console.log(token);
+            });
+};
+    </script>
+    <p><b>Następnie musisz poprosić o profil użytkownika z my-api.com/profile</b>, ale profil nie jest kompletny, zawiera tylko krytyczne informacje - ID użytkownika, bez listy znajomych.</p><br>
+    <script>
+        const fetchFriends2 = () => {
+            return fetch("my-api.com/me")
+            .then(token => {
+                return fetch(`my-api.com/profile?token=${token}`);
+                })
+            .then(user => {
+                console.log(user.id);
+                });
+        };
+    </script>
+    <p><b>I dopiero potem możesz poprosić o listę znajomych od my-api.com/users/:userId/friends.</b></p><br>
+    <script>
+        const fetchFriends3 = () => {
+            return fetch("my-api.com/me")
+            .then(token => {
+                return fetch(`my-api.com/profile?token=${token}`);
+            })
+            .then(user => {
+                return fetch(`my-api.com/users/${user.id}/friends`);
+            });
+        };
+
+fetchFriends3()
+  .then(friends => console.log(friends))
+  .catch(error => console.error(error));
+    </script>
+    <p>Zgódź się, nie najbardziej czytelny kod, chociaż operacje są stosunkowo proste. Dzięki temu, że przekazujemy funkcje obsługi do metody then(), otrzymujemy drzewa zagnieżdżone.</p><br>
+    <p>
+        Funkcje asynchroniczne pomagają pozbyć się wywołań zwrotnych i konstrukcji zagnieżdżonych. Przy tym działają doskonale w połączeniu z metodami then() i catch(), ponieważ gwarantują zwrócenie obietnicy.
+    </p>
+    <script>
+    const fetchFriends4 = async () => {
+        const token = await fetch("my-api.com/me");
+        const user = await fetch(`my-api.com/profile?token=${token}`);
+        const friends = await fetch(`my-api.com/users/${user.id}/friends`);
+        return friends;
+    };
+
+fetchFriends4()
+  .then(friends => console.log(friends))
+  .catch(error => console.error(error));
+    </script>
+</body>
+</html>
