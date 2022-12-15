@@ -1,0 +1,89 @@
+<script>
+    const text = "Maciej"
+    console.log(typeof text); //string
+
+//wlasciwosci - tylko jedna - length
+console.log(text.length);
+
+//metody
+console.log(text.toUpperCase());
+//lub
+const textUpperCase = text.toUpperCase();
+console.log(textUpperCase);
+
+console.log(text.toLowerCase());
+
+console.log(text.charAt(0).toUpperCase() + text.slice(1));
+
+// at()
+let index = 5;
+console.log(text.at(index)); // j - czyli wyswietli 6 (liczymy od 0)
+
+// charAt()
+console.log(text.charAt(0)); // M - pierwszy znak
+
+//charCodeAt()
+console.log(text.charCodeAt(0)); //77 The charCodeAt() method returns an integer between 0 and 65535 representing the UTF-16 code unit at the given index.
+
+// codePointAt()
+console.log(text.codePointAt(0)); //77 The charCodeAt() method returns an integer between 0 and 65535 representing the UTF-16 code unit at the given index.
+
+//concat()
+console.log(text.concat(text)); //MaciejMaciej
+
+//endsWith()
+console.log(text.endsWith("j")); // true
+console.log(text.endsWith("G")); // false
+
+//fromCharCode()
+console.log(String.fromCodePoint(189)); //½ - The static String.fromCharCode() method returns a string created from the specified sequence of UTF-16 code units.
+/* 
+fromCodePoint()
+includes()
+indexOf()
+lastIndexOf()
+localeCompare()
+match()
+matchAll()
+normalize()
+padEnd()
+padStart()
+raw()
+replace()
+replaceAll()
+search()
+slice()
+split()
+startsWith()
+substring()
+toLocaleLowerCase()
+toLocaleUpperCase()
+toLowerCase()
+toString()
+toUpperCase()
+trim()
+trimEnd()
+trimStart()
+valueOf() */
+
+//jeszcze wiecej przykladow :]
+
+const text1 = 'powiększ mnie!'
+const text2 = 'ZAPISZ MNIE MAŁYMI LITERAMI'
+const text3 = '$#%#^ wytnij te dziwne znaki na początku!'
+const text4 = 'sprawdź, czy zawieram słowo "czy"'
+const text5 = 'wyLoguj w konsoli tylko literę "L", która znajduje się w wyrazie "Wyloguj"'
+const text6 = 'pies zamień każde słowo pies, na słowo kot pies'
+const text7 = 'podziel, ten, string, od, przecinków'
+
+console.log(text1.toUpperCase());
+console.log(text2.toLowerCase());
+console.log(text3.slice(6));
+console.log(text.includes('czy')); 
+console.log(text5.charAt(2));
+console.log(text6.replaceAll("pies", "kot"));
+console.log(text7.split(','));
+
+</script>
+
+

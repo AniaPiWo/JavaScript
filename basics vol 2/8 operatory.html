@@ -1,0 +1,110 @@
+<script>
+    //arytmetyczne
+
+    let x = 5;
+    let y = 8;
+
+    const add = x + y;
+    console.log(add);
+
+    const substract = x - y;
+    console.log(substract);
+
+    const multiply = x * y;
+    console.log(multiply);
+
+    const divide = x / y;
+    console.log(divide);
+
+    const modulo =  x % y;
+    console.log(modulo); //reszta z dzielenia (tzw. modulo), wynik 0
+
+    x++
+    console.log(`incrementation: ${x}`); //zwiekszenie o 1
+
+    x--
+    console.log(`decrementation: ${x}`); //zmniejszenie o 1
+
+    //przypisania =
+    let a = 5; //przypisujemy do pudelka x wartosc 5
+    let b = 10;
+    console.log(a); //5
+
+    a += b      //przypisujemy do pudelka a nowa wartosc a+b - alternatywny zapis z op przypisania a = a + b; 
+    console.log(a); //15
+    
+    a -= b      //przypisujemy do pudelka a nowa wartosc a-b - alternatywny zapis z op przypisania a = a - b; 
+    console.log(a); //5
+
+    a *= b      //przypisujemy do pudelka a nowa wartosc a*b - alternatywny zapis z op przypisania a = a * b;
+    console.log(a); //50
+
+    a /= b      //przypisujemy do pudelka a nowa wartosc a/b - alternatywny zapis z op przypisania a = a / b; 
+    console.log(a); //5
+
+    a %= b      //przypisujemy do pudelka a nowa wartosc a&b - alternatywny zapis z op przypisania   a = a % b; 
+    console.log(a); //5
+
+    //porownania 
+    // porownanie zawartosci
+    console.log(10 == "10"); //true 
+
+    // porownanie zawartosci oraz typu
+    console.log(10 === "10"); //false
+
+    // jest różne od
+    console.log(10 != "10"); //false
+    console.log(10 != "1"); //true
+
+    // jest różne i innego typu od, to samo co ===
+    console.log(10 !== "10"); //true
+    console.log(10 !== 10); //false (nie, nie jest rozne)
+
+    console.log(a > b); //false
+    console.log(a < b); //true
+    console.log(a >= b); //false
+    console.log(a <= b); //true
+
+    // op logiczne
+    // && - i - wszytskie warunki sa prawdziwe
+    // || - lub - jeden z warunkow jest prawdziwy
+    // ! - zaprzeczenie
+
+    if (true && true) {
+        console.log("😄");
+    } else {
+        console.log("😔");  // :)
+    }
+
+    if (true && false) {
+        console.log("😄");
+    } else {
+        console.log("😔"); // :(
+    }
+
+    if (true || false) {
+        console.log("😄");
+    } else {
+        console.log("😔"); // :)
+    }
+
+    if (!(10 == 10)) {
+        console.log("😄");
+    } else {
+        console.log("😔"); // :(
+    }
+    
+    if (!(10 == "10")) {
+        console.log("😄");
+    } else {
+        console.log("😔"); // :(
+    }
+
+    if (!(10 === "10")) {
+        console.log("😄");
+    } else {
+        console.log("😔"); // :)
+    }
+
+
+</script>
