@@ -1,0 +1,50 @@
+<script>
+
+const x = 100;
+
+if (x > 20) {
+console.log(`${x} > 20`);
+} else {
+    console.log(`${x} < 20`);
+}
+
+// wartość ? TRUE : FALSE;
+
+const newX = x > 20 ? `${x} > 20` : `${x} < 20`;
+console.log(newX);
+
+const isLoggeddIn = false;
+
+function loggedIn() {
+    console.log("Jesteś zalogowany!");
+}
+
+function loggedOut() {
+    console.log("Jesteś wylogowany!");
+}
+
+isLoggeddIn ? loggedIn() : loggedOut();
+
+//zadanie
+
+const v = 10;
+
+const isEven = (v & 2 === 0) ? `V jest parzyste` : `V jest nieparzyste`;
+
+console.log(isEven);
+
+// zadanie 2
+
+const trip = 50;
+let text;
+
+if (trip >= 100) {
+    text = 'trip jest duży'
+} else if (trip < 100 && trip > 30) {
+    text = 'trip jest średniakiem'
+} else {
+    text = 'trip jest malutki'
+} 
+
+console.log(text.toUpperCase());
+</script>
