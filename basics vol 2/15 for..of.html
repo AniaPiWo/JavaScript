@@ -1,0 +1,32 @@
+Es6
+
+<script>
+    const numbers = [1, 2, 3, 4, 5]
+
+/* for ( let i=0; i < numbers.length; i++) {
+    console.log(numbers[i]*2);
+} */
+
+for (const number of numbers) {
+    console.log(number*2);
+}
+
+console.log('Zadanie1');
+// zadanie
+
+const nums = [5,8,10,23,48,60];
+
+for (const num of nums) {
+    console.log(num/5);
+};
+
+console.log('Zadanie1');
+
+for (const num of nums) {
+    if(num % 2 === 0) {
+        console.warn(`Liczba ${num} jest parzysta`)
+    } else {
+        console.error(`Liczba ${num} jest nieparzysta`)
+    }
+};
+</script>
