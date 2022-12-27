@@ -1,0 +1,22 @@
+<body>
+    <h1>funkcje</h1>
+</body>
+
+<script>
+    const heading = document.querySelector('h1');
+
+  // funkcja anonimowa czyli bez nazwy
+  // niepraktyczna - mozna wykonac ja tylko tam gdzie jest
+  // ma sens w forEach
+
+    heading.addEventListener('click', function() {
+        console.log(`Clicked!`);
+    })
+
+const days = ['poniedziałek', 'wtorek', 'środa']
+const days2 = days.forEach(function(day) {
+    console.log(day);
+})
+const day3 = days.forEach(day => console.log(day))
+
+</script>

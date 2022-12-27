@@ -1,0 +1,10 @@
+<script>
+const numbers = [0,1,2,3]
+
+const newNumbers = numbers.forEach(number => console.log(number*2)); //// 0,2,4,6 
+console.log(newNumbers); // undefined - wykonany kod dla kazdego elementu ale forEach nic nie zwraca, nic nie zapisuje
+
+const newNumbers2 = numbers.map(number => number*2)//// 0,2,4,6
+console.log(newNumbers2); // [0, 2, 4, 6] - zwraca tablice przechowywana w newNumbers2
+
+</script>

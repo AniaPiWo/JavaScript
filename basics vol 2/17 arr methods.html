@@ -1,0 +1,82 @@
+<script>
+    const numbers = [1,2,3,4,5];
+    console.log(numbers);
+
+    numbers.unshift(-1, 0); //dodaje na poczatku arr
+    console.log(numbers); // [-1, 0, 1, 2, 3, 4, 5]
+
+    numbers.shift(); //usuwa element z indexem 0
+    console.log(numbers); // [0, 1, 2, 3, 4, 5]
+
+
+
+    const colors = ['red', 'blue', 'black']
+    console.log(colors);
+
+    colors.push('pink'); //dodaje elementy na koncu arr
+    //push to metoda destrukcyjna - zmienia strukture oryginalnego obiektu
+    console.log(colors); //['red', 'blue', 'black', 'pink']
+
+    colors.pop(); //usuwa ostatni element
+    console.log(colors); //['red', 'blue', 'black']
+
+
+    function multiply(x) {
+        return x*2;
+    }
+
+    multiply(2);
+
+    const newNumbers = numbers.map(multiply); 
+    //map jest podobne do petli
+    //map iteruje po tablicy i na kazdym el wykonuje f
+    //w nawiasie robimy callback funkcji, ktorej kod ma sie wykonac na elementach
+    // MAP ZWRACA TABLICE
+    console.log(newNumbers);
+
+    //concat jest metoda niedestrukcyjna - nie zmienia oryginalnej tablicy
+   const abc = ['a', 'b', 'c'];
+   const newAbc = abc.concat('d', 'e');
+   console.log(newAbc); //['a', 'b', 'c', 'd', 'e']
+
+   const newAbc2 = numbers.concat(abc);
+   console.log(newAbc2); // [0, 1, 2, 3, 4, 5, 'a', 'b', 'c']
+
+    // ... - spread operator uzywany jest na tablicach
+    // ... - jesli uzywany na funkcjach to wtedy to rest opreator
+    console.log(...abc); //a b c
+    
+    const drinks = ['pepsi', 'beer', 'water']
+    const meals = ['pizza', 'burger', 'soup']
+
+    const menu = [...drinks,...meals];
+    console.log(...menu);
+
+    //slice() – metoda niedestrukcyjna 👍
+    //pierwszy argument – indeks elementu, od którego wycinamy (włącznie),
+    //drugi argument – indeks elementu, do którego wycinamy (ale bez tego elementu).
+
+    //splice() – metoda destrukcyjna 💣
+    //pierwszy argument – indeks elementu, od którego wycinamy (włącznie),
+    //drugi argument – ilość elementów, które wycinamy,
+
+//każdy kolejny argument – nowy element, który chcemy dodać do tablicy w miejsce wyciętego.
+
+const nums = [0, 0, 1, 1, 2, 2, 2]
+const color = ['red', 'green', 'blue', true, 123]
+const cars = [123, true, 'audi', 'bmw', 'mercedes', 'ferrari', '🤷‍♂️', '👀']
+
+const nums2 = nums.slice(0, 2);
+console.log(nums2);
+
+const nums3 = nums.slice(-3);
+console.log(nums3);
+
+const randomStuff = color.splice(-2);
+console.log(color);
+console.log(randomStuff);
+
+const newCars = cars.splice(2, 4, 'test');
+console.log(cars);
+console.log(newCars);
+</script>

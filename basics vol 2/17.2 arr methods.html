@@ -1,0 +1,18 @@
+<script>
+    const numbers = [0, 23, 48, 175, 2, 34, 11]
+
+    function number(x) {
+        return x%2===0     
+    }
+
+    console.log(numbers.filter(number));  
+
+   numbers.forEach(num => console.log(num * 5));
+
+console.log(numbers.includes(0)); //true
+
+console.log(numbers.indexOf(48)); //2
+
+console.log(numbers.indexOf(17)); //-1
+// jesli nie ma elementu na tablicy zawsze zwroci -1
+</script>

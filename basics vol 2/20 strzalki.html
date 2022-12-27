@@ -1,0 +1,32 @@
+<script>
+    const arrowFunction = () => {
+        //function body
+    }
+
+function foo(parametr) {
+    console.log(`Podany argument - ${parametr}`);
+}
+
+foo("hello");
+
+const foo2 = (parametr) => {
+    console.log(`Podany argument - ${parametr}`);
+}
+
+foo2("hello");
+
+const foo3 = parametr => console.log(`Podany argument - ${parametr}`); // taki zapis tylko gdy funkcja robi jedna rzecz
+
+foo3("hello");
+
+
+function add(x,y) {
+    return x+y
+}
+add(4,5) //9
+//jesli usuniemy slowo return to bedzie undefined
+
+const add2 = (x,y) => x+y; //return dodany automatycznie, nie trzeba go zapisywac
+add2(3,5)
+
+</script>

@@ -1,0 +1,49 @@
+
+
+Różnica miedzie parametrem a argumentem:
+
+parametr - podajemy podczas tworzenia funkcji
+argument - podajemy podczas wywolania funkcji
+
+w praktyce paramentr = arhument
+
+<script>
+    // funkcje podlegaja hoistingowi (sa przenoszone do 0 linijki kodu, dzieki czemu moga zostac wywolane przed deklaracja)
+
+    test();
+
+    function test() {
+        console.log("Cześć");
+    }
+
+    test();
+
+// jesli nie chcemy hoistingu to mozemy skorzystac z wyrazenia funkcyjnego, ktore nie podlega hoistingowi
+// czyli jesli wywolamy wyrazenie funkcyjne przed jego deklaracja to bedzie error
+
+// helloWorld() //18 function.html:14 Uncaught ReferenceError: Cannot access 'helloWorld' before initialization
+  
+const helloWorld = function () {
+    console.log("hello");
+}
+
+//funkcja z parametrami
+function foo(parametr) {
+    console.log(`Podany rgument - ${parametr}`);
+}
+foo("hello");
+
+function add(x, y) {
+    return x+y; //zwraca wynik i konczy funkcje
+}
+
+add(4,5)
+// tak samo jak map() zwraca nam nowa tablice, z ktora mozemy pracowac, tak samo return zwraca wartosc, z ktorej mozemy w przyszlosci skorzystac
+
+function user(name, age) {
+    console.log(`Cześć! Mam na imię ${name} i mam ${age} lat`);
+}
+
+user("ania", 20)
+
+</script>

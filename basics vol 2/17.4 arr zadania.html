@@ -1,0 +1,84 @@
+<script>
+//zad1
+const letters =['c', 'd'];
+
+letters.unshift('a','b');
+letters.push('e','f');
+console.log(letters);
+
+console.log(letters.includes('c')); 
+
+//zad2
+const numbers = [1, 2, 3]
+const meals = ['🍲', '🦐', '🍜']
+
+const menu = numbers.concat(meals);
+console.log(...menu);
+
+const menu2 = [...numbers, ...meals]
+console.log(...menu);
+
+//zad3
+
+const nums = [1, 5, 13, 26, 48]
+
+const newNums = nums.map(num => num*2)
+
+for (const num of nums) {
+    if (num%2===0) {
+        console.log(`Liczba parzysta: ${num}`);
+    } else {
+        console.log(`Liczba nieparzysta: ${num}`);
+    }
+}
+
+//lub
+
+for (let i=0; i<newNums.length; i++) {
+    if (newNums[i]%2===0) {
+        console.log(`Liczba parzysta: ${newNums[i]}`);
+    } else {
+        console.log(`Liczba nieparzysta: ${newNums[i]}`);
+    }
+}
+
+//zad4
+
+const colors = ["pink"];
+
+colors.unshift('blue');
+colors.push("gold")
+
+console.log(colors);
+
+for (const color of colors) {
+    console.log(`Mój ulubiony kolor to ${color.toUpperCase()}.`);
+}
+
+
+//zad5
+
+const cars = "Audi, Mercedes, BMW, Nissan, Dodge";
+console.log(cars.split(", "));
+console.log(cars);
+
+const carsArr = cars.split(", ");
+
+if (carsArr.length > 3) {
+    console.log(`Jest ok`);
+} else {
+    console.log(`Nie jest OK`);
+}
+
+//lub
+
+carsArr.length >3 ? console.log(`Jest ok`) : console.log(`Nie jest OK`);
+
+if (carsArr.includes('Audi')) {
+    carsArr.push('Lambo')
+} else {
+    carsArr.pop()
+}
+console.log(carsArr);
+
+</script>
