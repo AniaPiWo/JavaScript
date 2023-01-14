@@ -1,0 +1,52 @@
+<h1>
+    DOM, Document, Window
+</h1>
+
+<ul>
+    <li id="item">to LI ma ID</li>
+    <li>LI bez klasy i ID</li>
+    <li class="test">To LI ma klase</li>
+    <li class="test">To LI ma klase</li>
+    <li>LI bez klasy i ID</li>
+</ul>
+
+<script>
+//przed ES62015
+    const a = document.getElementById("item")
+    console.log(a);
+
+    const b = document.getElementsByClassName("test")
+    console.log(b);
+
+    const c = document.getElementsByTagName("li")
+    console.log(c);
+
+ //wprowadzaone w ES62015
+
+    const d = document.querySelector("li")
+    console.log(d);
+
+    console.log("---");
+
+    const e = document.querySelectorAll("li")
+    console.log(e);
+
+
+</script>
+
+<h1>pobierz mnie do zmiennej 'heading'</h1>
+<p>pobierz mnie do elementu tablico-podobnego razem z innymi paragrafami!</p>
+<p>pobierz mnie do elementu tablico-podobnego razem z innymi paragrafami!</p>
+<p>pobierz mnie do elementu tablico-podobnego razem z innymi paragrafami!</p>
+<div class="test">
+    <p>pobierz DIV-a z klasą test do jakiejś zmiennej</p>
+    <p id="test">następnie pobierz ten paragraf, ale nie przeszukuj całego `document`, przeszukaj tylko DIV-a z klasą test</p>
+</div>
+
+<script>
+    const heading = document.querySelector("h1")
+    const paragraphs = document.querySelectorAll("p")
+    const testDiv = document.querySelector(".test")
+    const test2 = testDiv.querySelector("#test")
+
+</script>

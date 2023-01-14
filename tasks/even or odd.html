@@ -1,0 +1,32 @@
+<script>
+    let score;
+    
+ /*    const add = (a, b) => {
+        score = a+b;
+
+        if (score % 2 === 0) {
+            even()
+        } else {
+            odd()
+        }
+
+        return score;
+    }
+*/
+    const even = () => {
+        console.log(`Liczba ${score} jest parzysta`);
+    }
+
+    const odd = () => {
+        console.log(`Liczba ${score} jest nieparzysta`);
+    } 
+
+
+    const add = (a,b) => {
+        const score = a + b;
+
+        score % 2 === 0 ? even(score) : odd(score)
+    }
+
+
+</script>

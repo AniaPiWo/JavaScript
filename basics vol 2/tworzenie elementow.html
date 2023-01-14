@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="test">Jakis div</div>
+    <script>
+
+    const TEST = document.querySelector(".test")
+
+    const par = document.createElement("p")
+
+    par.textContent = "testowy paragraf w divie"
+
+    TEST.appendChild(par)
+
+    //
+
+    const ul = document.createElement("ul")
+    const li = document.createElement("li")
+    
+    li.textContent = "hi there"
+    
+    document.body.appendChild(ul)
+    ul.appendChild(li)
+     
+    </script>
+
+</body>
+</html>
+
+

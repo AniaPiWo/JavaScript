@@ -1,0 +1,23 @@
+<script>
+    const numbers = [0.5, 4, "abc"]
+    const names = [ "Lisa", "Lily", "Adam", "Tomek"]
+
+    numbers.forEach(num => console.log(num))
+
+    const bigNames = names.forEach(name => name.toUpperCase())
+    console.log(bigNames); //undefined bo forEach NIC nie zwraca
+
+    
+    const bigNames2 = names.map(name => name.toUpperCase())
+    console.log(bigNames2); //['LISA', 'LILY', 'ADAM', 'TOMEK']
+
+    const showBigNames = name => {
+        console.log(name.toUpperCase());
+    }
+
+    names.forEach(showBigNames) //callback - na kazdym elemencie names wywolalismy funkcje showBigNames
+
+    //alternatywny zapis
+
+    names.forEach(name => console.log(name.toUpperCase))
+</script>

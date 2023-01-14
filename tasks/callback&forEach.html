@@ -1,0 +1,21 @@
+<script>
+    let num = 10;
+    let numbers = [];
+
+    for (let i=0; i < num; i++) {
+        numbers.push(i)
+    }
+
+    console.log(numbers);
+
+    const divByThree = (a) => {
+        if (a % 3 === 0 && a != 0) {
+            console.log(`Liczna ${a} jest podzielna przez 3.`);
+        } else {
+            console.log(`Liczna ${a} nie jest podzielna przez 3 lub jest równa 0.`);
+        }
+    }
+
+    numbers.forEach(divByThree)
+
+</script>

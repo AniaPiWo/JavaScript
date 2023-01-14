@@ -1,4 +1,21 @@
 <script>
 
-    
+//spread - uzywamy na tablicach
+const arr = [1,2,3,4]
+console.log(arr);
+console.log(...arr);
+
+//rest - uzywamy na f
+// rest tworzy tablice z damiarowych args
+const nums = (x,y,z) => console.log(x,y,z);
+nums(1,2,3,4,45,5,56,6,667,7,7) //1,2,3
+
+const nums2 = (x,y,...z) => console.log(x,y,z);
+nums2(1,2,3,4,45,5,56,6,667,7,7) //1 2 (9) [3, 4, 45, 5, 56, 6, 667, 7, 7]
+
+const nums3 = (x,y,...z) => {
+    console.log(x,y)
+    console.log(z.map(e => console.log(e)));
+};
+nums3(1,2,3,4,45,5,56,6,667,7,7) //1 2 (9) [3, 4, 45, 5, 56, 6, 667, 7, 7]
 </script>

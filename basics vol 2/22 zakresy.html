@@ -1,0 +1,33 @@
+<script>
+    const name = "Lisa" //globalna
+
+    const test = () => {
+        const name = "Lily" //lokalne
+        console.log(`Name w funkcji - ${name}`);
+
+        const age = "23" //lokalna
+        console.log(age);
+
+        const test2 = () => {
+            console.log("---");
+            console.log(name); 
+            console.log(age);
+
+            const color = "blue";
+            console.log(color);
+
+            console.log("---");
+        }
+
+        console.log(test2()) // Lily, a gdyby w test nie bylo name to Lisa
+    }
+
+    console.log(`Name poza funkcją - ${name}`);
+    console.log(test()) //Lily
+    console.log(test2()) // not defined
+    console.log(age); //not defined
+
+// z zakresu globalnego mamy dostep do zakresu globalnego i lokalnego
+// z zakresu lokalnego mamy dostep tylko do lokalnego 
+// mozna isc tylko w gore
+</script>
