@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 100px;
+            background-color: rgb(14, 15, 15);
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            color: white;
+            background-color: rgb(14,15,15);
+            border: 1px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            color: rgb(14,15,15);
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body>
+<button>BUTTON🍺</button>
+
+<p class="inner-text">
+    to 
+    <span style="display: none">jest</span>
+    <style>p {font-size: 22px;}</style>
+    innerText
+</p>
+
+<p class="text-content">
+    to 
+    <span style="display: none">jest</span>
+    <style>p {font-size: 22px;}</style>
+    textContent
+</p>
+
+<input type="text">
+<p class="under-input">Jestem tekstem pod inputem 😉 </p>
+
+<script>
+    const btn = document.querySelector("button")
+    console.log(btn.outerHTML); //<button>BUTTON🍺</button>
+    console.log(btn.innerHTML); // BUTTON🍺
+
+   /*  btn.outerHTML = "123" *///usunie przycisk i wstawi string 123
+   /* btn.innerHTML = "123" //zmieni string na 123 */
+   /*  btn.innerHTML = "<li>123</li>" */
+   //obie opcje uzywamy tylko jesli to my wprowadzamy dane, nigdy gdy to uzytkownik wprowadza dane
+
+   console.log(btn.outerText);  //BUTTON🍺 (tekst wewnatrz)// zwykly tekst
+   console.log(btn.textContent);
+
+const innerT = document.querySelector(".inner-text")
+const contentT = document.querySelector(".text-content")
+
+console.log(innerT.innerText); //to innerText
+console.log(contentT.textContent); //to 
+                                   //jest
+                                   //p {font-size: 22px;}
+                                   //textContent
+
+
+const input = document.querySelector("input")
+const underInput = document.querySelector(".under-input")
+
+input.addEventListener("keydown", e => {
+    if (e.key === 'Enter') {
+       /*  <h2 style ="color: red">h2</h2> */ // wprowadzany w input text
+        underInput.innerHTML = input.value  //czerwona h2 DALTEGO NIE WOLNO UZYWAC GDY TO                                               UZYTKOWNIK WPROWADZA DANE!!
+        underInput.textContent = input.value //<h2 style ="color: red">h2</h2
+    }
+})
+</script>
+</body>
+</html>
