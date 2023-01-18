@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 100px;
+            background-color: rgb(14, 15, 15);
+            color: white;
+            gap: 30px;
+        }
+
+        button {
+            padding: 10px 20px;
+            color: white;
+            background-color: rgb(14,15,15);
+            border: 1px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            color: rgb(14,15,15);
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body>
+<button class="btn">Guzik</button>
+
+<script>
+    const btn = document.querySelector("button")
+
+    const test = (e) => {
+        console.log(e);
+        console.log(e.target); //<button>Guzik</button>
+        console.log(e.target.classList); //pseudoobiekt DOMTokenList ['btn', value: 'btn']
+        console.log(e.target.offsetTop); //100 - ilosc pikseli od gornej krawedzi do guzika
+    }
+    btn.addEventListener("click", test)
+
+</script>
+</body>
+</html>

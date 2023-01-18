@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 100px;
+            background-color: rgb(14, 15, 15);
+            color: white;
+            gap: 30px;
+        }
+
+        button {
+            padding: 10px 20px;
+            color: white;
+            background-color: rgb(14,15,15);
+            border: 1px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            color: rgb(14,15,15);
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <button class="btn1">Click 😆</button>
+    <button class="btn2">Hover 😇</button>
+    <button class="btn3">Double Click 🍺</button>
+
+<script>
+    // listenery zawsze umieszczamy na koncu kodu!
+
+    const BTN1 = document.querySelector(".btn1")
+    const BTN2 = document.querySelector(".btn2")
+    const BTN3 = document.querySelector(".btn3")
+    const BTNS = document.querySelectorAll("button") //obiekt tablicopodobny z guzikami
+
+    BTN1.addEventListener("click", () =>  console.log("Clicked 🥶"))
+
+    BTN2.addEventListener("mouseover", () => console.log("mouseover 😡"))
+
+    /* BTN3.addEventListener("dblclick", () => console.log("dblclick 👿")) */
+    const dblClick = () => console.log("dblclick 👿");
+    BTN3.addEventListener("dblclick", dblClick);
+   
+    const beer = () => console.log("🍺");
+    /* BTNS.addEventListener("click", beer")) */ //to nie zadziala, bo obiekt tablicopodobny, musimy wykonac funkcja osobno na kazdym elemencie pseudotablicy
+
+  BTNS.forEach(e => e.addEventListener("click", beer)) //to zadziala
+
+</script>
+<a href="https://developer.mozilla.org/en-US/docs/Web/Events">Events</a>
+
+Najczesciej uzywane eventy:
+click - Wykrywa kliknięcie myszą na element
+copy - 	Wykrywa kopiowanie treści (CMD + C / CTRL + C / PPM -> kopiuj)
+keydown - Klawisz na klawiaturze został wciśnięty (ale nie puszczony)
+keyup - Klawisz na klawiaturze został puszczony
+mousemove - Kursor porusza się po elemencie
+mouseover - Kursor znajduje się nad elementem, podobne do :hover w CSS
+mouseenter - Kursor wjechał na element
+mouseleave - Kursor zjechał z elementu
+scroll - Wykrywa zdarzenie scrolla (przewijania strony)
+DOMContentLoaded - Strona internetowa została wczytana (sam DOM, bez CSS, grafik itd.)
+load - 	Cała strona internetowa została wczytana (DOM, CSS, grafiki itd.)
+Seria eventów 'drag’ - Dragstart, dragend itd. Dzięki nim możemy za pomocą myszy przenosić elementy.
+
+mouseEvent wskazuje tylko na kursor, na mysz.
+pointerEvent wskazuje na pointer – wskaźnik. Na desktopie jest to kursor, na urządzeniu z ekranem dotykowym będzie to nasz palec / urządzenia typu Apple Pencil.
+
+</body>
+</html>

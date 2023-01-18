@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 100px;
+            background-color: rgb(14, 15, 15);
+            color: white;
+            gap: 30px;
+        }
+
+        .circle {
+            border-radius: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .lime {
+            background-color: lime;
+            width: 300px;
+            height: 300px;
+        }
+
+        .blue {
+            background-color: royalblue;
+            width: 220px;
+            height: 220px;
+        }
+
+        .gold{
+            background-color: gold;
+            width: 130px;
+            height: 130px; 
+        }
+
+        .purple {
+            background-color: purple;
+            width: 50px;
+            height: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="circle lime circle2">
+        <div class="circle blue">
+            <div class="circle gold circle2"></div>
+        </div>
+    </div>
+
+<script>
+
+    const allCircles = document.querySelectorAll(".circle")
+    const lime = document.querySelector(".lime")
+    const gold = document.querySelector(".gold")
+
+/*     allCircles.forEach(circle => circle.addEventListener("click", () => console.log(circle)));*/
+
+    const purple = document.createElement("div")
+    purple.classList.add("circle", "purple")
+    gold.append(purple) 
+    console.log(purple.classList); //circle, purple 
+    console.log((allCircles.length)); //3, pomimo ze mamy teraz 4 kolka */
+
+/* lime.addEventListener("click", e => {
+    if(e.target.matches(".circle2")) {
+        console.log("🍺")}
+})*/
+
+lime.addEventListener("click", e => {
+    if(e.target.classList.contains("circle2")) {
+        console.log("💗")}
+})
+
+</script> 
+</body>
+</html>

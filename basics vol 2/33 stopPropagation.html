@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 100px;
+            background-color: rgb(14, 15, 15);
+            color: white;
+            gap: 30px;
+        }
+
+
+        .lime {
+            background-color: lime;
+            width: 300px;
+            height: 300px;
+            border-radius: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .blue {
+            background-color: royalblue;
+            width: 180px;
+            height: 180px;
+            border-radius: 200px;        
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .gold{
+            background-color: gold;
+            width: 70px;
+            height: 70px;
+            border-radius: 500px;       
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="circle lime">
+        <div class="circle blue">
+        </div>
+    </div>
+
+<script>
+
+    //Listenery maja ustawiona domyslnie faze bubbling czyli od dolu do gory (od najmlodszego czlonka rodziny)
+
+    const lime = document.querySelector(".lime")
+    const blue = document.querySelector(".blue")
+
+    const infoLime = () => console.log(('Ten kod ma sie nie wykonac'));
+    const infoBlue = (e) => {
+        e.stopPropagation(); //zatrzymaj faze propagowania
+        console.log(('Ma sie wykonac tylko ten kod'));
+    }
+
+    lime.addEventListener("click", infoLime) //wykona sie lime
+    blue.addEventListener("click", infoBlue) //wykona si etylko infoBlue
+
+
+
+</script> 
+</body>
+</html>
