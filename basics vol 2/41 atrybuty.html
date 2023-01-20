@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+        background-color: black;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    </style>
+</head>
+<body>
+    <a href="">link</a>
+    <img src="/images/image.png" alt="alt">
+    <p style="text-transform: uppercase;">Paragraf</p>
+
+    <script>
+        const link = document.querySelector('a')
+        const img = document.querySelector("img")
+        const p = document.querySelector('p')
+
+//setAttribute dodaje/ustwia nowy atrybut i przypisuje do niego wartość
+        link.setAttribute('href', '#')
+        link.setAttribute('target', '_blank')
+
+//pobiera wartosc, ktora jest przypisana do danego atrybutu
+        console.log(img.getAttribute('alt'));
+
+//sprawdza czy posiada atrybut, zwraca true/false
+console.log(p.hasAttribute('alt')); //false
+console.log(p.hasAttribute('style')); //true
+
+//usuwa atrybut
+p.removeAttribute("style")
+console.log(p.hasAttribute("style")) //false
+    </script>
+</body>
+</html>

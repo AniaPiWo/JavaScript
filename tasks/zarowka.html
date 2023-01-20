@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 200px;
+            background-color: rgb(14, 15, 15);
+            color: white;
+            gap: 40px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        button {
+            padding: 10px 20px;
+            width: 100px;
+            color: white;
+            background-color: rgb(14,15,15);
+            border: 1px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin:20px;
+        }
+        
+        button:hover {
+            background-color: white;
+            color: rgb(14,15,15);
+        }
+
+        .light-on {
+            color: yellow;
+        } 
+
+
+    </style>
+</head>
+<body>
+    <div>
+        <button class="on">ON</button>
+        <button class="off">OFF</button>
+        <button class="on-off">ON / OFF</button>
+    </div>
+    <svg class="lightbulb" xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="currentColor" class="bi bi-lightbulb" viewBox="0 0 16 16">
+        <path d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13a.5.5 0 0 1 0 1 .5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1 0-1 .5.5 0 0 1 0-1 .5.5 0 0 1-.46-.302l-.761-1.77a1.964 1.964 0 0 0-.453-.618A5.984 5.984 0 0 1 2 6zm6-5a5 5 0 0 0-3.479 8.592c.263.254.514.564.676.941L5.83 12h4.342l.632-1.467c.162-.377.413-.687.676-.941A5 5 0 0 0 8 1z"/>
+      </svg>
+<script>
+const BTN_ON = document.querySelector(".on")
+const BTN_OFF = document.querySelector(".off")
+const BTN_ON_OFF = document.querySelector(".on-off")
+const LIGHTBULB = document.querySelector(".lightbulb")
+
+const lightOn = () => {
+    LIGHTBULB.classList.add("light-on")
+} 
+
+const lightOff = () => {
+    LIGHTBULB.classList.remove("light-on")
+} 
+
+const lightToggle = () => {
+    LIGHTBULB.classList.toggle("light-on")
+} 
+
+BTN_ON.addEventListener("click", lightOn)
+BTN_OFF.addEventListener("click", lightOff)
+BTN_ON_OFF.addEventListener("click", lightToggle)
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-family: 'Courier New', Courier, monospace;
+            margin-top: 100px;
+            background-color: rgb(14, 15, 15);
+            color: white;
+            gap: 30px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="grandparent">
+        <div class="parent">
+            <p class="child">1</p>
+            <p class="child middle-child">2</p>
+            <p class="child">3</p>
+        </div>
+    </div>
+
+<script>
+    const grandparent = document.querySelector(".grandparent");
+    console.log(grandparent.querySelector(".parent"));
+    console.log(grandparent.querySelectorAll(".child"));
+
+    const middleChild = document.querySelector(".middle-child");
+
+    const prevSibiling = middleChild.previousElementSibling;
+    console.log(prevSibiling);
+
+    const nextSibiling = middleChild.nextElementSibling;
+    console.log(nextSibiling);
+
+    const parentElement = middleChild.parentElement;
+    console.log(parentElement); //parent
+
+    const grandParentElement = middleChild.parentElement.parentElement;
+    console.log(grandParentElement); //grandparent
+
+    const grandGrandParentElement = middleChild.parentElement.parentElement.parentElement;
+    console.log(grandGrandParentElement); // body
+
+    console.log(middleChild.closest('p')); //p.child.middle-child
+    console.log(middleChild.closest('div')); //div.parent
+
+</script>
+</body>
+</html>

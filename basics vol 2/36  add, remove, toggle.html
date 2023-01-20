@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 200px;
+            background-color: rgb(14, 15, 15);
+            color: white;
+            gap: 30px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        button {
+            padding: 10px 20px;
+            color: white;
+            background-color: rgb(14,15,15);
+            border: 1px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+
+        .lime {
+            background-color: lime;
+            color:rgb(14, 15, 15);
+            border-radius: 8px;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div>
+        <button class="btn1">DODAJ</button>
+        <button class="btn2">USUŃ</button>
+        <button class="btn3">TOGGLE</button>
+    </div>
+    <p>Jestem paragrafem!</p>
+
+<script>
+//dodawanie i usuwanie klas w javasript
+const BTN1 = document.querySelector(".btn1")
+const BTN2 = document.querySelector(".btn2")
+const BTN3 = document.querySelector(".btn3")
+const TEXT = document.querySelector("p")
+
+
+const addClass = () => {
+    TEXT.classList.add("lime")
+}
+const removeClass = () => {
+    TEXT.classList.remove("lime")
+}
+const toggleClass = () => {
+    TEXT.classList.toggle("lime")
+}
+
+
+BTN1.addEventListener("click", addClass)
+BTN2.addEventListener("click", removeClass)
+BTN3.addEventListener("click", toggleClass)
+
+</script>
+
+</body>
+</html>

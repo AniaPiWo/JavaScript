@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        </style>
+</head>
+<body>
+    <div class="wrapper">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+/* const ul = document.querySelector("ul") */
+const liItems = document.querySelectorAll('li')
+let number = 1;
+
+/* for (let i=1; i<=numbers; i++) {
+    const li = document.createElement("li")
+    li.textContent = [i];
+    li.setAttribute('data-atribiute-id', [i])
+    ul.append(li)
+} */
+
+for (const liItem of liItems) {
+    liItem.textContent = number;
+   /*  liItem.setAttribute('data-id', number) */
+   liItem.dataset.id = number;
+    number ++
+}
+
+
+const thirdLi = document.querySelector('[data-id="3"]')
+console.log((thirdLi));
+
+console.log(thirdLi.parentElement.parentElement);
+console.log(thirdLi.closest('div'));
+
+
+
+    </script>
+</body>
+</html>
