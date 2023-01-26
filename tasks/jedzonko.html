@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        body {
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+   
+            padding-top: 200px;
+        }
+
+        .btn-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap:30px;
+
+        }
+
+        button {
+            padding: 20px 30px;
+            background-color: black;
+            border-radius: 15px;
+            border: 1px solid lime;
+            color: lime;
+            cursor: pointer;
+        }
+        p {
+            color: lime;
+            padding-top: 50px;
+            font-family: sans-serif;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn-box">
+    <button id="btn1">#1</button>
+    <button id="btn2">#2</button>
+    <button id="btn3">#3</button>
+    </div>
+    <p></p>
+
+    <script>
+const btn1 = document.querySelector("#btn1")
+const btn2 = document.querySelector("#btn2")
+const btn3 = document.querySelector("#btn3")
+const p = document.querySelector("p")
+
+function Drink(name, price) {
+        this.name = name,
+        this.price = price
+    }
+
+const drink1 = new Drink("🍺", 10)
+const drink2 = new Drink("🍾", 12)
+const drink3 = new Drink("☕", 5)
+
+Drink.prototype.order = function() {
+    p.textContent =`You chosen drink is ${this.name}, total bill is ${this.price} $.`
+}
+
+btn1.addEventListener("click", () => drink1.order())
+btn2.addEventListener("click", () => drink2.order())
+btn3.addEventListener("click", () => drink3.order())
+
+    </script>
+</body>
+</html>

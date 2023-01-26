@@ -1,0 +1,14 @@
+<script>
+    //konstruktor to funkcja do tworzenia obiektu 
+   //nazwe konstruktora zawsze duza litera
+
+    function User(name, age) {
+        this.name = name,
+        this.age = age
+
+        this.hello = function(){console.log(`Witaj ${this.name}`);}
+    }
+
+    const newUser = new User("ania", 23)
+    console.log(newUser);
+</script>

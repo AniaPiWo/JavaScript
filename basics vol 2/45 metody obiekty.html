@@ -1,0 +1,20 @@
+<script>
+// funkcja stworzona w obiekcie to metoda
+
+const newUser = {
+    name: "lisa",
+    age: 23,
+    car: {
+        brand: "audi",
+        model: "a3",
+        color: "black",
+        // trzy alternatywne sposoby stworzenia metody
+        sound: function(){console.log("brum, brum")},
+        sound2: () => {console.log("brum, brum")},
+        sound3(){console.log("brum, brum")}
+    }
+}
+
+newUser.car.sound()
+    </script>
+>

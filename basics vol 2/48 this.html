@@ -1,0 +1,48 @@
+<script>
+    const user = {
+        name: "Ania",
+        printName(){
+            /* console.log(user.name); */
+            console.log(this.name); //zmiana nazwy obiektu nie ma zb=naczenia, kdo bedzi edzialal
+        }
+    }
+
+user.printName() //ania
+
+const person = {
+    name: "Lisa",
+    "fav-meal": "schabowy", //niestatndardowy zapis klucza
+    showInfo() {
+        console.log(this); //{name: 'Lisa', fav-meal: 'schabowy', showInfo: ƒ}
+        console.log(this["fav-meal"]); //schabowy
+    }
+}
+
+person.showInfo();
+
+
+const person2 = {
+    name: "Burek",
+    age: 5,
+    address: {
+        city: "Krakow",
+        zip: "00-000",
+        showCity(){ console.log(this.city) } //wskazuje na lewy obiekt od this
+    },
+    showName(){console.log(this.name)}
+} 
+
+person2.showName(); 
+person2.address.showCity(); 
+
+//this w konstruktorze wskazuje na obiekt stworzony na podst konstruktora
+
+function Food(name) {
+    this.name = name
+}
+
+const meal = new Food("schabowy")
+const meal2 = new Food("pepsi")
+console.log(meal); //Food {name: 'schabowy'}
+console.log(meal2); //Food {name: 'pepsi'}
+</script>

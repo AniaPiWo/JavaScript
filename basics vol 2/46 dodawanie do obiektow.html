@@ -1,0 +1,32 @@
+<script>
+    
+    const user = {
+        name: "lisa",
+        age: 23,
+    }
+    
+    user.country = "Polska";
+    console.log(user);
+
+    user["fav-color"] = "blue"
+    console.log(user);
+
+
+    const dogName = "Drops";
+    const dogAge = 5;
+
+    const dog = {
+       /*  name: dogName,
+        age: dogAge */
+        dogName: dogName,
+        dogAge: dogAge
+    }
+
+    //alternatywny zapis gdy nazwa klucza = nazwa wartosci
+    const dog2 = {
+        dogName,
+        dogAge
+    }
+
+    console.log(dog2);
+        </script>

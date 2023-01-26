@@ -1,0 +1,27 @@
+<script>
+
+
+    function User(name, age) {
+        this.name = name,
+        this.age = age
+
+        /* this.hello = function(){console.log(`Witaj ${this.name}`);} */ //stad usuwamy i dodajemy za pomoca User.prototype.hello
+    }
+
+    const newUser = new User("ania", 23)
+    const newUser2 = new User("Klaudia", 15)
+    const newUser3 = new User("Tomasz", 27)
+ 
+
+    User.prototype.hello = function () {
+        console.log(`Witaj ${this.name}`)
+    }
+
+    console.log(newUser);
+    console.log(newUser2);
+    console.log(newUser3);
+
+    newUser.hello();
+    newUser2.hello();
+    newUser3.hello();
+</script>
