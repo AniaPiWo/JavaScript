@@ -1,0 +1,12 @@
+body {
+  height: 10000vh;
+  margin: 0;
+  padding: 0;
+}
+
+.stripe {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: black;
+}
