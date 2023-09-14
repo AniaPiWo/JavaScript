@@ -1,0 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz@8..144&display=swap");
+
+.box {
+  font-family: roboto, sans-serif;
+  max-width: 80%;
+  margin: 40px auto;
+  letter-spacing: 1px;
+  font-size: 60px;
+}
+
+.cursor {
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.cursor.active {
+  opacity: 1;
+}
