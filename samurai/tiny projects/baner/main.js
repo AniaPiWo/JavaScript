@@ -19,16 +19,30 @@ let active = 0;
 };
  */
 
-const changeSlide = () => {
+const updateSlide = (newActive) => {
   dots[active].classList.remove("active");
 
-  active++;
-  if (active === slideList.length) active = 0;
+  active = newActive;
+
+  if (active < 0) active = slideList.length - 1;
+  else if (active >= slideList.length) active = 0;
 
   dots[active].classList.add("active");
-
   image.src = slideList[active].img;
   text.textContent = slideList[active].text;
 };
 
+const changeSlide = () => {
+  updateSlide(active + 1);
+};
+
+const keyChangeSlide = (e) => {
+  if (e.code == "ArrowRight") {
+    updateSlide(active + 1);
+  } else if (e.code == "ArrowLeft") {
+    updateSlide(active - 1);
+  }
+};
+
+document.addEventListener("keydown", keyChangeSlide);
 setInterval(changeSlide, time);
