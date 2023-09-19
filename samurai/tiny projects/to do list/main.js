@@ -28,6 +28,12 @@ const addTask = (e) => {
   const newLi = document.createElement("li");
   newLi.innerHTML = `${newTask}`;
   list.appendChild(newLi);
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.textContent = "X";
+  deleteBtn.classList.add("delete");
+  newLi.appendChild(deleteBtn);
+
   addInput.value = "";
   infoBox.textContent = "Task added!";
   setTimeout(() => {
