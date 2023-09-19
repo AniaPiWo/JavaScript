@@ -22,8 +22,7 @@ h1 {
   color: white;
 }
 
-ul,
-.li-box {
+ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -53,6 +52,14 @@ button {
   transition: background-color 0.3s ease;
 }
 
+.wrapper {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+}
+
 .button-box {
   display: flex;
   gap: 10px;
@@ -76,7 +83,16 @@ button.delete:hover {
   opacity: 0.8;
 }
 
-.search {
+button.submitBtn {
+  background-color: hotpink;
+  color: white;
+}
+
+button.submitBtn:hover {
+  opacity: 0.8;
+}
+
+input {
   display: flex;
   width: 100%;
   border: 1px solid grey;
@@ -84,6 +100,24 @@ button.delete:hover {
   background-color: #fff;
   margin: 8px 0;
   padding: 10px;
+  border-radius: 4px;
+}
+
+.addbox {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.infoBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: hotpink;
+  font-weight: bold;
+  height: 15px;
   border-radius: 4px;
 }
 

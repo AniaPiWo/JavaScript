@@ -4,8 +4,11 @@ const deleted = document.querySelector(".deleted");
 const deleteBtn = document.querySelectorAll(".delete");
 const crossoutBtn = document.querySelectorAll(".crossout");
 const undoneBtn = document.querySelectorAll(".undone");
-const search = document.querySelector(".search");
-const addBtn = document.querySelector(".add");
+const search = document.querySelector(".searchInput");
+const addInput = document.querySelector(".addInput");
+const addBtn = document.querySelector(".submitBtn");
+const form = document.querySelector(".form");
+const infoBox = document.querySelector(".infoBox");
 
 undoneBtn.forEach((btn) => {
   btn.style.display = "none";
@@ -14,8 +17,22 @@ undoneBtn.forEach((btn) => {
 //functions
 const addTask = (e) => {
   e.preventDefault();
-  const task = search.value;
-  console.log(task);
+  const newTask = addInput.value;
+  if (newTask === "") {
+    infoBox.textContent = "Please add a task!";
+    setTimeout(() => {
+      infoBox.textContent = "";
+    }, 2000);
+    return;
+  }
+  const newLi = document.createElement("li");
+  newLi.innerHTML = `${newTask}`;
+  list.appendChild(newLi);
+  addInput.value = "";
+  infoBox.textContent = "Task added!";
+  setTimeout(() => {
+    infoBox.textContent = "";
+  }, 2000);
 };
 
 const deleteTask = (e) => {
@@ -48,5 +65,4 @@ crossoutBtn.forEach((item) => {
 });
 
 search.addEventListener("input", searchTask);
-
-addBtn.addEventListener("click", addTask);
+form.addEventListener("submit", addTask);
