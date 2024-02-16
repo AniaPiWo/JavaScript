@@ -1,20 +1,20 @@
 const list = document.querySelector("ul");
 const liItems = document.querySelectorAll("li");
 const deleted = document.querySelector(".deleted");
-const deleteBtn = document.querySelectorAll(".delete");
-const crossoutBtn = document.querySelectorAll(".crossout");
-const undoneBtn = document.querySelectorAll(".undone");
 const search = document.querySelector(".searchInput");
 const addInput = document.querySelector(".addInput");
 const addBtn = document.querySelector(".submitBtn");
+const crossOutBtn = document.querySelector(".crossout");
 const form = document.querySelector(".form");
 const infoBox = document.querySelector(".infoBox");
 
+// Hide undone buttons
+const undoneBtn = document.querySelectorAll(".undone");
 undoneBtn.forEach((btn) => {
   btn.style.display = "none";
 });
 
-//functions
+// Function to add a task
 const addTask = (e) => {
   e.preventDefault();
   const newTask = addInput.value;
@@ -26,14 +26,15 @@ const addTask = (e) => {
     return;
   }
   const newLi = document.createElement("li");
-  newLi.innerHTML = `${newTask}`;
-  list.appendChild(newLi);
+  newLi.innerHTML = newTask;
 
+  // Create a delete button for the new task
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "X";
   deleteBtn.classList.add("delete");
   newLi.appendChild(deleteBtn);
 
+  list.appendChild(newLi);
   addInput.value = "";
   infoBox.textContent = "Task added!";
   setTimeout(() => {
@@ -41,16 +42,26 @@ const addTask = (e) => {
   }, 2000);
 };
 
+// Function to handle delete task
 const deleteTask = (e) => {
-  e.target.parentNode.parentNode.remove();
+  if (e.target.classList.contains("delete")) {
+    e.target.parentNode.remove();
+    infoBox.textContent = "Deleted!";
+    setTimeout(() => {
+      infoBox.textContent = "";
+    }, 2000);
+  }
 };
 
+// Function to cross out task
 const crossOut = (e) => {
-  const li = e.target.parentNode.parentNode;
-  li.style.textDecoration = "line-through";
-  li.style.color = "hotpink";
+  if (e.target.nodeName === "LI") {
+    e.target.style.textDecoration = "line-through";
+    e.target.style.color = "hotpink";
+  }
 };
 
+// Function to search for tasks
 const searchTask = (e) => {
   const searchText = e.target.value.toLowerCase();
   let tasks = [...liItems];
@@ -61,14 +72,8 @@ const searchTask = (e) => {
   tasks.forEach((li) => list.appendChild(li));
 };
 
-//listeners
-deleteBtn.forEach((item) => {
-  item.addEventListener("click", deleteTask);
-});
-
-crossoutBtn.forEach((item) => {
-  item.addEventListener("click", crossOut);
-});
-
+// Add event listeners
+list.addEventListener("click", deleteTask);
+crossOutBtn.addEventListener("click", crossOut);
 search.addEventListener("input", searchTask);
 form.addEventListener("submit", addTask);
